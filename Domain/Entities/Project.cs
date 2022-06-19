@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
-    [Table("Notes")]
+    [Table("Projects")]
 
     public class Project : AuditibleEntity
     {
