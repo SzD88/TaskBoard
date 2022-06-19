@@ -8,10 +8,10 @@ namespace Application.Dto
 {
     public class NoteDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string? Content { get; set; }
         public bool Completed { get; set; }
-        public NoteDto(int id, string content, bool completed)
+        public NoteDto(Guid id, string content, bool completed)
         {
             Id = id;
             Content = content;  

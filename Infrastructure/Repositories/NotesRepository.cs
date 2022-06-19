@@ -11,8 +11,8 @@ namespace Infrastructure.Repositories
 {
     public class NotesRepository : INotesRepository
     {
-        private readonly NotesContext _context;
-        public NotesRepository(NotesContext context)
+        private readonly ProjectManagerContext _context;
+        public NotesRepository(ProjectManagerContext context)
         {
             _context = context;
         }

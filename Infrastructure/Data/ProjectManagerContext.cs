@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    public class NotesContext : DbContext
+    public class ProjectManagerContext : DbContext
     {
-        public NotesContext(DbContextOptions options) : base(options)
+        public ProjectManagerContext(DbContextOptions options) : base(options)
         {
+
         }
         public DbSet<Note> Notes { get; set; }
-         }
+      //  public DbSet<Project> Projects { get; set; }
+      //  public DbSet<SubTask> SubTasks { get; set; }
+    }
 }
