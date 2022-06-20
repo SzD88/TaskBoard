@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface INotesRepository
-    {
-        Task < IEnumerable<Note> > GetAllNotes(); 
-        Task <Note> AddNote(Note note);
-        Task   EditNote(Note note);
-        Task   Delete(int id);
-        Task   MarkAsDone(bool done);
-
+    public interface INotesRepository : IRepository<Note>
+    { 
+         
     }
 }

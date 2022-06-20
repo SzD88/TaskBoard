@@ -9,7 +9,7 @@ namespace Domain.Entities
     {
         [Key]
         public Guid Id { get; set; } // #check what type in sql server is guid ? answer: uniqueidentifier
-        public List<SubTask> MasterTasks { get; set; } // #check as well  as subtask 
+      //  public List<Guid> MasterTasks { get; set; } // #check as well  as subtask 
         public bool Completed { get; set; }
         [Required]
         [MaxLength(100)]
@@ -21,7 +21,7 @@ namespace Domain.Entities
             Id = Guid.NewGuid();
             Description = description;
             Completed = false;
-            MasterTasks = new List<SubTask>();
+          //  MasterTasks = new List<Guid>();
         }
     }
 }

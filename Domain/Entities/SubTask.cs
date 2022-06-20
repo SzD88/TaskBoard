@@ -14,13 +14,12 @@ namespace Domain.Entities
     {
         [Key]
         public Guid Id { get; protected set; }
-        public List<SubTask>? Tasks { get; set; } // #check should be list of  Guid of subtask ID
+       // public List<Guid>? Tasks { get; set; } // #check should be list of  Guid of subtask ID
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }
-        public Note? Note { get; set; }
-        public bool Completed { get; set; }
-
+        public string? Note { get; set; }
+        public bool Completed { get; set; } 
         public Guid LevelAboveId { get; set; }
 
 
@@ -30,6 +29,8 @@ namespace Domain.Entities
             Id = Guid.NewGuid();
             Description = description;
             Completed = false;
+          //  Tasks = new List<Guid>();
+
         }
     }
 }

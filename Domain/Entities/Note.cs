@@ -8,8 +8,7 @@ namespace Domain.Entities
     {
 
         [Key]
-        public Guid Id { get; protected set; }
-
+        public Guid Id { get; protected set; } 
         [Required]
         [MaxLength(100)]
         public string Content { get; set; } 
@@ -19,7 +18,6 @@ namespace Domain.Entities
 
         public Note(string content)
         {
-            
             Content = content;
             Completed = false;
 

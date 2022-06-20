@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface INoteService
+    public interface INoteService  
     {
-        Task<IEnumerable<NoteDto>> GetAllNotes();
-        Task<NoteDto> AddNote(CreateNoteDto note);
-        Task EditNote(NoteDto note);
-        Task Delete(int id);
-        Task MarkAsDone(bool done);
+        
+        Task<NoteDto> CreateAsync(CreateNoteDto entity);
+        Task DeleteAsync(Guid id);
+        Task<IEnumerable<NoteDto>> GetAllAsync();
+        Task<NoteDto> GetByIDAsync(Guid id); 
+        Task UpdateAsync(NoteDto entityToUpdate);
     }
 }

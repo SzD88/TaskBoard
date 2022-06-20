@@ -1,1 +1,5 @@
 ﻿change entities to list of guids 
+
+zrob repository jak jest
+
+zrob osobne dla service 

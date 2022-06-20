@@ -1,51 +1,64 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
+using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Application.Services
 {
+
+
     public class NoteService : INoteService
     {
         private readonly INotesRepository _notes;
-        public NoteService(INotesRepository notesRepository)
+        private readonly IMapper _mapper;
+        public NoteService(INotesRepository notesRepository, IMapper mapper ) //  IMapper mapper
         {
             _notes = notesRepository;
+            _mapper = mapper;
         }
-        public async Task<NoteDto> AddNote(CreateNoteDto noteDto)
+
+        public async Task<NoteDto> CreateAsync(CreateNoteDto note)
         {
-            
-            var note = new Note(noteDto.Content);
-           
-           var n2 =  await _notes.AddNote(note);
-
-            var noteToReturn = new NoteDto(n2.Id, n2.Content, n2.Completed);
-            return noteToReturn;
+            var noteAsNote = _mapper.Map<Note>(note);
+            var created = await _notes.CreateAsync(noteAsNote);
+            return _mapper.Map<NoteDto>(created); 
         }
-
-        public Task Delete(int id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+          await _notes.DeleteAsync(id);
         }
 
-        public Task EditNote(NoteDto note)
+        public async Task<IEnumerable<NoteDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
-        }
+          var allNotes = await _notes.GetAllAsync();
+          return  _mapper.Map<IEnumerable<NoteDto>>(allNotes); 
+        } 
+        public Task<NoteDto> GetByIDAsync(Guid id)
+        { 
+            var note = await _notes.GetByIDAsync(id); 
 
-        public Task<IEnumerable<NoteDto>> GetAllNotes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task MarkAsDone(bool done)
+            return _mapper.Map<NoteDto>(note);
+        } 
+        public Task UpdateAsync(NoteDto entityToUpdate)
         {
             throw new NotImplementedException();
         }
+
+
+
+        //Task<CreateNoteDto> IRepository<CreateNoteDto>.GetByID(object id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+
+        // var note = new Note(noteDto.Content); 
+        //var n2 =  await _notes.Create(note); 
+        // var noteToReturn = new NoteDto(n2.Id, n2.Content, n2.Completed);
+        // return noteToReturn;
+
+
     }
 }

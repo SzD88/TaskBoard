@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-   
+
 
     [Route("api/[controller]")]
     [ApiController]
@@ -15,17 +15,16 @@ namespace WebApi.Controllers
 
         public NotesController(INoteService context)
         {
-            _notes  = context;
+            _notes = context;
         }
 
         [HttpPost]
         public async Task<IActionResult> AddNote(CreateNoteDto note)
         {
-         var toShow =  await  _notes.AddNote(note);
+            var toShow = await _notes.Create(note);
 
+            return Created($"api/Clients/{toShow.Id}", toShow.Id);
 
-            return Created($"api/Clients/{toShow.Id}", note);
-        
         }
     }
 }
