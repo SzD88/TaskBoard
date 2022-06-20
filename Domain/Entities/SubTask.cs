@@ -14,7 +14,7 @@ namespace Domain.Entities
     {
         [Key]
         public Guid Id { get; protected set; }
-        public List<SubTask>? Tasks { get; set; }
+        public List<SubTask>? Tasks { get; set; } // #check should be list of  Guid of subtask ID
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }
