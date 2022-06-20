@@ -4,20 +4,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54D74C2A-22E3-4785-A889-4FDCAE0A485D}"
+	ProjectSection(SolutionItems) = preProject
+		notes.txt = notes.txt
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C4CB115E-08F6-41E6-8A46-9B16329ADEFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C4CB115E-08F6-41E6-8A46-9B16329ADEFF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3F05BA97-1CCB-4989-85EC-F7904F63F704} = {3F05BA97-1CCB-4989-85EC-F7904F63F704}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{10517D53-6AAB-44E0-904A-FE0A3F5F1B11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{10517D53-6AAB-44E0-904A-FE0A3F5F1B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{3F05BA97-1CCB-4989-85EC-F7904F63F704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{3F05BA97-1CCB-4989-85EC-F7904F63F704}"
 	ProjectSection(ProjectDependencies) = postProject
 		{10517D53-6AAB-44E0-904A-FE0A3F5F1B11} = {10517D53-6AAB-44E0-904A-FE0A3F5F1B11}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{32E7DF3F-2081-4483-BFE9-3ADBBB2A2876}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{32E7DF3F-2081-4483-BFE9-3ADBBB2A2876}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C4CB115E-08F6-41E6-8A46-9B16329ADEFF} = {C4CB115E-08F6-41E6-8A46-9B16329ADEFF}
 		{3F05BA97-1CCB-4989-85EC-F7904F63F704} = {3F05BA97-1CCB-4989-85EC-F7904F63F704}

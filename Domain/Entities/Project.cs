@@ -8,8 +8,8 @@ namespace Domain.Entities
     public class Project : AuditibleEntity
     {
         [Key]
-        public Guid Id { get; set; }
-        public List<SubTask> MasterTasks { get; set; }
+        public Guid Id { get; set; } // #check what type in sql server is guid ? answer: uniqueidentifier
+        public List<SubTask> MasterTasks { get; set; } // #check as well  as subtask 
         public bool Completed { get; set; }
         [Required]
         [MaxLength(100)]
