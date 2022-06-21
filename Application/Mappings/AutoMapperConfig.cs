@@ -19,6 +19,7 @@ namespace Application.AutoMappings
                  cfg.CreateMap<Note, NoteDto>().ReverseMap();
                  cfg.CreateMap<Note, CreateNoteDto>().ReverseMap();
                  cfg.CreateMap<NoteDto, CreateNoteDto>().ReverseMap();
+                 cfg.CreateMap<CreateNoteDto, NoteDto>() ;
              }
             ).CreateMapper();
     }

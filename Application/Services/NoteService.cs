@@ -30,20 +30,30 @@ namespace Application.Services
           await _notes.DeleteAsync(id);
         }
 
+        public Task DeleteAsync(object id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<NoteDto>> GetAllAsync()
         {
           var allNotes = await _notes.GetAllAsync();
           return  _mapper.Map<IEnumerable<NoteDto>>(allNotes); 
         } 
-        public Task<NoteDto> GetByIDAsync(Guid id)
+        public async Task<NoteDto> GetByIDAsync(object id)
         { 
             var note = await _notes.GetByIDAsync(id); 
 
             return _mapper.Map<NoteDto>(note);
-        } 
-        public Task UpdateAsync(NoteDto entityToUpdate)
+        }
+         
+        public async Task UpdateAsync(NoteDto entityToUpdate)
         {
-            throw new NotImplementedException();
+            var notetype = _mapper.Map<Note>(entityToUpdate);
+
+            await _notes.UpdateAsync(notetype);
+
+
         }
 
 

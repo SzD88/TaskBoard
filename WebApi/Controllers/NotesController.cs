@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNote(CreateNoteDto note)
         {
-            var toShow = await _notes.Create(note);
+            var toShow = await _notes.CreateAsync(note);
 
             return Created($"api/Clients/{toShow.Id}", toShow.Id);
 
