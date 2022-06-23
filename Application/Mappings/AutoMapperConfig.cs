@@ -16,10 +16,10 @@ namespace Application.AutoMappings
             (
              cfg =>
              {
-                 cfg.CreateMap<Note, NoteDto>().ReverseMap();
-                 cfg.CreateMap<Note, CreateNoteDto>().ReverseMap();
-                 cfg.CreateMap<NoteDto, CreateNoteDto>().ReverseMap();
-                 cfg.CreateMap<CreateNoteDto, NoteDto>() ;
+                 cfg.CreateMap<SubTask, SubTaskDto>().ReverseMap();
+                 cfg.CreateMap<SubTask, CreateSubTaskDto>().ReverseMap();
+                 cfg.CreateMap<SubTaskDto, CreateSubTaskDto>().ReverseMap();
+                 cfg.CreateMap<CreateSubTaskDto, SubTaskDto>() ;
              }
             ).CreateMapper();
     }

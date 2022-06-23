@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Application.Dto
 {
-    public class CreateNoteDto
+    public class CreateSubTaskDto
     {
         public string? Content { get; set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreateNoteDto, Note>().ReverseMap();
-            profile.CreateMap<CreateNoteDto, NoteDto>().ReverseMap();
+            profile.CreateMap<CreateSubTaskDto, SubTask>().ReverseMap();
+            profile.CreateMap<CreateSubTaskDto, SubTaskDto>().ReverseMap();
         }
     }
    

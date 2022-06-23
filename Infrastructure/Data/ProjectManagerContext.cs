@@ -14,7 +14,7 @@ namespace Infrastructure.Data
         {
 
         }
-        public DbSet<Note> Notes { get; set; }
+        public DbSet<SubTask> SubTasks { get; set; }
          public DbSet<Project> Projects { get; set; }
       //  public DbSet<SubTask> SubTasks { get; set; }
     }

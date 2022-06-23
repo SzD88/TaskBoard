@@ -9,17 +9,17 @@ namespace WebApi.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class NotesController : ControllerBase
+    public class SubTaskController : ControllerBase
     {
         private readonly INoteService _notes;
 
-        public NotesController(INoteService context)
+        public SubTaskController(INoteService context)
         {
             _notes = context;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNote(CreateNoteDto note)
+        public async Task<IActionResult> AddNote(CreateSubTaskDto note)
         {
             var toShow = await _notes.CreateAsync(note);
 

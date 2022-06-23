@@ -10,7 +10,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<INotesRepository, NotesRepository>();
+builder.Services.AddScoped<ISubTaskRepository, SubTaskRepository>();
 builder.Services.AddScoped<INoteService, NoteService>();
 // builder.Services.AddScoped<IProjectsRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectService, ProjectService>();

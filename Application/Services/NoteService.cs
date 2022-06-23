@@ -11,19 +11,19 @@ namespace Application.Services
 
     public class NoteService : INoteService
     {
-        private readonly INotesRepository _notes;
+        private readonly ISubTaskRepository _notes;
         private readonly IMapper _mapper;
-        public NoteService(INotesRepository notesRepository, IMapper mapper ) //  IMapper mapper
+        public NoteService(ISubTaskRepository notesRepository, IMapper mapper ) //  IMapper mapper
         {
             _notes = notesRepository;
             _mapper = mapper;
         }
 
-        public async Task<NoteDto> CreateAsync(CreateNoteDto note)
+        public async Task<SubTaskDto> CreateAsync(CreateSubTaskDto note)
         {
-            var noteAsNote = _mapper.Map<Note>(note);
+            var noteAsNote = _mapper.Map<SubTask>(note);
             var created = await _notes.CreateAsync(noteAsNote);
-            return _mapper.Map<NoteDto>(created); 
+            return _mapper.Map<SubTaskDto>(created); 
         }
         public async Task DeleteAsync(Guid id)
         {
@@ -35,21 +35,21 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<NoteDto>> GetAllAsync()
+        public async Task<IEnumerable<SubTaskDto>> GetAllAsync()
         {
           var allNotes = await _notes.GetAllAsync();
-          return  _mapper.Map<IEnumerable<NoteDto>>(allNotes); 
+          return  _mapper.Map<IEnumerable<SubTaskDto>>(allNotes); 
         } 
-        public async Task<NoteDto> GetByIDAsync(object id)
+        public async Task<SubTaskDto> GetByIDAsync(object id)
         { 
             var note = await _notes.GetByIDAsync(id); 
 
-            return _mapper.Map<NoteDto>(note);
+            return _mapper.Map<SubTaskDto>(note);
         }
          
-        public async Task UpdateAsync(NoteDto entityToUpdate)
+        public async Task UpdateAsync(SubTaskDto entityToUpdate)
         {
-            var notetype = _mapper.Map<Note>(entityToUpdate);
+            var notetype = _mapper.Map<SubTask>(entityToUpdate);
 
             await _notes.UpdateAsync(notetype);
 

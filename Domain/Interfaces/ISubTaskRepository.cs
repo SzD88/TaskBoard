@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface INotesRepository : IRepository<Note>
+    public interface ISubTaskRepository : IRepository<SubTask>
     { 
          
     }

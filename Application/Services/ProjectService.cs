@@ -10,7 +10,7 @@ namespace Application.Services
 {
     public class ProjectService : IProjectService
     {
-        public async Task<ProjectDto> AddProject(CreateNoteDto project)
+        public async Task<ProjectDto> AddProject(CreateSubTaskDto project)
         {
             throw new NotImplementedException();
         }

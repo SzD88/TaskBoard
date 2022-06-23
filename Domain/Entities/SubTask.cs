@@ -1,35 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
     [Table("SubTasks")]
-
     public class SubTask : AuditibleEntity
     {
+
         [Key]
-        public Guid Id { get; protected set; }
-       // public List<Guid>? Tasks { get; set; } // #check should be list of  Guid of subtask ID
+        public Guid Id { get; protected set; } 
         [Required]
         [MaxLength(100)]
-        public string Description { get; set; }
-        public string? Note { get; set; }
-        public bool Completed { get; set; } 
+        public string Content { get; set; } 
+        public bool Completed { get; set; }
         public Guid LevelAboveId { get; set; }
 
 
-        public SubTask(string description)
+        public SubTask(string content)
         {
-            Created = DateTime.Now;
-            Id = Guid.NewGuid();
-            Description = description;
+            Content = content;
             Completed = false;
-          //  Tasks = new List<Guid>();
 
         }
     }
