@@ -11,12 +11,13 @@ namespace Application.Dto
         public Guid Id { get; set; }
         public string? Content { get; set; }
         public bool Completed { get; set; }
+        public Guid LevelAboveIt { get; set; }
+
         public SubTaskDto(Guid id, string content, bool completed)
         {
             Id = id;
             Content = content;  
-            Completed = completed;
-
+            Completed = completed; 
         }
     }
 }

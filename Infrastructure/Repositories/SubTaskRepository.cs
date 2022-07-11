@@ -27,31 +27,34 @@ namespace Infrastructure.Repositories
             await _context.SubTasks.AddAsync((SubTask)entity);
             await _context.SaveChangesAsync();
             return entity;
-        } 
-        public async Task DeleteAsync(object note) // tu ma wejsc note
-        {
-            SubTask noteMiror = (SubTask)note;
-            var toDelete = _context.SubTasks.FirstOrDefaultAsync(x => x.Id == noteMiror.Id);
-            if (toDelete == null) throw new Exception("Not found sd");
-            _context.Remove(toDelete);
+        }
+        public async Task DeleteAsync(object subTaskToDelete) // tu ma wejsc note
+        { 
+            _context.Remove(subTaskToDelete);
             await _context.SaveChangesAsync();
-        } 
+        }
         public async Task<IEnumerable<SubTask>> GetAllAsync()
         {
             return await _context.SubTasks.ToListAsync();
-        } 
+        }
         public async Task<SubTask> GetByIDAsync(object id)
         {
-            var guid = (Guid)id;
-          //  SubTask noteMiror = new SubTask() { Id = id }; //(SubTask)id;
+            var guid = (Guid)id; 
             var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.Id == guid);
-            if (toReturn == null) throw new Exception("Not found sd"); 
-            return toReturn; 
-        } 
+            if (toReturn == null) throw new Exception("Not found sd");
+            return toReturn;
+        }
         public async Task UpdateAsync(SubTask entityToUpdate)
         {
             _context.SubTasks.Update(entityToUpdate);
-            await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
+        }
+        internal async Task<IEnumerable<SubTask>> CreateListOfTasks(Guid parentId)
+        {
+            var list =  await _context.SubTasks
+                .Where(x => x.LevelAboveId == parentId)
+                .ToListAsync(); 
+            return list;
         }
     }
 }

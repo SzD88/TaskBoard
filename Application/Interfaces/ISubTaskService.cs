@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface ISubTaskService : IService<SubTaskDto,CreateSubTaskDto>
+    public interface ISubTaskService : IService<SubTaskDto,CreateSubTaskDto, UpdateSubTaskDto>
     {
         
         //Task<NoteDto> CreateAsync(CreateNoteDto entity);

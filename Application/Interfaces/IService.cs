@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface IService<TEntity,TEntityCreate> where TEntity : class where TEntityCreate : class
+public interface IService<TEntity,TEntityCreate, TEntityUpdate> where TEntity : class where TEntityCreate : class where TEntityUpdate : class
 {
     //  void Delete(TEntity entityToDelete);
 
@@ -17,5 +17,5 @@ public interface IService<TEntity,TEntityCreate> where TEntity : class where TEn
     //IEnumerable<TEntity> GetWithRawSql(string query,
     //    params object[] parameters);
 
-    Task UpdateAsync(TEntity entityToUpdate);
+    Task UpdateAsync(TEntityUpdate entityToUpdate);
 }

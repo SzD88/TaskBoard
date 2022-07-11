@@ -3,3 +3,17 @@
 zrob repository jak jest
 
 zrob osobne dla service 
+
+How should it work?
+I got table in db - subtasks - storing all tasks, every task has 
+
+its own id
+id of its owner
+
+every time when i press CREATE list - get all subtasks with the same owner and create list inmemory
+
+create list should be in... subtask controllers - as put operation ? 
+
+Controlls to implement:
+
+Create list - 

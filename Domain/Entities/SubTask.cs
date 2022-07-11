@@ -16,13 +16,17 @@ namespace Domain.Entities
         public Guid LevelAboveId { get; set; }
 
         [NotMapped]
-        public List<Guid> IncludedTasks { get; set; }
+        public List<SubTask> IncludedTasks { get; set; }
         public SubTask(string content)
         {
             Id = Guid.NewGuid(); 
             Content = content;
             Completed = false;
             Created = DateTime.Now;
+        }
+        public SubTask()
+        {
+
         }
     }
 }

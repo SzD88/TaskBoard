@@ -30,9 +30,11 @@ namespace Application.Services
           await _notes.DeleteAsync(id);
         }
 
-        public Task DeleteAsync(object id)
+        public async Task DeleteAsync(object id)
         {
-            throw new NotImplementedException();
+            var guid = (Guid)id; 
+            var toDelete = await _notes.GetByIDAsync(guid);
+            await _notes.DeleteAsync(toDelete);
         }
 
         public async Task<IEnumerable<SubTaskDto>> GetAllAsync()
@@ -42,33 +44,27 @@ namespace Application.Services
         } 
         public async Task<SubTaskDto> GetByIDAsync(object id)
         { 
-            var note = await _notes.GetByIDAsync(id); 
+            var subTask = await _notes.GetByIDAsync(id);
+            // mam subtask
+            //wygeneruj mu liste
+            var list = await CreateListOfTasks(subTask.Id);
+            //przypisz mu liste
+            subTask.IncludedTasks =  list.ToList() ;// #check
+            //zwróc go z lista
 
-            return _mapper.Map<SubTaskDto>(note);
+            return _mapper.Map<SubTaskDto>(subTask);
         }
          
-        public async Task UpdateAsync(SubTaskDto entityToUpdate)
+        public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
         {
-            var notetype = _mapper.Map<SubTask>(entityToUpdate);
-
-            await _notes.UpdateAsync(notetype);
-
-
+            var subTaskType = _mapper.Map<SubTask>(entityToUpdate); 
+            await _notes.UpdateAsync(subTaskType); 
         }
 
-
-
-        //Task<CreateNoteDto> IRepository<CreateNoteDto>.GetByID(object id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
-        // var note = new Note(noteDto.Content); 
-        //var n2 =  await _notes.Create(note); 
-        // var noteToReturn = new NoteDto(n2.Id, n2.Content, n2.Completed);
-        // return noteToReturn;
-
-
+        internal async Task<IEnumerable<SubTaskDto>> CreateListOfTasks(Guid parentId)
+        {
+            var list = await _notes.GetAllAsync();
+            return _mapper.Map<IEnumerable<SubTaskDto>>(list);
+        }
     }
 }

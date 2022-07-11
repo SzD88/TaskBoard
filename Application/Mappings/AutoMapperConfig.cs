@@ -20,6 +20,7 @@ namespace Application.AutoMappings
                  cfg.CreateMap<SubTask, CreateSubTaskDto>().ReverseMap();
                  cfg.CreateMap<SubTaskDto, CreateSubTaskDto>().ReverseMap();
                  cfg.CreateMap<CreateSubTaskDto, SubTaskDto>() ;
+                 cfg.CreateMap<UpdateSubTaskDto, SubTask>().ReverseMap();
              }
             ).CreateMapper();
     }
