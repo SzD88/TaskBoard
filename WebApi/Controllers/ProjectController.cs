@@ -11,9 +11,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly INoteService _notes;
+        private readonly ISubTaskService _notes;
 
-        public ProjectController(INoteService context)
+        public ProjectController(ISubTaskService context)
         {
             _notes = context;
         }

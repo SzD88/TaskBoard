@@ -42,8 +42,9 @@ namespace Infrastructure.Repositories
         } 
         public async Task<SubTask> GetByIDAsync(object id)
         {
-            SubTask noteMiror = (SubTask)id;
-            var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.Id == noteMiror.Id);
+            var guid = (Guid)id;
+          //  SubTask noteMiror = new SubTask() { Id = id }; //(SubTask)id;
+            var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.Id == guid);
             if (toReturn == null) throw new Exception("Not found sd"); 
             return toReturn; 
         } 

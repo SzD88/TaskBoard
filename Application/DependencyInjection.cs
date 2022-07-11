@@ -13,7 +13,7 @@ namespace Application
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddScoped<INoteService, NoteService>();
+            services.AddScoped<ISubTaskService, SubTaskService>();
             return services;
         }
     }

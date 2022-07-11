@@ -9,11 +9,11 @@ namespace Application.Services
 {
 
 
-    public class NoteService : INoteService
+    public class SubTaskService : ISubTaskService
     {
         private readonly ISubTaskRepository _notes;
         private readonly IMapper _mapper;
-        public NoteService(ISubTaskRepository notesRepository, IMapper mapper ) //  IMapper mapper
+        public SubTaskService(ISubTaskRepository notesRepository, IMapper mapper ) //  IMapper mapper
         {
             _notes = notesRepository;
             _mapper = mapper;

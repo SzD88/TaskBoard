@@ -8,13 +8,16 @@ namespace Domain.Entities
     public class Project : AuditibleEntity
     {
         [Key]
-        public Guid Id { get; set; } // #check what type in sql server is guid ? answer: uniqueidentifier
+        public Guid Id { get; protected set; } // #check what type in sql server is guid ? answer: uniqueidentifier
       //  public List<Guid> MasterTasks { get; set; } // #check as well  as subtask 
         public bool Completed { get; set; }
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }
-
+        //create list of guids too - including all main tasks
+        
+        [NotMapped]
+        public List<Guid> MainTasks { get; set;}
         public Project(string description)
         {
             Created = DateTime.Now;

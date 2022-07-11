@@ -7,11 +7,12 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<ISubTaskRepository, SubTaskRepository>();
-builder.Services.AddScoped<INoteService, NoteService>();
+builder.Services.AddScoped<ISubTaskService, SubTaskService>();
 // builder.Services.AddScoped<IProjectsRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 
@@ -22,7 +23,12 @@ options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjectManager"));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations(); // *
+}
+);
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 
 
