@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Title dont know what does</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    
+   <h1> <a href="/swagger/index.html">Swagger </a></h1>
+     
+    <h1>Title</h1>
+
+    <form action="javascript:void(0);" method="POST" onsubmit="addFloor()">
+        <input type="text" id="add-floor" placeholder="text holded">
+        <input type="submit" value="Button to use function">
+    </form>
+     
+ 
+      
+    <h3>  </h3>
+    <button onclick="location.href = '/swagger/index.html';" id="myButton" class="float-left submit-button">Open swagger endpoints</button>
+
+    <div id="myDIV">
+        <text id="item.floor"></text>
+    </div>
+
+     
+    <h1> Return value: <span id="myText"> </span></h1>
+
+   
+    <script src="js/builderSite.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
+</body>
+</html>

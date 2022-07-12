@@ -1,22 +1,11 @@
-﻿change entities to list of guids 
+﻿  
 
-zrob repository jak jest
+how should project class look like?
 
-zrob osobne dla service 
+create endpoints for project
 
-How should it work?
-I got table in db - subtasks - storing all tasks, every task has 
+create fields in html - put there 
+- title
+- description
 
-its own id
-id of its owner
-
-every time when i press CREATE list - get all subtasks with the same owner and create list inmemory
-
-create list should be in... subtask controllers - as put operation ? 
-
-Controlls to implement:
-
-Create list - 
- 
-
-now i want get included tasks as list and json it
+- list of subtasks

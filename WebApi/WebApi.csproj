@@ -7,6 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Properties\ServiceDependencies\javaScriptNotesSD - Web Deploy\profile.arm.json" />
+    <Content Include="Properties\ServiceDependencies\javaScriptNotesSD - Zip Deploy\profile.arm.json" />
+    <Content Include="Properties\ServiceDependencies\PresentationSD - Web Deploy\profile.arm.json" />
+    <Content Include="Properties\ServiceDependencies\PresentationSD - Zip Deploy\profile.arm.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\javaScriptNotesSD - FTP.pubxml.user" />
+    <None Include="Properties\PublishProfiles\javaScriptNotesSD - Web Deploy.pubxml.user" />
+    <None Include="Properties\PublishProfiles\javaScriptNotesSD - Zip Deploy.pubxml.user" />
+    <None Include="Properties\PublishProfiles\PresentationSD - FTP.pubxml.user" />
+    <None Include="Properties\PublishProfiles\PresentationSD - Web Deploy.pubxml.user" />
+    <None Include="Properties\PublishProfiles\PresentationSD - Zip Deploy.pubxml.user" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
