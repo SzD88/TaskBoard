@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ProjectManagerContext))]
-    [Migration("20220623095136_asdc3")]
-    partial class asdc3
+    [Migration("20220712083159_new2")]
+    partial class new2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

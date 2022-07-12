@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetSubTaskById(Guid id)
         { 
             var toShow = await _subTasks.GetByIDAsync(id); 
-            return Ok(toShow.Content);
+            return Ok(toShow.IncludedTasks);
         }
 
         [SwaggerOperation(Summary = "Retrieves all tasks")]
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
             return Ok(toShow);
         }
         // change by content and id
-        [SwaggerOperation(Summary = "Retrieves all tasks")]
+        [SwaggerOperation(Summary = "Update task")]
         [HttpPut]
         public async Task<IActionResult> UpdateTask(UpdateSubTaskDto newSubTask)
         {

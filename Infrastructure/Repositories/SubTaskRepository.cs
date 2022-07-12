@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
             entity.Completed = false;
             entity.Created = DateTime.Now;
             entity.LastModified = DateTime.Now;
-            await _context.SubTasks.AddAsync((SubTask)entity);
+            await _context.SubTasks.AddAsync(entity); //(SubTask)
             await _context.SaveChangesAsync();
             return entity;
         }
@@ -49,7 +49,7 @@ namespace Infrastructure.Repositories
             _context.SubTasks.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
-        internal async Task<IEnumerable<SubTask>> CreateListOfTasks(Guid parentId)
+        public async Task<IEnumerable<SubTask>> CreateListOfTasks(Guid parentId)
         {
             var list =  await _context.SubTasks
                 .Where(x => x.LevelAboveId == parentId)

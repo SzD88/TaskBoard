@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace Domain.Interfaces
 {
     public interface ISubTaskRepository : IRepository<SubTask>
-    { 
-         
+    {
+          Task<IEnumerable<SubTask>> CreateListOfTasks(Guid parentId);
+
+
     }
 }

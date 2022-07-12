@@ -11,7 +11,9 @@ namespace Application.Dto
         public Guid Id { get; set; }
         public string? Content { get; set; }
         public bool Completed { get; set; }
-        public Guid LevelAboveIt { get; set; }
+        public Guid LevelAboveId { get; set; }
+        public List<SubTaskDto> IncludedTasks { get; set; }
+
 
         public SubTaskDto(Guid id, string content, bool completed)
         {

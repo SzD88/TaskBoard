@@ -9,7 +9,7 @@ namespace Application.Dto
 {
     public class ProjectDto  
     {
-        public List<Domain.Entities.zzzSubTask> MasterTasks { get; set; }
+        public List<SubTask> MasterTasks { get; set; }
         public bool Completed { get; set; }
         public string Description { get; set; }
 

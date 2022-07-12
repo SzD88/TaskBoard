@@ -9,11 +9,12 @@ namespace Domain.Entities
 
         [Key]
         public Guid Id { get; protected set; } 
+
         [Required]
         [MaxLength(100)]
         public string Content { get; set; } 
         public bool Completed { get; set; }
-        public Guid LevelAboveId { get; set; }
+        public Guid LevelAboveId { get; set; } //LevelAboveIt
 
         [NotMapped]
         public List<SubTask> IncludedTasks { get; set; }
