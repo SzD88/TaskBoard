@@ -42,8 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseDefaultFiles(); // needed to use JS/HTML/CSS
-app.UseStaticFiles();  // needed to use JS/HTML/CSS
+app.UseDefaultFiles(); // needed to use JS/HTML/
+app.UseStaticFiles();  // needed to use JS/HTML/
 
 app.UseHttpsRedirection();
 

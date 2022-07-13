@@ -9,3 +9,7 @@ create fields in html - put there
 - description
 
 - list of subtasks
+
+https://github.com/TylerPottsDev/yt-js-task-list-2021/blob/main/index.html
+
+https://youtu.be/MkESyVB4oUw?t=1652
