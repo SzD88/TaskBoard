@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetSubTaskById(Guid id)
         { 
             var toShow = await _subTasks.GetByIDAsync(id); 
-            return Ok(toShow.IncludedTasks);
+            return Ok(toShow);
         }
 
         [SwaggerOperation(Summary = "Retrieves all tasks")]
