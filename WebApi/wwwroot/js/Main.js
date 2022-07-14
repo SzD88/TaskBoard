@@ -1,13 +1,43 @@
-﻿window.addEventListener('load', () =>
-{
+﻿window.addEventListener('load', () => {
 	const form = document.querySelector("#new-task-form");
 	const input = document.querySelector("#new-task-input");
 	const list_el = document.querySelector("#tasks");
+	////
+
+	fetch('api/SubTask')
+		.then(response => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw new Error(response.statusText);
+			}
+		})
+		.then(data => {
+			dog_list = data.content;
+			for (dog in dog_list) {
+				let li = document.createElement("li");
+				let node = document.createTextNode(dog);
+				li.appendChild(node);
+				container.appendChild(li);
+			}
+		});
+
+	///
+	fetch('api/SubTask')
+		.then(response => response.json())
+		.then(data => saveDataToConst(data))
+	//.then(data => console.log(data))
+	var fullList;
+	function saveDataToConst(data)
+	{
+		fullList = data;
+ 
+	}
 
 	form.addEventListener('submit', (e) =>
-	{
+	{ 
 		e.preventDefault();
-
+		 
 		const task = input.value;
 
 		const task_el = document.createElement('div');
@@ -64,4 +94,6 @@
 			list_el.removeChild(task_el);
 		});
 	});
+
+
 });
