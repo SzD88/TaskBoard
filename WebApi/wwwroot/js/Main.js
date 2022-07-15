@@ -3,97 +3,112 @@
 	const input = document.querySelector("#new-task-input");
 	const list_el = document.querySelector("#tasks");
 	////
+	//let task_list = [];
 
-	fetch('api/SubTask')
-		.then(response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error(response.statusText);
-			}
-		})
-		.then(data => {
-			dog_list = data.content;
-			for (dog in dog_list) {
-				let li = document.createElement("li");
-				let node = document.createTextNode(dog);
-				li.appendChild(node);
-				container.appendChild(li);
-			}
-		});
+	//const container = document.getElementById("container");
+	//fetch('api/SubTask')
+	//	.then(response => {
+	//		if (response.ok) {
+	//			return response.json();
+	//		} else {
+	//			throw new Error(response.statusText);
+	//		} //   <ul id="container"></ul>
+	//	})
+	//	.then(data => {
+	//		task_list = data.message; // sprobuj loopa 
+	//		for (dog in task_list) {
+	//			let li = document.createElement("li");
+	//			let node = document.createTextNode(dog);
+	//			li.appendChild(node);
+	//			container.appendChild(li);
+	//		}
+	//	});
+	
 
-	///
-	fetch('api/SubTask')
-		.then(response => response.json())
-		.then(data => saveDataToConst(data))
-	//.then(data => console.log(data))
-	var fullList;
-	function saveDataToConst(data)
-	{
-		fullList = data;
+	 // fetch('api/SubTask')
+		//  .then
+		//  (
+		//	  (response) =>
+		//{
+		//	   response.json(); //return ? 
+		//})
+		//.then(tasks => {   
+			//for (i in tasks) {
+				//console.log(tasks[i].id)
+		//	}
+		/*});*/
+	 
+	//function saveDataToConst(tasks)
+	//{
+	//	console.log(tasks)
+	//	//for (i in tasks)
+	//	//{
+	//	//	console.log("zz");
+	//	//	console.log(tasks[i].id);
+	//	//}
+	//};
+	 
+	//saveDataToConst(allTasks)
+	 
  
-	}
-
-	form.addEventListener('submit', (e) =>
-	{ 
-		e.preventDefault();
 		 
-		const task = input.value;
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
 
-		const task_el = document.createElement('div');
-		task_el.classList.add('task');
+			const task = input.value;
 
-		const task_content_el = document.createElement('div');
-		task_content_el.classList.add('content');
+			const task_el = document.createElement('div');
+			task_el.classList.add('task');
 
-		task_el.appendChild(task_content_el);
+			const task_content_el = document.createElement('div');
+			task_content_el.classList.add('content');
 
-		const task_input_el = document.createElement('input');
-		task_input_el.classList.add('text');
-		task_input_el.type = 'text';
-		task_input_el.value = task;
-		task_input_el.setAttribute('readonly', 'readonly');
+			task_el.appendChild(task_content_el);
 
-		task_content_el.appendChild(task_input_el);
+			const task_input_el = document.createElement('input');
+			task_input_el.classList.add('text');
+			task_input_el.type = 'text';
+			task_input_el.value = task;
+			task_input_el.setAttribute('readonly', 'readonly');
 
-		const task_actions_el = document.createElement('div');
-		task_actions_el.classList.add('actions');
+			task_content_el.appendChild(task_input_el);
 
-		const task_edit_el = document.createElement('button');
-		task_edit_el.classList.add('edit');
-		task_edit_el.innerText = 'Edit';
+			const task_actions_el = document.createElement('div');
+			task_actions_el.classList.add('actions');
 
-		const task_delete_el = document.createElement('button');
-		task_delete_el.classList.add('delete');
-		task_delete_el.innerText = 'Delete';
+			const task_edit_el = document.createElement('button');
+			task_edit_el.classList.add('edit');
+			task_edit_el.innerText = 'Edit';
 
-		task_actions_el.appendChild(task_edit_el);
-		task_actions_el.appendChild(task_delete_el);
+			const task_delete_el = document.createElement('button');
+			task_delete_el.classList.add('delete');
+			task_delete_el.innerText = 'Delete';
 
-		task_el.appendChild(task_actions_el);
+			task_actions_el.appendChild(task_edit_el);
+			task_actions_el.appendChild(task_delete_el);
 
-		list_el.appendChild(task_el);
+			task_el.appendChild(task_actions_el);
 
-		input.value = '';
+			list_el.appendChild(task_el);
+			 
+			input.value = '';
 
-		task_edit_el.addEventListener('click', (e) =>
-		{
-			if (task_edit_el.innerText.toLowerCase() == "edit")
-			{
-				task_edit_el.innerText = "Save";
-				task_input_el.removeAttribute("readonly");
-				task_input_el.focus();
-			} else
-			{
-				task_edit_el.innerText = "Edit";
-				task_input_el.setAttribute("readonly", "readonly");
-			}
+			task_edit_el.addEventListener('click', (e) => {
+				if (task_edit_el.innerText.toLowerCase() == "edit") {
+					task_edit_el.innerText = "Save";
+					task_input_el.removeAttribute("readonly");
+					task_input_el.focus();
+				} else {
+					task_edit_el.innerText = "Edit";
+					task_input_el.setAttribute("readonly", "readonly");
+				}
+			});
+
+			task_delete_el.addEventListener('click', (e) => {
+				list_el.removeChild(task_el);
+			});
 		});
-
-		task_delete_el.addEventListener('click', (e) => {
-			list_el.removeChild(task_el);
-		});
-	});
-
-
+	
+	
+	
 });

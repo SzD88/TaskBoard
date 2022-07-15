@@ -1,9 +1,20 @@
 ﻿let dog_list = [];
 
 const container = document.getElementById("container");
-fetch('api/SubTask/5fcc1723-4b8c-42d9-b5fb-04ab0dc89300')
+
+import Tasks from '/api/SubTask'
+
+const allTasks = fetch('api/SubTask')
     .then(response => response.json())
-    .then (zz => console.log(zz.id));
+    .then(tasks => {
+        for (i in tasks) {
+          //  console.log(tasks[i].id)
+        }
+    });
+
+for (t in Tasks) {
+    console.log(t);
+}
 
     //{
     //    if (response.ok) {
@@ -18,7 +29,7 @@ fetch('api/SubTask/5fcc1723-4b8c-42d9-b5fb-04ab0dc89300')
     //    for (dog in dog_list) {
     //        let li = document.createElement("li");
     //        let node = document.createTextNode(dog);
-    //        li.appendChild(node);
+    //        li.appendChild(node); 
     //        container.appendChild(li);
     //    }
     //});
