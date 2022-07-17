@@ -1,114 +1,119 @@
 ﻿window.addEventListener('load', () => {
-	const form = document.querySelector("#new-task-form");
-	const input = document.querySelector("#new-task-input");
-	const list_el = document.querySelector("#tasks");
-	////
-	//let task_list = [];
+    const form = document.querySelector("#new-task-form");
+    const input = document.querySelector("#new-task-input");
+    const list_el = document.querySelector("#tasks");
 
-	//const container = document.getElementById("container");
-	//fetch('api/SubTask')
-	//	.then(response => {
-	//		if (response.ok) {
-	//			return response.json();
-	//		} else {
-	//			throw new Error(response.statusText);
-	//		} //   <ul id="container"></ul>
-	//	})
-	//	.then(data => {
-	//		task_list = data.message; // sprobuj loopa 
-	//		for (dog in task_list) {
-	//			let li = document.createElement("li");
-	//			let node = document.createTextNode(dog);
-	//			li.appendChild(node);
-	//			container.appendChild(li);
-	//		}
-	//	});
-	
+    // for now creating a container element can be used in html
+    const container = document.getElementById("container");
+    const list = [];
 
-	 // fetch('api/SubTask')
-		//  .then
-		//  (
-		//	  (response) =>
-		//{
-		//	   response.json(); //return ? 
-		//})
-		//.then(tasks => {   
-			//for (i in tasks) {
-				//console.log(tasks[i].id)
-		//	}
-		/*});*/
-	 
-	//function saveDataToConst(tasks)
-	//{
-	//	console.log(tasks)
-	//	//for (i in tasks)
-	//	//{
-	//	//	console.log("zz");
-	//	//	console.log(tasks[i].id);
-	//	//}
-	//};
-	 
-	//saveDataToConst(allTasks)
-	 
- 
-		 
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+    
+    fetch('api/SubTask')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.statusText);
+            }
+        })
+        .then(data => {
+            task_content_list = data;
+            for (nextTask in task_content_list) {
+                let singleObj = task_content_list[nextTask].content;
+                list.push(task_content_list[nextTask]);
+                createList(singleObj);
+            }
+        });
 
-			const task = input.value;
 
-			const task_el = document.createElement('div');
-			task_el.classList.add('task');
+    async function foo()
+    {
+        let obj;
 
-			const task_content_el = document.createElement('div');
-			task_content_el.classList.add('content');
+        const res = await fetch('api/SubTask')
 
-			task_el.appendChild(task_content_el);
+        obj = await res.json();
 
-			const task_input_el = document.createElement('input');
-			task_input_el.classList.add('text');
-			task_input_el.type = 'text';
-			task_input_el.value = task;
-			task_input_el.setAttribute('readonly', 'readonly');
+       // console.log(obj[1])
+        return obj;
+    }
 
-			task_content_el.appendChild(task_input_el);
+    var gowno = foo();
 
-			const task_actions_el = document.createElement('div');
-			task_actions_el.classList.add('actions');
+    console.log(gowno);
 
-			const task_edit_el = document.createElement('button');
-			task_edit_el.classList.add('edit');
-			task_edit_el.innerText = 'Edit';
+    //chce miec liste objektow pobranych z api w js
 
-			const task_delete_el = document.createElement('button');
-			task_delete_el.classList.add('delete');
-			task_delete_el.innerText = 'Delete';
+    // chce moc odnalezc po id dany obiekt
 
-			task_actions_el.appendChild(task_edit_el);
-			task_actions_el.appendChild(task_delete_el);
+    // przypisuje obecnie do listy wyswietlanej obiekty ale sztywno jako content i koniec
 
-			task_el.appendChild(task_actions_el);
+    // musze powiazac id z contentem i ten element przekazywac do listy+
 
-			list_el.appendChild(task_el);
-			 
-			input.value = '';
 
-			task_edit_el.addEventListener('click', (e) => {
-				if (task_edit_el.innerText.toLowerCase() == "edit") {
-					task_edit_el.innerText = "Save";
-					task_input_el.removeAttribute("readonly");
-					task_input_el.focus();
-				} else {
-					task_edit_el.innerText = "Edit";
-					task_input_el.setAttribute("readonly", "readonly");
-				}
-			});
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-			task_delete_el.addEventListener('click', (e) => {
-				list_el.removeChild(task_el);
-			});
-		});
-	
-	
-	
+        const task = input.value;
+        createList(task);
+
+
+    });
+
+    function createList(inputData) {
+
+        const task = inputData;
+
+        const task_el = document.createElement('div');
+        task_el.classList.add('task');
+
+        const task_content_el = document.createElement('div');
+        task_content_el.classList.add('content');
+
+        task_el.appendChild(task_content_el);
+
+        const task_input_el = document.createElement('input');
+        task_input_el.classList.add('text');
+        task_input_el.type = 'text';
+        task_input_el.value = task;
+        task_input_el.setAttribute('readonly', 'readonly');
+
+        task_content_el.appendChild(task_input_el);
+
+        const task_actions_el = document.createElement('div');
+        task_actions_el.classList.add('actions');
+
+        const task_edit_el = document.createElement('button');
+        task_edit_el.classList.add('edit');
+        task_edit_el.innerText = 'Edit';
+
+        const task_delete_el = document.createElement('button');
+        task_delete_el.classList.add('delete');
+        task_delete_el.innerText = 'Delete';
+
+        task_actions_el.appendChild(task_edit_el);
+        task_actions_el.appendChild(task_delete_el);
+
+        task_el.appendChild(task_actions_el);
+
+        list_el.appendChild(task_el);
+
+        input.value = '';
+
+        task_edit_el.addEventListener('click', (e) => {
+            if (task_edit_el.innerText.toLowerCase() == "edit") {
+                task_edit_el.innerText = "Save";
+                task_input_el.removeAttribute("readonly");
+                task_input_el.focus();
+            } else {
+                task_edit_el.innerText = "Edit";
+                task_input_el.setAttribute("readonly", "readonly");
+            }
+        }); //odczytuje event nacisniecia button
+
+        task_delete_el.addEventListener('click', (e) => {
+            list_el.removeChild(task_el);
+        }); //odczytuje event nacisniecia button
+    }
+
 });

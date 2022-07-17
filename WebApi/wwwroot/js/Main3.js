@@ -1,4 +1,4 @@
-﻿let dog_list = [];
+﻿let task_content_list = [];
 
 const container = document.getElementById("container");
 fetch('api/SubTask')
@@ -7,15 +7,15 @@ fetch('api/SubTask')
             return response.json();
         } else {
             throw new Error(response.statusText);
-        } //   <ul id="container"></ul>
+        } 
     })
     .then(data => {
-        dog_list = data[1].id;
-        console.log(data[1].id)
-        for (dog in dog_list) {
+        task_content_list = data; 
+        for (nextTask in task_content_list) {
+            let singleObj = task_content_list[nextTask].id;
             let li = document.createElement("li");
-            let node = document.createTextNode(dog);
-            li.appendChild(node);
+            let node = document.createTextNode(singleObj);
+            li.appendChild(node); 
             container.appendChild(li);
         }
     });
