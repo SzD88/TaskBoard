@@ -13,3 +13,14 @@ create fields in html - put there
 https://github.com/TylerPottsDev/yt-js-task-list-2021/blob/main/index.html
 
 https://youtu.be/MkESyVB4oUw?t=1652
+
+
+zrob endpointy dla projektu - 
+
+
+111111
+dokoncz project do kontrollera
+
+wyswietlanie z projektow - tytuly
+
+zmien akcje na edit button to chyba w js?

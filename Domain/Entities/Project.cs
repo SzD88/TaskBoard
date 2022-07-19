@@ -17,10 +17,12 @@ namespace Domain.Entities
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }
+
+       // public string ProjectNumber { get; set; }
         public bool Completed { get; set; }
          
         [NotMapped]
-        public List<Guid> MainTasks { get; set;}
+        public List<SubTask> MainTasks { get; set;}
         public Project(string title, string description)
         {
             Id = Guid.NewGuid();

@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IProjectService
+    public interface IProjectService : IService<ProjectDto, CreateProjectDto, UpdateProjectDto>
     {
-        Task<IEnumerable<ProjectDto>> GetAllNotes();
-        Task<ProjectDto> AddProject(CreateSubTaskDto project);
-        Task EditProject(ProjectDto project);
-        Task Delete(Guid id);
-        Task MarkAsCompleted(bool completed);
+        
     }
 }

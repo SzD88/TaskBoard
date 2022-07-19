@@ -1,4 +1,6 @@
-﻿namespace Application.Dto
+﻿using Domain.Entities;
+
+namespace Application.Dto
 {
     public class ProjectDto
     {
@@ -6,6 +8,6 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public bool Completed { get; set; }
-        public List<Guid> MainTasks { get; set; }
+        public List<SubTaskDto> MainTasks { get; set; }
     }
 }

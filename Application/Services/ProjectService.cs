@@ -1,36 +1,58 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
+using Domain.Entities;
+using Domain.Interfaces;
+
 
 namespace Application.Services
 {
-    public class ProjectService : IProjectService
+    public class ProjectService : IProjectService  
     {
-        public async Task<ProjectDto> AddProject(CreateSubTaskDto project)
+        private readonly IProjectRepository _projects;
+        private readonly IMapper _mapper;
+        public ProjectService(IProjectRepository projectRepository, IMapper mapper)  
         {
-            throw new NotImplementedException();
+            _projects = projectRepository;
+            _mapper = mapper;
+        }
+        public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
+        {
+            var asProjectType = _mapper.Map<Project>(project);
+            var created = await _projects.CreateAsync(asProjectType);
+            return _mapper.Map<ProjectDto>(created);
         }
 
-        public async Task Delete(Guid id)
+        public async Task DeleteAsync(object id)
         {
-            throw new NotImplementedException();
+            var guid = (Guid)id;
+            var toDelete = await _projects.GetByIDAsync(guid);
+            await _projects.DeleteAsync(toDelete);
+
         }
 
-        public async Task EditProject(ProjectDto project)
+        public async Task<IEnumerable<ProjectDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var allNotes = await _projects.GetAllAsync();
+            return _mapper.Map<IEnumerable<ProjectDto>>(allNotes);
         }
 
-        public async Task<IEnumerable<ProjectDto>> GetAllNotes()
+        public async Task<ProjectDto> GetByIDAsync(object id)
         {
-            throw new NotImplementedException();
+            var subTask = await _projects.GetByIDAsync(id);
+             
+            var list = await _projects.CreateListOfMainTasks(subTask.Id);
+             
+            var subTaskDtoType = _mapper.Map<ProjectDto>(subTask);
+            
+            foreach (var item in list)
+            {
+                subTaskDtoType.MainTasks.Add(item);
+            } 
+            return subTaskDtoType;
         }
 
-        public async Task MarkAsCompleted(bool completed)
+        public Task UpdateAsync(UpdateProjectDto entityToUpdate)
         {
             throw new NotImplementedException();
         }

@@ -10,10 +10,6 @@ namespace Application.Interfaces
     public interface ISubTaskService : IService<SubTaskDto,CreateSubTaskDto, UpdateSubTaskDto>
     {
         
-        //Task<NoteDto> CreateAsync(CreateNoteDto entity);
-        //Task DeleteAsync(Guid id);
-       // Task<IEnumerable<NoteDto>> GetAllAsync();
-       // Task<NoteDto> GetByIDAsync(Guid id); 
-//Task UpdateAsync(NoteDto entityToUpdate);
+         
     }
 }

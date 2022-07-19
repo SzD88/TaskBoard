@@ -1,44 +1,66 @@
-﻿//using Domain.Entities;
-//using Domain.Interfaces;
-//using Infrastructure.Data;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using Domain.Entities;
+using Domain.Interfaces;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace Infrastructure.Repositories
-//{
-//    public class ProjectRepository : IProjectsRepository
-//    {
-//        private readonly ProjectManagerContext _context;
-//        public ProjectRepository(ProjectManagerContext context)
-//        {
-//            _context = context;
-//        }
-//        public Task<Project> AddProject(Project project)
-//        {
-//            throw new NotImplementedException();
-//        }
+namespace Infrastructure.Repositories
+{
+    public class ProjectRepository : IProjectRepository
+    {
+        private readonly ProjectManagerContext _context;
+        public ProjectRepository(ProjectManagerContext context)
+        {
+            _context = context;
+        }
 
-//        public System.Threading.Tasks.Task Delete(Guid id)
-//        {
-//            throw new NotImplementedException();
-//        }
+        public async Task<Project> CreateAsync(Project entity)
+        {
+            entity.Completed = false;
+            entity.Created = DateTime.Now;
+            entity.LastModified = DateTime.Now;
+            await _context.Projects.AddAsync(entity); //(SubTask)
+            await _context.SaveChangesAsync();
+            return entity;
+        }
 
-//        public System.Threading.Tasks.Task EditProject(Project project)
-//        {
-//            throw new NotImplementedException();
-//        }
+        public async Task DeleteAsync(object projectToDelete)
+        {
+            _context.Remove(projectToDelete);
+            await _context.SaveChangesAsync();
+        }
 
-//        public Task<IEnumerable<Project>> GetAllNotes()
-//        {
-//            throw new NotImplementedException();
-//        }
+        public async Task<IEnumerable<Project>> GetAllAsync()
+        {
+            return await _context.Projects.ToListAsync();
+        }
 
-//        public System.Threading.Tasks.Task MarkAsCompleted(bool completed)
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+        public async Task<Project> GetByIDAsync(object id)
+        {
+            var guid = (Guid)id;
+            var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.Id == guid);
+            if (toReturn == null) throw new Exception("Not found sd");
+            return toReturn;
+        }
+
+        public async Task UpdateAsync(Project entityToUpdate)
+        {
+            _context.Projects.Update(entityToUpdate);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<SubTask>> CreateListOfMainTasks(Guid parentId)
+        {
+            var list = await _context.SubTasks
+                  .Where(x => x.LevelAboveId == parentId)
+                  .ToListAsync();
+                  
+            return list;
+        }
+
+       
+    }
+}

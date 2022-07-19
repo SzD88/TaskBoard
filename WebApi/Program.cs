@@ -15,6 +15,7 @@ builder.Services.AddScoped<ISubTaskRepository, SubTaskRepository>();
 builder.Services.AddScoped<ISubTaskService, SubTaskService>();
 // builder.Services.AddScoped<IProjectsRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 builder.Services.AddDbContext<ProjectManagerContext>(options =>
 options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjectManager"));  // klasa kontekstu 

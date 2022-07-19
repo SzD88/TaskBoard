@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IProjectRepository
+    public interface IProjectRepository : IRepository<Project>
     {
-        Task<IEnumerable<Project>> GetAll();
-        Task<Project> Create(Project project);
-        Task Edit(Project project);
-        Task Delete(Guid id);
-        Task MarkAsCompleted(bool completed);
+          Task<IEnumerable<SubTask>> CreateListOfMainTasks(Guid parentId);
+
     }
 }

@@ -19,17 +19,12 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<SubTaskDto> CreateAsync(CreateSubTaskDto note)
+        public async Task<SubTaskDto> CreateAsync(CreateSubTaskDto subTask)
         {
-            var noteAsNote = _mapper.Map<SubTask>(note);
-            var created = await _subTasks.CreateAsync(noteAsNote);
+            var asSubTaskType = _mapper.Map<SubTask>(subTask);
+            var created = await _subTasks.CreateAsync(asSubTaskType);
             return _mapper.Map<SubTaskDto>(created);
-        }
-        public async Task DeleteAsync(Guid id)
-        {
-            await _subTasks.DeleteAsync(id);
-        }
-
+        } 
         public async Task DeleteAsync(object id)
         {
             var guid = (Guid)id;
