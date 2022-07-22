@@ -19,9 +19,19 @@ zrob endpointy dla projektu -
 
 
 111111
-nalezy tworzyc liste subtaskow przy pobieraniu get all? 
+ 
+ zrob liste list
 
 wyswietlanie z projektow - tytuly
 
 zmien akcje na edit button to chyba w js?
 https://www.w3schools.com/js/js_htmldom_document.asp
+
+
+222222222222
+
+co chce zrobic - ustawic pobieranie po nazwie strona glowna index i nic wiecej
+wtedy ustawic przekierowanie na nowa strone html ktora pobierze wszystkie dane odnosnie projektu i wyswietli wszystko w sposob
+uproszczony w html
+
+stworz nowy widok html i plik js 

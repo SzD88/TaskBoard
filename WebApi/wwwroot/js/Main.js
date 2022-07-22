@@ -11,6 +11,8 @@
     //przypisuje z HTML otagowanego jak niżej 
     const list_el = document.querySelector("#tasks");
 
+    const list_el2 = document.querySelector("#tasks2");
+
     // for now creating a container element can be used in html
     const container = document.getElementById("container");
     const list = [];
@@ -27,8 +29,9 @@
             task_content_list = data;
             for (nextTask in task_content_list) {
                 let singleObj = task_content_list[nextTask].title;
+                let contentObject = task_content_list[nextTask].description;
                 list.push(task_content_list[nextTask]);
-                createList(singleObj);
+                createList(singleObj + "  " + contentObject);
             }
         }); 
      
@@ -56,11 +59,18 @@
         const task_content_el = document.createElement('div');
 
         //content... z html? content z task
-        task_content_el.classList.add('content'); //class of content
-
+        task_content_el.classList.add('content'); //class of contentc
         //dodaje do task element pierwszy skladnik - content 
         task_el.appendChild(task_content_el);
 
+        //  wrap = "  ";
+
+        //const task_wrap_el = document.createElement('div');
+        //task_wrap_el.classList.add(wrap)
+
+        //task_el.appendChild(task_wrap_el);
+
+        // to dodaje do samej belki projekt/descr
         const task_input_el = document.createElement('input');
         task_input_el.classList.add('text'); // dodaje styl .text z css
         task_input_el.type = 'text';
@@ -69,8 +79,23 @@
 
         task_content_el.appendChild(task_input_el);
 
+
+        ///==
+        const splited_text = document.createElement('div');
+        splited_text.classList.add('text'); // dodaje styl .text z css
+        splited_text.type = 'text';
+        splited_text.value = "sssij cycole";
+        splited_text.setAttribute('readonly', 'readonly');
+
+        task_el.appendChild(splited_text);
+
+        ///===
         const task_actions_el = document.createElement('div');
         task_actions_el.classList.add('actions'); // dodaje styl
+
+        //const task_new_el = document.createElement('button');
+        //task_new_el.classList.add('zz2'); // dodaje styl
+        //task_new_el.innerText = 'zzz';
 
         const task_edit_el = document.createElement('button');
         task_edit_el.classList.add('edit'); // dodaje styl
@@ -82,10 +107,18 @@
 
         task_actions_el.appendChild(task_edit_el);
         task_actions_el.appendChild(task_delete_el);
+      //   task_actions_el.appendChild(task_new_el);
+
+      //  const textnode = document.createTextNode("Water");
 
         task_el.appendChild(task_actions_el);
+      //   task_el.appendChild(textnode);
 
         list_el.appendChild(task_el);
+
+
+       // task_el.appendChild(task_content_el); 
+       //  list_el.appendChild("adsd");
 
         input.value = '';
 
