@@ -23,7 +23,7 @@ namespace Infrastructure.Repositories
             entity.Completed = false;
             entity.Created = DateTime.Now;
             entity.LastModified = DateTime.Now;
-            await _context.Projects.AddAsync(entity); //(SubTask)
+            await _context.Projects.AddAsync(entity); 
             await _context.SaveChangesAsync();
             return entity;
         }

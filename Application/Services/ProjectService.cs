@@ -11,10 +11,13 @@ namespace Application.Services
     {
         private readonly IProjectRepository _projects;
         private readonly IMapper _mapper;
-        public ProjectService(IProjectRepository projectRepository, IMapper mapper)  
+        private readonly ISubTaskRepository _subTasks;
+        public ProjectService(IProjectRepository projectRepository, IMapper mapper, ISubTaskRepository subTaskRepository)  
         {
             _projects = projectRepository;
             _mapper = mapper;
+            _subTasks = subTaskRepository;
+
         }
         public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
         {
@@ -39,22 +42,26 @@ namespace Application.Services
 
         public async Task<ProjectDto> GetByIDAsync(object id)
         {
-            var subTask = await _projects.GetByIDAsync(id);
-             
-            var list = await _projects.CreateListOfMainTasks(subTask.Id);
-             
-            var subTaskDtoType = _mapper.Map<ProjectDto>(subTask);
-            
-            foreach (var item in list)
+            var project = await _projects.GetByIDAsync(id);
+
+            var projectDtoType = _mapper.Map<ProjectDto>(project);
+
+
+            var list = await _subTasks.CreateListOfTasks(project.Id);
+
+            var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+
+            foreach (var item in mappedList)
             {
-                subTaskDtoType.MainTasks.Add(item);
+                projectDtoType.MainTasks.Add(item);
             } 
-            return subTaskDtoType;
+            return projectDtoType;
         }
 
-        public Task UpdateAsync(UpdateProjectDto entityToUpdate)
-        {
-            throw new NotImplementedException();
+        public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
+        { 
+            var projectType = _mapper.Map<Project>(entityToUpdate); 
+            await _projects.UpdateAsync(projectType);
         }
     }
 }

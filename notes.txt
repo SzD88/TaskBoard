@@ -19,8 +19,9 @@ zrob endpointy dla projektu -
 
 
 111111
-dokoncz project do kontrollera
+nalezy tworzyc liste subtaskow przy pobieraniu get all? 
 
 wyswietlanie z projektow - tytuly
 
 zmien akcje na edit button to chyba w js?
+https://www.w3schools.com/js/js_htmldom_document.asp
