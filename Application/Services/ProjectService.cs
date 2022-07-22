@@ -47,7 +47,7 @@ namespace Application.Services
             
             foreach (var item in list)
             {
-                subTaskDtoType.MainTasks.Add(item);
+               // subTaskDtoType.MainTasks.Add(item);
             } 
             return subTaskDtoType;
         }
