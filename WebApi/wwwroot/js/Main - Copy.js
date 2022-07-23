@@ -1,4 +1,14 @@
-﻿window.addEventListener('load', () => { //on load : 
+﻿// working example of other use of fetch async await 
+console.log("test ouside then");
+getText('api/Project');
+///==============
+async function getText(file) {
+    let x = await fetch(file);
+    let y = await x.text();
+    console.log(y);
+}
+ 
+window.addEventListener('load', () => { //on load :
     //przypisuje z HTML otagowanego jak niżej 
     const form = document.querySelector("#new-task-form");
     //Funkcja zwraca pierwszy element wewnątrz dokumentu, 

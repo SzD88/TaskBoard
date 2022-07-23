@@ -48,17 +48,7 @@
         //    }
         //});//then( zz =>  func1(zz));    ;
 
-    
-    console.log("test ouside then");
-    getText('api/Project');
-    ///==============
-    async function getText(file) {
-        let x = await fetch(file);
-        let y = await x.text();
-        console.log(y );
-
-    }
-
+   
     
 
     //------------
