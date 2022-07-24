@@ -1,14 +1,5 @@
-﻿// working example of other use of fetch async await 
-console.log("test ouside then");
-getText('api/Project');
-///==============
-async function getText(file) {
-    let x = await fetch(file);
-    let y = await x.text();
-    console.log(y);
-}
- 
-window.addEventListener('load', () => { //on load :
+﻿window.addEventListener('load', () =>
+{ //on load :
     //przypisuje z HTML otagowanego jak niżej 
     const form = document.querySelector("#new-task-form");
     //Funkcja zwraca pierwszy element wewnątrz dokumentu, 
@@ -39,12 +30,30 @@ window.addEventListener('load', () => { //on load :
             task_content_list = data;
             for (nextTask in task_content_list) {
                 let singleObj = task_content_list[nextTask].title;
-                let contentObject = task_content_list[nextTask].description;
+                let projectId = task_content_list[nextTask].id;
                 list.push(task_content_list[nextTask]);
-                createList(singleObj + "  " + contentObject);
+                createList(singleObj, projectId);
+                
             }
-        }); 
-     
+            return data;
+        }).then(data => obj = data) 
+        .then(() => console.log('')  //obj
+    ); 
+        //.then(data => {  // czy ta data dalej istnieje ? 
+        //    task_content_list = data;
+        //    for (nextTask in task_content_list) {
+        //        let singleObj = task_content_list[nextTask].title;
+        //        let contentObject = task_content_list[nextTask].description;
+        //        func1(contentObject);
+        //    }
+        //});//then( zz =>  func1(zz));    ;
+
+   
+    
+
+    //------------
+
+
     form.addEventListener('submit', (e) => {
         e.preventDefault(); 
         const task = input.value;
@@ -53,8 +62,9 @@ window.addEventListener('load', () => { //on load :
     // tutaj wszystko dzieje sie po załadowaniu strony lub kliknieciu submit
     // pamietaj że żeby kliknac submit musisz miec cos wpisane w pole wiec task/content != null
 
-    function createList(inputData) {
+    function createList(inputData, inputData2) {
 
+        const projectNumber = inputData2;
         const task = inputData; // <-----
         // tworzy HTML Content Division element (<div>) jest rodzajem pojemnika na treść.
         const task_el = document.createElement('div'); // pewnie tutaj css dziala podobnie - a jednak nie...
@@ -69,29 +79,35 @@ window.addEventListener('load', () => { //on load :
         const task_content_el = document.createElement('div');
 
         //content... z html? content z task
-        task_content_el.classList.add('content'); //class of contentc
+        task_content_el.classList.add('content' ); //class of contentc - odpowiada za wyglad
         //dodaje do task element pierwszy skladnik - content 
         task_el.appendChild(task_content_el);
-
-        //  wrap = "  ";
-
-        //const task_wrap_el = document.createElement('div');
-        //task_wrap_el.classList.add(wrap)
-
-        //task_el.appendChild(task_wrap_el);
+         
 
         // to dodaje do samej belki projekt/descr
         const task_input_el = document.createElement('input');
         task_input_el.classList.add('text'); // dodaje styl .text z css
         task_input_el.type = 'text';
-        task_input_el.value = task;
+        task_input_el.value = task  ;
         task_input_el.setAttribute('readonly', 'readonly');
 
         task_content_el.appendChild(task_input_el);
+        //=====
+        const task_input_el2 = document.createElement('input');
+        task_input_el2.classList.add('text'); // dodaje styl .text z css
+        task_input_el2.type = 'text';
+        task_input_el2.value = projectNumber;
+        task_input_el2.setAttribute('readonly', 'readonly');
 
+        task_content_el.appendChild(task_input_el2);
 
         ///==
         const splited_text = document.createElement('div');
+        splited_text.classList.add('text'); // dodaje styl .text z css
+        splited_text.type = 'text';
+        splited_text.setAttribute('readonly', 'readonly');
+
+        task_el.appendChild(splited_text);
 
         ///===
         const task_actions_el = document.createElement('div');
@@ -102,7 +118,7 @@ window.addEventListener('load', () => { //on load :
         //task_new_el.innerText = 'zzz';
 
         const task_edit_el = document.createElement('button');
-        task_edit_el.classList.add('edit'); // dodaje styl
+        task_edit_el.classList.add('edit'); // dodaje styl - klase edit w html w sumie ...
         task_edit_el.innerText = 'Edit';
 
         const task_delete_el = document.createElement('button');
@@ -119,22 +135,22 @@ window.addEventListener('load', () => { //on load :
       //   task_el.appendChild(textnode);
 
         list_el.appendChild(task_el);
-
-
-       // task_el.appendChild(task_content_el); 
-       //  list_el.appendChild("adsd");
-
+          
         input.value = '';
 
-        task_edit_el.addEventListener('click', (e) => {
+        task_edit_el.addEventListener('click', (e) => { // dodajesz mu akcje w razie click
             if (task_edit_el.innerText.toLowerCase() == "edit") {
-                task_edit_el.innerText = "Save";
-                task_input_el.removeAttribute("readonly");
-                task_input_el.focus();
+               //  task_edit_el.innerText = "Save";
+                task_input_el.removeAttribute("readonly"); // tekst w polu zmienia na edytowalny
+               // task_input_el.focus();  // tutaj jakby klika w niego - ustawia mu focus do wpisania wartosci 
+             //  console.log(projectNumber);
+                getProjectSiteById(projectNumber)// bo on stad dalej wykonuje skrypt 
+                return false;
             } else {
                 task_edit_el.innerText = "Edit";
-                task_input_el.setAttribute("readonly", "readonly");
-            }
+                task_input_el.setAttribute("readonly", "readonly"); // widocznie wpisywanie w te pole wartosci dziala w obie strony 
+            } // on wychodzi i zostawia w tej formie - edit został zmieniony na save - czeka na wpisanie wartosciu w polu
+            // ponowne klikniecie w save sprawdza czy jest edit - jezeli nie czyli save wtedy zmiena na edit i ustawia znowu na readonly
         }); //odczytuje event nacisniecia button
 
         task_delete_el.addEventListener('click', (e) => {

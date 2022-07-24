@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List 2021</title>
+
+    <link rel="stylesheet" href="css/EditProject.css" />
+
+</head>
+
+<body>
+
+    <form name="myForm" action="" onsubmit="return validateForm()" method="post">
+
+
+        Title: <input type="text" id="title">
+        <br>
+        Project number: <input type="text"
+                               name="projectNumber"
+                               id="projectNumber" />
+        <!--value="What do you have planned?"-->
+
+
+        <br>
+        Description: <input type="text" id="description"><hr />
+        <button type="button" onclick="replaceFormValuesToInputed()">REPLACE VALUES IN DB!</button>
+        <br />
+
+    </form>
+    <script>
+        window.addEventListener('load', () => {
+            console.log("hello loaded");
+             
+
+
+        });
+
+
+
+
+    </script>
+
+
+    <button onclick="location.href = '/index.html';" id="indexButton" class="float-left submit-button">INDEX</button>
+
+
+    <h1>    </h1>
+    <p1 id="demo2"></p1>
+
+    <h2>Edit project</h2>
+    <button type="button" onclick="myFunction()">Submit</button><br />
+
+    <p>Some input </p>
+
+    <input type="text" id="numb" required>
+
+
+
+
+
+    <script src="js/Main.js"></script>
+    <script src="js/EditProject.js"></script>
+</body>
+</html>

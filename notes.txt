@@ -1,4 +1,9 @@
-﻿  
+﻿Anchors od nowa
+
+put data into form fields
+
+
+///  
 
 how should project class look like?
 

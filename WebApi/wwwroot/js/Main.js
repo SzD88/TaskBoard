@@ -30,14 +30,14 @@
             task_content_list = data;
             for (nextTask in task_content_list) {
                 let singleObj = task_content_list[nextTask].title;
-                let contentObject = task_content_list[nextTask].id;
+                let projectId = task_content_list[nextTask].id;
                 list.push(task_content_list[nextTask]);
-                createList(singleObj, contentObject);
+                createList(singleObj, projectId);
                 
             }
             return data;
         }).then(data => obj = data) 
-        .then(() => console.log('null')  //obj
+        .then(() => console.log('')  //obj
     ); 
         //.then(data => {  // czy ta data dalej istnieje ? 
         //    task_content_list = data;
@@ -140,11 +140,13 @@
 
         task_edit_el.addEventListener('click', (e) => { // dodajesz mu akcje w razie click
             if (task_edit_el.innerText.toLowerCase() == "edit") {
-                task_edit_el.innerText = "Save";
+               //  task_edit_el.innerText = "Save";
                 task_input_el.removeAttribute("readonly"); // tekst w polu zmienia na edytowalny
-                task_input_el.focus();  // tutaj jakby klika w niego - ustawia mu focus do wpisania wartosci 
-                console.log(projectNumber);
-                func1(projectNumber)
+               // task_input_el.focus();  // tutaj jakby klika w niego - ustawia mu focus do wpisania wartosci 
+             //  console.log(projectNumber);
+
+                getProjectSiteById(projectNumber)// bo on stad dalej wykonuje skrypt 
+                
             } else {
                 task_edit_el.innerText = "Edit";
                 task_input_el.setAttribute("readonly", "readonly"); // widocznie wpisywanie w te pole wartosci dziala w obie strony 
