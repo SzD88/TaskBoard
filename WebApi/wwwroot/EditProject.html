@@ -15,28 +15,32 @@
     <form name="myForm" action="" onsubmit="return validateForm()" method="post">
 
 
-        Title: <input type="text" id="title">
+        <p3>Title: </p3>
+        <input type="text" 
+               id="title">
         <br>
-        Project number: <input type="text"
-                               name="projectNumber"
-                               id="projectNumber" />
-        <!--value="What do you have planned?"-->
-
-
+        <p3>Project number:</p3>
+        <input type="text"
+               name="projectNumber"
+               id="projectNumber" /> 
         <br>
-        Description: <input type="text" id="description"><hr />
+        <p3>Description:</p3> 
+        <input type="text" 
+               id="description"> 
+        <br />
+
         <button type="button" onclick="replaceFormValuesToInputed()">REPLACE VALUES IN DB!</button>
         <br />
 
     </form>
-    
-        <!--//window.addEventListener('load', () => {
-        //    console.log("hello loaded");
-             
+
+    <!--//window.addEventListener('load', () => {
+    //    console.log("hello loaded");
 
 
-        //});-->
-    
+
+    //});-->
+
 
 
     <button onclick="location.href = '/index.html';" id="indexButton" class="float-left submit-button">INDEX</button>
