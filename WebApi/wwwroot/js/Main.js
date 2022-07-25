@@ -1,4 +1,6 @@
-﻿window.addEventListener('load', () =>
+﻿var idToTransfer;
+
+window.addEventListener('load', () =>
 { //on load :
     //przypisuje z HTML otagowanego jak niżej 
     const form = document.querySelector("#new-task-form");
@@ -54,11 +56,11 @@
     //------------
 
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault(); 
-        const task = input.value;
-        createList(task); 
-    });
+    //form.addEventListener('submit', (e) => {
+    //    e.preventDefault(); 
+    //    const task = input.value;
+    //    createList(task); 
+    //});
     // tutaj wszystko dzieje sie po załadowaniu strony lub kliknieciu submit
     // pamietaj że żeby kliknac submit musisz miec cos wpisane w pole wiec task/content != null
 
@@ -145,7 +147,16 @@
                // task_input_el.focus();  // tutaj jakby klika w niego - ustawia mu focus do wpisania wartosci 
              //  console.log(projectNumber);
 
-                getProjectSiteById(projectNumber)// bo on stad dalej wykonuje skrypt 
+              //  setVariables( projectNumber);
+              //   functionWhenEditPressed(projectNumber)// bo on stad dalej wykonuje skrypt 
+                //let redirectPage = () => {
+                //    const url = "editprojects/" + projectNumber;
+                //    window.location.href = url; }
+                //----
+                 
+                url = "/editproject.html?id=" + projectNumber;
+
+                document.location.href = url;
                 
             } else {
                 task_edit_el.innerText = "Edit";
@@ -162,3 +173,8 @@
 
    
 });
+
+let redirectPage = () => {
+    const url = "https://www yourwebsite com/content/ocncontent?userid=43&contentid=9";
+    window.location.href = url;
+}

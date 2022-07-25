@@ -144,7 +144,7 @@
                 task_input_el.removeAttribute("readonly"); // tekst w polu zmienia na edytowalny
                // task_input_el.focus();  // tutaj jakby klika w niego - ustawia mu focus do wpisania wartosci 
              //  console.log(projectNumber);
-                getProjectSiteById(projectNumber)// bo on stad dalej wykonuje skrypt 
+                functionWhenEditPressed(projectNumber)// bo on stad dalej wykonuje skrypt 
                 return false;
             } else {
                 task_edit_el.innerText = "Edit";

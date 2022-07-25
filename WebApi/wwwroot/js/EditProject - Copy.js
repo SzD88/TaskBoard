@@ -1,4 +1,4 @@
-﻿function getProjectSiteById(input)
+﻿function functionWhenEditPressed(input)
 { 
     redirectToProjectPage('api/Project/'+ input);
     ///==============
