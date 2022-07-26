@@ -23,7 +23,7 @@ body {
 }
 
 header {
-    padding: 2rem 1rem;
+    padding: 0rem 1rem;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -35,10 +35,8 @@ header {
         color: var(--grey);
         margin-bottom: 1rem;
     }
-
 #new-task-form {
-    display: flex;
-    ;
+    display: none;
 }
 
 input, button {
@@ -56,12 +54,10 @@ input, button {
     margin-right: 1rem;
     color: var(--light);
     font-size: 1.25rem;
-}
-
+} 
     #new-task-input::placeholder {
         color: var(--grey);
-    }
-
+    } 
 #new-task-submit {
     color: var(--pink);
     font-size: 1.25rem;
@@ -100,48 +96,27 @@ main {
     }
 
 #tasks .task {
-    display: flex    ;
-    justify-content: space-between;
-    background-color: var(--darkest);
-    padding: 1rem;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-}
-
-/*#tasks2 .task {
     display: flex;
     justify-content: space-between;
     background-color: var(--darkest);
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
-}*/
-.task .content { /*//.content*/
-    flex: 1 1 0%;
-}
-/*.content {
-    overflow-wrap: break-word;
-    display: grid;
-    height: 100px;
-    font-size: 2.125rem;
-    color: var(--light);
-}
-.content .text {*/
-    /*  overflow-wrap: anywhere;*/
-    /* height: 200px;*/
-/*}*/
-.task .content .text { /*//.content  .text  */
-    color: var(--light);
-    font-size: 1.125rem;
-    width: 100%;
-    display: block;
-    transition: 0.4s;
 }
 
-       /* .task .content .text:not(:read-only) { // zmienia kolor na rozowy kiedy tekst nie jest readonly czyli przy byłym
-           //kliknieciu w edit 
-            color: var(--pink);
-        }*/
+ 
+.task .content {  
+    flex: 1 1 0%;
+}
+   
+    .task .content .text { /*//.content  .text  */
+        color: var(--light);
+        font-size: 1.125rem;
+        width: 100%;
+        display: block;
+        transition: 0.4s;
+    }
+ 
 
 .task .actions {
     display: flex;
@@ -166,6 +141,7 @@ main {
         }
 
     .task .actions .edit {
+        font-size: 33px;
         background-image: linear-gradient(to right, var(--pink), var(--purple));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -174,3 +150,7 @@ main {
     .task .actions .delete {
         color: crimson;
     }
+
+.delete {
+    display: none;
+}

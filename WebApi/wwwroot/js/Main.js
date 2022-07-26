@@ -174,7 +174,4 @@ window.addEventListener('load', () =>
    
 });
 
-let redirectPage = () => {
-    const url = "https://www yourwebsite com/content/ocncontent?userid=43&contentid=9";
-    window.location.href = url;
-}
+ 
