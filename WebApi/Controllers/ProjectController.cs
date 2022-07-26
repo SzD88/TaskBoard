@@ -43,9 +43,9 @@ namespace WebApi.Controllers
         }
         [SwaggerOperation(Summary = "Update project")]
         [HttpPut]
-        public async Task<IActionResult> UpdateProject(UpdateProjectDto newSubTask)
+        public async Task<IActionResult> UpdateProject(UpdateProjectDto projectToUpdate)
         {
-            await _projects.UpdateAsync(newSubTask);
+            await _projects.UpdateAsync(projectToUpdate);
             return Ok();
         }
         [SwaggerOperation(Summary = "Delete project by id")]

@@ -2,6 +2,7 @@
 let idToUse;
 let titleToUse;
 let descriptionToUse;
+
 window.onload = function () {
     // splits url to get id transfered from main.js
     var url = document.location.href,
@@ -25,46 +26,64 @@ async function InputDataToForm(pathToGetById) {
     // console.log(y);  // returns json of 1 acurate project
 
     //redirect to editProjecthtml
-      idToUse = y.id;
-      titleToUse = y.title;
-      descriptionToUse = y.description;
+    idToUse = y.id;
+    titleToUse = y.title;
+    descriptionToUse = y.description;
 
-    inputValuesToForm(idToUse, titleToUse, descriptionToUse)
+
+    inputValuesToForm(idToUse, titleToUse, descriptionToUse);
 }
 
-
+// it is the function on click "Zatwierdz zmiany"
 function replaceFormValuesToInputed() //changes all fields to filled //or dont change if no changes
 {
+    console.log("just before override fields " + descriptionToUse);
+    var idFromUpdatedForm = changeAttributeByName("projectNumber");
+    var titleFromUpdatedForm = changeAttributeByName("title");
+    var descriptionFromUpdatedForm = changeAttributeByName("description");
 
-    //changing current attribute
-    //var getAtribute = document
-    //    .getElementById('projectNumber');
-    //var attributeChanged = getAtribute.value.replace();
-    //getAtribute.value = attributeChanged;
-    changeAttributeByName("projectNumber")
-    changeAttributeByName("title")
-    changeAttributeByName("description")
-
-    // now fetch
-    let x = await fetch(pathToGetById);
-    let y = await x.json();
-
-    //public string Title { get; set; }
-    //  public string Description { get; set; }
-    //  public bool Completed { get; set; }
-    createJSON(titleToUse, descriptionToUse)
-
-    function createJSON(title, description) {
-
-        const projectJSON = { 
-            "title": title,
-            "description": description,
-            "completed": false // change it later !!
-         }
-        console.log(projectJSON);
-    };
-    const jsonString = JSON.stringify(customer);
+    putDataFromFieldsToDatabase(idFromUpdatedForm, titleFromUpdatedForm, descriptionFromUpdatedForm);
 }
+
+async function putDataFromFieldsToDatabase(id, title, desc) {
+
+    var projJson = createJSON(title, desc); //works
+
+    var url = "/api/Project";
+
+    try {
+        const config = {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: projJson // JSON.stringify(data)
+        }
+        const response = await fetch(url, config);
+        //const json = await response.json()
+        if (response.ok) {
+            //return json
+            console.log(response);
+            return response
+        } else {
+            //
+        }
+    } catch (error) {
+        //
+    }
+}
+
+function createJSON(title, description) {
+    var projectJSON = {
+        "id": idToUse,
+        "title": title,
+        "description": description,
+        "completed": false //        change it later !!
+    }
+    const projJsonString = JSON.stringify(projectJSON);
+    return projJsonString;
+};
 
 function changeAttributeByName(attributeName) {
     var getAtribute = document
@@ -72,14 +91,20 @@ function changeAttributeByName(attributeName) {
     var attributeChanged = getAtribute.value.replace();
     getAtribute.value = attributeChanged;
 
-    console.log(getAtribute.value);
+    // console.log("from the inside of changeattribute function " + getAtribute.value);
     return getAtribute.value;
-}
 }
 
 function inputValuesToForm(idToUse, titleToUse, descriptionToUse) {
     document.getElementById('projectNumber').setAttribute('value', idToUse);
     document.getElementById('title').setAttribute('value', titleToUse);
     document.getElementById('description').setAttribute('value', descriptionToUse);
+    console.log(descriptionToUse);
+    //override variables
 
+    var idToUse = document.getElementById('projectNumber').getAttribute("value");
+    var titleToUse = document.getElementById('title').getAttribute("value");
+    var descriptionToUse = document.getElementById('description').getAttribute("value");
+    console.log(descriptionToUse); 
 }
+
