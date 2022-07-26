@@ -145,7 +145,7 @@ window.addEventListener('load', () =>
                //  task_edit_el.innerText = "Save";
                 task_input_el.removeAttribute("readonly"); // tekst w polu zmienia na edytowalny
                // task_input_el.focus();  // tutaj jakby klika w niego - ustawia mu focus do wpisania wartosci 
-             //  console.log(projectNumber);
+              //  console.log(projectNumber);
 
               //  setVariables( projectNumber);
               //   functionWhenEditPressed(projectNumber)// bo on stad dalej wykonuje skrypt 

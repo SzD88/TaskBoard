@@ -7,49 +7,41 @@
     <title>Task List 2021</title>
 
     <link rel="stylesheet" href="css/EditProject.css" />
-
+    
 </head>
 
 <body>
 
     <form name="myForm" action="" onsubmit="return validateForm()" method="post">
 
-
-        <p3>Title: </p3>
-        <input type="text" 
-               id="title">
-        <br>
+        <h3>Edit project data</h3>
         <p3>Project number:</p3>
         <input type="text"
                name="projectNumber"
-               id="projectNumber" /> 
+               id="projectNumber" />
         <br>
-        <p3>Description:</p3> 
-        <input type="text" 
-               id="description"> 
+        <p3>Title: </p3>
+        <input type="text"
+               id="title">
+        <br>
+
+        <p3>Description:</p3>
+        <input type="text"
+               id="description">
         <br />
 
-        <button type="button" onclick="replaceFormValuesToInputed()">REPLACE VALUES IN DB!</button>
+        <button type="button" onclick="replaceFormValuesToInputed()">Zatwierdz zmiany</button>
         <br />
 
-    </form>
-
-    <!--//window.addEventListener('load', () => {
-    //    console.log("hello loaded");
-
-
-
-    //});-->
-
-
-
+    </form> 
+    <br />  
     <button onclick="location.href = '/index.html';" id="indexButton" class="float-left submit-button">INDEX</button>
 
 
     <h1>    </h1>
     <p1 id="demo2"></p1>
 
-    <h2>Edit project</h2>
+    
     <button type="button" onclick="myFunction()">Submit</button><br />
 
     <p>Some input </p>
