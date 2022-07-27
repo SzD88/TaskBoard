@@ -26,6 +26,8 @@ namespace Application.Services
             return _mapper.Map<ProjectDto>(created);
         }
 
+        
+
         public async Task DeleteAsync(object id)
         {
             var guid = (Guid)id;
@@ -62,6 +64,16 @@ namespace Application.Services
         { 
             var projectType = _mapper.Map<Project>(entityToUpdate); 
             await _projects.UpdateAsync(projectType);
+        }
+
+        public async Task DeleteAllProjects() // just helper 
+        {
+            var allProjects = await _projects.GetAllAsync();
+
+            foreach (var project in allProjects) 
+            {
+               await _projects.DeleteAsync(project);
+            }
         }
     }
 }

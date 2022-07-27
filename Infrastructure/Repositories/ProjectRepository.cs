@@ -61,6 +61,15 @@ namespace Infrastructure.Repositories
             return list;
         }
 
-       
+        //public async Task DeleteAllProjects()
+        //{
+        //    foreach (var id in _context.Projects.Select(e => e.Id))
+        //    {
+        //        var entity = new Project { Id = id };
+        //        _context.Projects.Attach(entity);
+        //        _context.Projects.Remove(entity);
+        //    }
+        //  await  _context.SaveChangesAsync();
+        //}
     }
 }

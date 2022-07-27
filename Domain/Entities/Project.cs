@@ -10,6 +10,8 @@ namespace Domain.Entities
         [Key]
         public Guid Id { get; protected set; } // what type in sql server is guid ? answer: uniqueidentifier
 
+        string ProjectNumber { get;   set; }
+
         [Required] 
         [MaxLength(100)]
         public string Title { get; set; }
@@ -23,8 +25,9 @@ namespace Domain.Entities
          
         [NotMapped]
         public List<SubTask> MainTasks { get; set;}
-        public Project(string title, string description)
+        public Project(string projNumber, string title, string description)
         {
+            ProjectNumber = projNumber;
             Id = Guid.NewGuid();
             Title = title; 
             Description = description;

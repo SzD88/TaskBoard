@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     public interface IProjectRepository : IRepository<Project>
     {
           Task<IEnumerable<SubTask>> CreateListOfMainTasks(Guid parentId);
+          //Task DeleteAllProjects( );
 
     }
 }
