@@ -33,7 +33,7 @@ window.addEventListener('load', () => { //on load :
                 let projectId = task_content_list[nextTask].id;
                 let projectDescription = task_content_list[nextTask].description;
                 let projectNumber = task_content_list[nextTask].projectNumber;
-                list.push(task_content_list[nextTask]);
+                list.push(task_content_list[nextTask]);  // unnecessary
                 createList(singleObj, projectId, projectDescription, projectNumber);
 
             }
@@ -101,12 +101,12 @@ window.addEventListener('load', () => { //on load :
 
 
 
-        //const splited_text = document.createElement('div');
-        //splited_text.classList.add('text'); // dodaje styl .text z css
-        //splited_text.type = 'text';
-        //splited_text.setAttribute('readonly', 'readonly');
+        const splited_text = document.createElement('div');
+        splited_text.classList.add('text'); // dodaje styl .text z css
+        splited_text.type = 'text';
+        splited_text.setAttribute('readonly', 'readonly');
 
-        //task_el.appendChild(splited_text);
+        task_el.appendChild(splited_text);
 
          
         const task_actions_el = document.createElement('div');
@@ -129,7 +129,11 @@ window.addEventListener('load', () => { //on load :
         task_el.appendChild(task_actions_el);
         //   task_el.appendChild(textnode);
 
-        list_el.appendChild(task_el);
+        try {
+            list_el.appendChild(task_el);
+        } catch (e) {
+            console.log("redirected");
+        }
 
      // tutaj  // input.value = '';
 

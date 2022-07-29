@@ -12,40 +12,47 @@
 
 <body>
 
-    <form name="myForm" action="" />  
+    <form name="myForm" action="">
 
-    <h3>Edit project data</h3>
-    <p3>Project ID:</p3>
-    <input type="text"
-           name="projectId"
-           id="projectId"
-           readonly   />
-    <br>
-    <p3>Project number:</p3>
-    <input type="text"
-           name="projectNumber"
-           id="projectNumber" />
-    <br>
-    <p3>Title: </p3>
-    <input type="text"
-           id="title">
-    <br>
+        <h3>Edit project data</h3>
+        <p3>Project ID:</p3>
+        <input type="text"
+               name="projectId"
+               id="projectId"
+               readonly />
+        <br>
+        <p3>Project number:</p3>
+        <input type="text"
+               name="projectNumber"
+               id="projectNumber" />
+        <br>
+        <p3>Title: </p3>
+        <input type="text"
+               id="title">
+        <br>
 
-    <p3>Description:</p3>
-    <input type="text"
-           id="description">
-    <br />
+        <p3>Description:</p3>
+        <input type="text"
+               id="description">
+        <br />
 
-    <button type="button" onclick="replaceFormValuesToInputed()">Zatwierdz zmiany</button>
-    <br />
+        <button type="button" onclick="replaceFormValuesToInputed()">Zatwierdz zmiany</button>
+
 
     </form>
-    <br />
+
     <button onclick="location.href = '/index.html';" id="indexButton" class="float-left submit-button">INDEX</button>
+    <!-- 2 part of page - subtasks  -->
 
-
+    <section class="subTasksList">
+        <h2 style="color:black;"> </h2>
+        <div id="subTasks"> 
+            Add new task:
+        </div>
+    </section>
 
     <script src="js/Main.js"></script>
     <script src="js/EditProject.js"></script>
+    <script src="js/CreateSubTasksList.js"></script>
 </body>
 </html>

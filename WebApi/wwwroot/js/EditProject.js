@@ -6,18 +6,28 @@ let projNumberToUse;
 
 window.onload = function () {
     // splits url to get id transfered from main.js
-    var url = document.location.href,
-        params = url.split('?')[1].split('&'),
-        data = {}, tmp;
-    for (var i = 0, l = params.length; i < l; i++) {
-        tmp = params[i].split('=');
-        data[tmp[0]] = tmp[1];
-    }
+
+    try {
+        var url = document.location.href,
+            params = url.split('?')[1].split('&'),
+            data = {}, tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+            tmp = params[i].split('=');
+            data[tmp[0]] = tmp[1];
+        }
+   
+  
 
 
     projectId = data.id;
 
     InputDataToForm("/api/Project/" + projectId);
+
+    // call function creating Main Tasks by ids
+
+    } catch (e) {
+        "Main Page"
+    }
 }
 
 async function InputDataToForm(pathToGetById) {
@@ -25,7 +35,6 @@ async function InputDataToForm(pathToGetById) {
     let y = await x.json();
     // console.log(y);  // returns json of 1 acurate project
 
-   // console.log(y);
     //redirect to editProjecthtml
     idToUse = y.id;
     titleToUse = y.title;
@@ -34,6 +43,13 @@ async function InputDataToForm(pathToGetById) {
 
     // ---- adding variables
     inputValuesToForm(idToUse, projectNumberToUse, titleToUse, descriptionToUse);
+
+ 
+
+    var listOfSubtasks = y.mainTasks;
+
+    createSubtaskList(listOfSubtasks);
+
 }
 
 // it is the function on click "Zatwierdz zmiany"
@@ -110,5 +126,7 @@ function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse)
     document.getElementById('projectNumber').getAttribute("value"); // var idToUse = 
     document.getElementById('title').getAttribute("value");//var titleToUse = 
     document.getElementById('description').getAttribute("value");// var   var descriptionToUse = 
+
+
 }
 
