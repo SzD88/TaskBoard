@@ -33,9 +33,8 @@ window.addEventListener('load', () =>
             for (nextTask in task_content_list) {
                 let singleObj = task_content_list[nextTask].title;
                 let projectId = task_content_list[nextTask].id;
-                let projectDescription = task_content_list[nextTask].description;
                 list.push(task_content_list[nextTask]);
-                createList(singleObj, projectId, projectDescription);
+                createList(singleObj, projectId);
                 
             }
             return data;
@@ -47,7 +46,7 @@ window.addEventListener('load', () =>
         //    for (nextTask in task_content_list) {
         //        let singleObj = task_content_list[nextTask].title;
         //        let contentObject = task_content_list[nextTask].description;
-        //        func1(contentObject);                     
+        //        func1(contentObject);
         //    }
         //});//then( zz =>  func1(zz));    ;
 
@@ -65,11 +64,10 @@ window.addEventListener('load', () =>
     // tutaj wszystko dzieje sie po załadowaniu strony lub kliknieciu submit
     // pamietaj że żeby kliknac submit musisz miec cos wpisane w pole wiec task/content != null
 
-    function createList(inputData, inputData2, inputData3) {
+    function createList(inputData, inputData2) {
 
-        const projectId = inputData2;
-        const projectDescription = inputData3;
-        const projectTitle = inputData; // <-----
+        const projectNumber = inputData2;
+        const task = inputData; // <-----
         // tworzy HTML Content Division element (<div>) jest rodzajem pojemnika na treść.
         const task_el = document.createElement('div'); // pewnie tutaj css dziala podobnie - a jednak nie...
 
@@ -92,7 +90,7 @@ window.addEventListener('load', () =>
         const task_input_el = document.createElement('input');
         task_input_el.classList.add('text'); // dodaje styl .text z css
         task_input_el.type = 'text';
-        task_input_el.value = projectTitle  ;
+        task_input_el.value = task  ;
         task_input_el.setAttribute('readonly', 'readonly');
 
         task_content_el.appendChild(task_input_el);
@@ -100,21 +98,11 @@ window.addEventListener('load', () =>
         const task_input_el2 = document.createElement('input');
         task_input_el2.classList.add('text'); // dodaje styl .text z css
         task_input_el2.type = 'text';
-        task_input_el2.value = projectId;
+        task_input_el2.value = projectNumber;
         task_input_el2.setAttribute('readonly', 'readonly');
 
-      //  task_content_el.appendChild(task_input_el2);
+        task_content_el.appendChild(task_input_el2);
 
-        /// to trzeba skopiowac aby dodac element
-
-        const task_input_el3 = document.createElement('input');
-        task_input_el3.classList.add('text'); // dodaje styl .text z css
-        task_input_el3.type = 'text';
-        task_input_el3.value = projectDescription;
-        task_input_el3.setAttribute('readonly', 'readonly');
-
-        task_content_el.appendChild(task_input_el3);
-        /// to trzeba skopiowac aby dodac element
         ///==
         const splited_text = document.createElement('div');
         splited_text.classList.add('text'); // dodaje styl .text z css
@@ -166,7 +154,7 @@ window.addEventListener('load', () =>
                 //    window.location.href = url; }
                 //----
                  
-                url = "/editproject.html?id=" + projectId;
+                url = "/editproject.html?id=" + projectNumber;
 
                 document.location.href = url;
                 
