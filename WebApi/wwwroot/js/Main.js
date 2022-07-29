@@ -46,7 +46,7 @@ window.addEventListener('load', () =>
         //    for (nextTask in task_content_list) {
         //        let singleObj = task_content_list[nextTask].title;
         //        let contentObject = task_content_list[nextTask].description;
-        //        func1(contentObject);
+        //        func1(contentObject);                     
         //    }
         //});//then( zz =>  func1(zz));    ;
 

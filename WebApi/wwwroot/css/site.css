@@ -1,4 +1,4 @@
-﻿:root {
+﻿/*:root {
     --dark: #374151;
     --darker: #1F2937;
     --darkest: #111827;
@@ -109,8 +109,8 @@ main {
     flex: 1 1 0%;
 }
    
-    .task .content .text { /*//.content  .text  */
-        color: var(--light);
+    .task .content .text {*/ /*//.content  .text  */
+        /*color: var(--light);
         font-size: 1.125rem;
         width: 100%;
         display: block;
@@ -173,4 +173,4 @@ button {
     height: 3rem;
     color: white;
     background-image: linear-gradient(to right, var(--grey), var(--darker));
-}
+}*/
