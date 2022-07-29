@@ -2,21 +2,20 @@
 
 window.addEventListener('load', () => { //on load :
     //przypisuje z HTML otagowanego jak niżej 
-    const form = document.querySelector("#new-task-form");
+  //  const form = document.querySelector("#new-task-form");     // new task
     //Funkcja zwraca pierwszy element wewnątrz dokumentu, 
     // który pasuje do podanego selektora lub grupy selektorów.
     // selectors are used to target the HTML elements on our web pages
 
 
     //przypisuje z HTML otagowanego jak niżej
-    const input = document.querySelector("#new-task-input");
+   // const input = document.querySelector("#new-task-input");
     //przypisuje z HTML otagowanego jak niżej 
     const list_el = document.querySelector("#tasks");
 
-    const list_el2 = document.querySelector("#tasks2");
 
     // for now creating a container element can be used in html
-    const container = document.getElementById("container");
+    // const container = document.getElementById("container");
     const list = [];
 
     fetch('api/Project')
@@ -46,9 +45,9 @@ window.addEventListener('load', () => { //on load :
     function createList(inputData, inputData2, inputData3, inputData4) {
 
         const projectId = inputData2;
-        const projectDescription = inputData3;
-        const projectTitle = inputData; // <-----
         const projectNumber = inputData4; // <-----
+        const projectTitle = inputData; // <----- 
+        const projectDescription = inputData3;
         // tworzy HTML Content Division element (<div>) jest rodzajem pojemnika na treść.
         const task_el = document.createElement('div'); // pewnie tutaj css dziala podobnie - a jednak nie...
 
@@ -68,7 +67,7 @@ window.addEventListener('load', () => { //on load :
 
         // Element 1 
         const task_input_el4 = document.createElement('input');
-        task_input_el4.classList.add('text'); // dodaje styl .text z css
+        task_input_el4.classList.add('projectNumberHTML'); // dodaje styl .text z css
         task_input_el4.type = 'text';
         task_input_el4.value = projectNumber;
         task_input_el4.setAttribute('readonly', 'readonly');
@@ -117,12 +116,12 @@ window.addEventListener('load', () => { //on load :
         task_edit_el.classList.add('edit'); // dodaje styl - klase edit w html w sumie ...
         task_edit_el.innerText = 'Edit';
 
-        const task_delete_el = document.createElement('button');
-        task_delete_el.classList.add('delete'); // dodaje styl
-        task_delete_el.innerText = 'Hide';
+        //const task_delete_el = document.createElement('button');
+        //task_delete_el.classList.add('delete'); // dodaje styl
+        //task_delete_el.innerText = 'Hide';
 
         task_actions_el.appendChild(task_edit_el);
-        task_actions_el.appendChild(task_delete_el);
+      //  task_actions_el.appendChild(task_delete_el);
         //   task_actions_el.appendChild(task_new_el);
 
         //  const textnode = document.createTextNode("Water");
@@ -132,7 +131,7 @@ window.addEventListener('load', () => { //on load :
 
         list_el.appendChild(task_el);
 
-        input.value = '';
+     // tutaj  // input.value = '';
 
         task_edit_el.addEventListener('click', (e) => { // dodajesz mu akcje w razie click
             if (task_edit_el.innerText.toLowerCase() == "edit") {
@@ -159,9 +158,9 @@ window.addEventListener('load', () => { //on load :
             // ponowne klikniecie w save sprawdza czy jest edit - jezeli nie czyli save wtedy zmiena na edit i ustawia znowu na readonly
         }); //odczytuje event nacisniecia button
 
-        task_delete_el.addEventListener('click', (e) => {
-            list_el.removeChild(task_el);
-        }); //odczytuje event nacisniecia button
+        //task_delete_el.addEventListener('click', (e) => {
+        //    list_el.removeChild(task_el);
+        //}); //odczytuje event nacisniecia button
     }
 
 

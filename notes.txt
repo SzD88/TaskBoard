@@ -3,3 +3,6 @@
 Set Entity to fetch it
 Show every property in form
 
+Przebuduj div ze strony glownej
+
+niech zawiera input 
