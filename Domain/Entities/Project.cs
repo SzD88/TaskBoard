@@ -10,7 +10,7 @@ namespace Domain.Entities
         [Key]
         public Guid Id { get; protected set; } // what type in sql server is guid ? answer: uniqueidentifier
 
-        string ProjectNumber { get;   set; }
+        public string ProjectNumber { get;   set; }
 
         [Required] 
         [MaxLength(100)]

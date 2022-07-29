@@ -1,52 +1,5 @@
-﻿Anchors od nowa
+﻿What next:
 
-put data into form fields
+Set Entity to fetch it
+Show every property in form
 
-
-///  
-
-how should project class look like?
-
-create endpoints for project
-
-create fields in html - put there 
-- title
-- description
-
-- list of subtasks
-
-https://github.com/TylerPottsDev/yt-js-task-list-2021/blob/main/index.html
-
-https://youtu.be/MkESyVB4oUw?t=1652
-
-
-zrob endpointy dla projektu - 
-
-
-111111
- 
- zrob liste list
-
-wyswietlanie z projektow - tytuly
-
-zmien akcje na edit button to chyba w js?
-https://www.w3schools.com/js/js_htmldom_document.asp
-
-
-222222222222
-
-co chce zrobic - ustawic pobieranie po nazwie strona glowna index i nic wiecej
-wtedy ustawic przekierowanie na nowa strone html ktora pobierze wszystkie dane odnosnie projektu i wyswietli wszystko w sposob
-uproszczony w html
-
-stworz nowy widok html i plik js 
-
-zrobic liste zmapowanych obiektow 
-
-klikniecie w edit - wybiera tekst - numer projektu - 
-
-najpierw zrob jsona - i go jakos zapisz - potem z niego wyciagaj dane do listy 
-
-1. Json - do zmiennej 
-2. Zmienna do listy na stronie glownej listy projektow 
-3. Edit - pobiera dane z 1 wartosci swojej podlisty div - są dwie - title i trzeba zmienic na id 

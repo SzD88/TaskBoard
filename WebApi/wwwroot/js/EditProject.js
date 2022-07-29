@@ -2,6 +2,7 @@
 let idToUse;
 let titleToUse;
 let descriptionToUse;
+let projNumberToUse;
 
 window.onload = function () {
     // splits url to get id transfered from main.js
@@ -14,7 +15,6 @@ window.onload = function () {
     }
 
 
-    var output = data.id;
     projectId = data.id;
 
     InputDataToForm("/api/Project/" + projectId);
@@ -25,29 +25,33 @@ async function InputDataToForm(pathToGetById) {
     let y = await x.json();
     // console.log(y);  // returns json of 1 acurate project
 
+   // console.log(y);
     //redirect to editProjecthtml
     idToUse = y.id;
     titleToUse = y.title;
     descriptionToUse = y.description;
+    projectNumberToUse = y.projectNumber;
 
-
-    inputValuesToForm(idToUse, titleToUse, descriptionToUse);
+    // ---- adding variables
+    inputValuesToForm(idToUse, projectNumberToUse, titleToUse, descriptionToUse);
 }
 
 // it is the function on click "Zatwierdz zmiany"
 function replaceFormValuesToInputed() //changes all fields to filled //or dont change if no changes
 {
-    console.log("just before override fields " + descriptionToUse);
-    var idFromUpdatedForm = changeAttributeByName("projectNumber");
-    var titleFromUpdatedForm = changeAttributeByName("title");
-    var descriptionFromUpdatedForm = changeAttributeByName("description");
+    var idFromUpdatedForm = changeAttributeByName("projectId"); // html names/id
+    var projectNumberFromUpdatedForm = changeAttributeByName("projectNumber");// html names/id // null - nie przypisane !
+    var titleFromUpdatedForm = changeAttributeByName("title");// html names/id
+    var descriptionFromUpdatedForm = changeAttributeByName("description");// html names/id
+    console.log(projectNumberFromUpdatedForm);
 
-    putDataFromFieldsToDatabase(idFromUpdatedForm, titleFromUpdatedForm, descriptionFromUpdatedForm);
+    putDataFromFieldsToDatabase(idFromUpdatedForm, projectNumberFromUpdatedForm , titleFromUpdatedForm, descriptionFromUpdatedForm);
 }
 
-async function putDataFromFieldsToDatabase(id, title, desc) {
+async function putDataFromFieldsToDatabase(projecId, projectNumber, title, description) {
+     
 
-    var projJson = createJSON(title, desc); //works
+    var projJson = createJSON(title, description, projectNumber); //works
 
     var url = "/api/Project";
 
@@ -74,9 +78,10 @@ async function putDataFromFieldsToDatabase(id, title, desc) {
     }
 }
 
-function createJSON(title, description) {
+function createJSON(title, description,  projectNumberToUse) {
     var projectJSON = {
         "id": idToUse,
+        "projectNumber": projectNumberToUse,
         "title": title,
         "description": description,
         "completed": false //        change it later !!
@@ -95,16 +100,15 @@ function changeAttributeByName(attributeName) {
     return getAtribute.value;
 }
 
-function inputValuesToForm(idToUse, titleToUse, descriptionToUse) {
-    document.getElementById('projectNumber').setAttribute('value', idToUse);
+function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse) {
+    document.getElementById('projectId').setAttribute('value', idToUse);
+    document.getElementById('projectNumber').setAttribute('value', projectNumber);
     document.getElementById('title').setAttribute('value', titleToUse);
     document.getElementById('description').setAttribute('value', descriptionToUse);
-    console.log(descriptionToUse);
     //override variables
 
-    var idToUse = document.getElementById('projectNumber').getAttribute("value");
-    var titleToUse = document.getElementById('title').getAttribute("value");
-    var descriptionToUse = document.getElementById('description').getAttribute("value");
-    console.log(descriptionToUse); 
+    document.getElementById('projectNumber').getAttribute("value"); // var idToUse = 
+    document.getElementById('title').getAttribute("value");//var titleToUse = 
+    document.getElementById('description').getAttribute("value");// var   var descriptionToUse = 
 }
 
