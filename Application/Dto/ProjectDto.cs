@@ -10,5 +10,7 @@ namespace Application.Dto
         public string Description { get; set; }
         public bool Completed { get; set; }
         public List<SubTaskDto> MainTasks { get; set; }
+
+        
     }
 }

@@ -1,8 +1,15 @@
-﻿What next:
+﻿a moze to ma byc funkcja ktora zwraca
 
-Set Entity to fetch it
-Show every property in form
+nowy obiekt typu div za kazdym razem 
 
-Przebuduj div ze strony glownej
+ na wejsciu otrzymuje json
 
-niech zawiera input 
+ w srodku sprawdza czy jest cokolwiek w podliscie
+
+ jezleij est cokolwiek w podliscie to wywoluje sama siebie z nowym id/jsonem
+
+ i tworzy nadbudowujacy sie obiekt....
+
+ O
+ OO
+ OOO	

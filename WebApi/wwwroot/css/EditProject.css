@@ -1,4 +1,4 @@
-﻿:root {
+﻿/*:root {
     --dark: #374151;
     --darker: #1F2937;
     --darkest: #111827;
@@ -11,18 +11,33 @@
     width:66px;
 
 }
+.subTaskContent {
+    display: inline;
+}
 input.newSubTask {
     width: 66px;
     width: 100%;
     height: auto;
+}*/
+.subTask {
+    width: 100%;
+    text-align: center;
 }
+
 output {
-    list-style: arabic-indic;
-    display: block;
+    vertical-align: central;
+    text-align: left;
+    margin: auto;
+    width: 11%;
+    border: 3px solid green;
+    padding: 1px;
+    letter-spacing: 1px;
+    display: inline-block;
+    font-size: 14px;
 }
-* {
+/** {
     margin: 0;
-    /* box-sizing: border-box;*/
+     box-sizing: border-box;
     font-family: "Fira sans", sans-serif;
 }
 body {
@@ -30,7 +45,7 @@ body {
     color: #FFF;
     background-color: var(--dark);
 }
-input { /*input[type=text ] [type=text]*/
+input {  
     width: 100%;
     height: 11px;
     padding: 12px 20px;
@@ -59,3 +74,4 @@ button {
     color: white;
     background-image: linear-gradient(to right, var(--grey), var(--darker));
 }
+*/
