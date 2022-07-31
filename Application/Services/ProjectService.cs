@@ -38,6 +38,7 @@ namespace Application.Services
 
         public async Task<IEnumerable<ProjectDto>> GetAllAsync()
         {
+            
             var allNotes = await _projects.GetAllAsync();
             return _mapper.Map<IEnumerable<ProjectDto>>(allNotes);
         }

@@ -8,7 +8,8 @@ namespace Domain.Entities
     public class Project : AuditibleEntity
     {
         [Key]
-        public Guid Id { get; protected set; } // what type in sql server is guid ? answer: uniqueidentifier
+        public Guid Id { get;  set; } //#refactor : protected should be added to set!
+        // what type in sql server is guid ? answer: uniqueidentifier
 
         public string ProjectNumber { get;   set; }
 
@@ -20,7 +21,6 @@ namespace Domain.Entities
         [MaxLength(100)]
         public string Description { get; set; }
 
-       // public string ProjectNumber { get; set; }
         public bool Completed { get; set; }
          
         [NotMapped]

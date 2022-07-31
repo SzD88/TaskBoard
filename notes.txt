@@ -69,3 +69,20 @@ project by id tworzy liste subtaskow
 
 	ALE po huj cos mapowac, skoro masz id - stworz kontroler pobierajacy wszystkie zawarte taski included tasks
 
+
+	pseudocod:
+
+	Strona projektowa: ma podtaski:
+
+	mam liste obiektów2
+
+	dla kazdego z obiektow2
+	wykonaj funkcja1:
+
+	funkcja1 (obiekt1) :
+	1. zapisz ten obiekt do wyswietlenia na liscie Lista1 - generowanaNaPodstawie - obiekt1.jakaswartosc
+
+	sprawdz czy posiada podtaski
+ 
+	tak:
+	dla każdego podtasku => wykonaj funkcje1(obiektN)

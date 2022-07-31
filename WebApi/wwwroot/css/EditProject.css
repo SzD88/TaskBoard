@@ -1,4 +1,4 @@
-﻿:root {
+﻿/*:root {
     --dark: #374151;
     --darker: #1F2937;
     --darkest: #111827;
@@ -10,11 +10,15 @@
 .addSubTask {
     width:66px;
 
-}
+}*/
 .subTaskContent {
-    display: inline;
+    display:  list-item;
+    color: black;
+    font-size: 13px;
+    height: 333px;
 }
-input.newSubTask {
+ 
+/*input.newSubTask {
     width: 66px;
     width: 100%;
     height: auto;
@@ -75,3 +79,4 @@ button {
     color: white;
     background-image: linear-gradient(to right, var(--grey), var(--darker));
 }
+*/

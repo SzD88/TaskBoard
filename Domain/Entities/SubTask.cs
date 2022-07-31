@@ -8,7 +8,7 @@ namespace Domain.Entities
     {
 
         [Key]
-        public Guid Id { get; protected set; } 
+        public Guid Id { get;   set; } // #refactor protected need to be added
 
         [Required]
         [MaxLength(100)]

@@ -24,7 +24,10 @@ namespace Application.Services
             var asSubTaskType = _mapper.Map<SubTask>(subTask);
             var created = await _subTasks.CreateAsync(asSubTaskType);
             return _mapper.Map<SubTaskDto>(created);
-        } 
+        }
+
+      
+
         public async Task DeleteAsync(object id)
         {
             var guid = (Guid)id;
@@ -74,6 +77,16 @@ namespace Application.Services
 
             return mappedList;
 
+        }
+
+        public async Task DeleteAllSubTasks()
+        {
+            var allSubTasks = await _subTasks.GetAllAsync();
+
+            foreach (var subTask in allSubTasks)
+            {
+                await _subTasks.DeleteAsync(subTask);
+            }
         }
     }
 }

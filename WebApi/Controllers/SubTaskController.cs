@@ -57,5 +57,12 @@ namespace WebApi.Controllers
             await _subTasks.DeleteAsync(id);
             return Ok($"Deleted task with id : {id} ");
         }
+        [SwaggerOperation(Summary = "Delete all subTasks")]
+        [HttpDelete("DeleteAll")]
+        public async Task<IActionResult> DeleteAllProjects()
+        {
+            await _subTasks.DeleteAllSubTasks();
+            return NoContent();
+        }
     }
 }

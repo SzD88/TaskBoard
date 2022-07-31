@@ -2,11 +2,6 @@
 using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -16,14 +11,45 @@ namespace Infrastructure.Repositories
         public ProjectRepository(ProjectManagerContext context)
         {
             _context = context;
+            CreateExampleProject();
+
         }
+         
+        public   void CreateExampleProject()
+        {
+            var exampleProject = new Project()
+            {
+                ProjectNumber = "133-22",
+                Id = new Guid("56950D32-F426-4B5C-96CB-FFA074A8A37B"),
+                Title = "Example Project Number 1",
+                Description = "Example Description of Project Number 1",
+                Completed = false,
+                Created = DateTime.Now 
+              
+            };
+            var exampleProject2 = new Project()
+            {
+                ProjectNumber = "144-22",
+                Id = new Guid("1d5672c8-7102-414e-b5cf-95352b172ada"),
+                Title = "Example Project Number 2",
+                Description = "Example Description of Project Number 2",
+                Completed = false,
+                Created = DateTime.Now
+            };
+              _context.AddAsync(exampleProject);
+              _context.AddAsync(exampleProject2);
+              _context.SaveChangesAsync();
+
+        }
+
+
 
         public async Task<Project> CreateAsync(Project entity)
         {
             entity.Completed = false;
             entity.Created = DateTime.Now;
             entity.LastModified = DateTime.Now;
-            await _context.Projects.AddAsync(entity); 
+            await _context.Projects.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
@@ -57,7 +83,7 @@ namespace Infrastructure.Repositories
             var list = await _context.SubTasks
                   .Where(x => x.LevelAboveId == parentId)
                   .ToListAsync();
-                  
+
             return list;
         }
 
