@@ -1,101 +1,114 @@
-﻿
-
-const list_el = document.querySelector("#subTasks"); //subTasks
+﻿ const list_el = document.querySelector("#subTasks"); // EditProject.html
  
-
- 
-
-// stworz obiekt - dodaj do niego liste obiektow  - wywolaj funkcje w fetch z edit projetk!!!!
-
-// czy ja nie chce tu teraz miec retrive all included tasks ale mam takie cos zawarte juz w project
-//moze zrob funkcję która sprawdza czy są kolejne subtaski w subtasku , w subtasku itd itd...
-
-// mam liste id subtasków - > wykonuje foreach - dla kazdego pobieram z db - content subtasku i jego id 
-
-
-//tutaj chce przekazac content i liste subtaskow - a w sumie ich contentu
-
-
-// foreach 
-
-// cała ta funkcja musi byc jakos sprytnie zapętlona żeby wykonać każdy subtask  z kazdego subtasku
-
-function createSubtaskList( subTasksObjects ) {
+function createSubtaskList( subTasksObjects ) { // it is almost prepered 
      
-    var list1 = [];
+    var list1 = [];  // czym jest ta lista ? 
+   //   console.log( list1);
 
     for (nextTask in subTasksObjects) {
-        list1.push(subTasksObjects[nextTask]);
+        list1.push(subTasksObjects[nextTask]); // temporary
     }
 
-    console.log(list1);
-
-    /// tu sie zaczyna tworzenie listy 
-
+   // console.log(list1); // list of subtasks JSON with all 4 properties 
+     
     const task_el = document.createElement('div');
 
     task_el.classList.add('subTask');
-
-
      
     const task_content_el = document.createElement('div');
-
      
-    task_content_el.classList.add('content');  // can be changed
+    task_content_el.classList.add('content');  // should be changed
 
     task_el.appendChild(task_content_el);
 
-    // Tu chce dodac moj slodki plusik a potem pole tekstowe do create subtask
+   // First elements - I want to loop this from here:
+
     const task_input_el1 = document.createElement('button');
     task_input_el1.classList.add('addSubTask');
     task_input_el1.type = 'button';
     task_input_el1.setAttribute('readonly', 'readonly');
-  //  task_content_el.appendChild(task_input_el1); // do tego mozesz zrobic append child i dodac podtaski
 
     const task_input_elNewTask = document.createElement('input');
     task_input_elNewTask.classList.add('newSubTask');
     task_input_elNewTask.type = 'text';
   //  task_content_el.appendChild(task_input_elNewTask); // do tego mozesz zrobic append child i dodac podtaski
 
+    //Whole line with + button and text field and post command 
     const addButtonAndNewSubTaskInLine = document.createElement('div');
     addButtonAndNewSubTaskInLine.appendChild(task_input_el1);
     addButtonAndNewSubTaskInLine.appendChild(task_input_elNewTask);
     addButtonAndNewSubTaskInLine.style.display = "flex";
     task_content_el.appendChild(addButtonAndNewSubTaskInLine); // do tego mozesz zrobic append child i dodac podtaski
 
+    //====== end
+
     // Element 1
     const task_input_el2 =  document.createElement('div');
-    task_input_el2.classList.add('subTaskContent');
-        //document.createElement('output');
-    //task_input_el2.classList.add('subTask');
-    //task_input_el2.type = 'text';
-    //task_input_el2.setAttribute('readonly', 'readonly');
+    task_input_el2.classList.add('mainSubTasks');
+      
+    task_content_el.appendChild(task_input_el2);  
 
-    
-    task_content_el.appendChild(task_input_el2); // do tego mozesz zrobic append child i dodac podtaski
-
-    const task_input_level3 = document.createElement('output');
-    task_input_level3.classList.add('subTask'); 
-    task_input_level3.type = 'text';
-    task_input_level3.setAttribute('readonly', 'readonly');
+    const task_input_level3 = document.createElement('div');
+    task_input_level3.classList.add('subTaskContent');
+     
 
     task_input_el2.appendChild(task_input_level3);
-
+    // ===================================================================================================
     for (nextTask in list1) {
 
-        console.log(nextTask);
-        var temp = document.createElement('input');
+      //  console.log(nextTask);
+      //  var temp = document.createElement('input');
+        var temp = document.createElement('div');
+
+       // temp = document.classList.add(temp.id);
         // var text = document.createTextNode(list1[nextTask].content); // this is wrong way 
         var text  =  list1[nextTask].content;
-        temp.value = text;
+        temp.innerHTML = text;
+
+        var singleSubTask = list1[nextTask];   // wypisuje pojedynczy json  -A-
+
+        loopOfprint(singleSubTask);
+
+        function loopOfprint(input1) {
+              console.log(input1);
+
+            var numberOfTimes = input1.includedTasks.length;  // licznosc podtasku 
+             console.log(numberOfTimes);
+            for (var i = 0; i < numberOfTimes; i++) {
+                /* for (singleTask in singleSubTask.includedTasks) {*/
+                var tempId = input1.includedTasks[i];
+                console.log(i);
+                 loopOfprint(tempId);
+            }
+        }
+
+       // temp.value = text;
     //    let li = document.createElement('li');
     //    li.textContent = text ;
          
     //    console.log(li.textContent);
-       task_input_level3.appendChild(temp);
 
+        //postawic jakiegos ifa... ? 
+     
+        var thisSpecifiedSubTask = list1[nextTask];
+         
+        
+
+        var numberOfIncludedSubTasks = thisSpecifiedSubTask.includedTasks.length; // returning 0 so great
+        for (var i = 0; i < numberOfIncludedSubTasks; i++) {
+          //  console.log(thisSpecifiedSubTask.includedTasks[i]);
+           // console.log(thisSpecifiedSubTask);
+
+        }
+       // createSubtaskList(list1);
+
+
+          /// divy z textem wyrzuca  
+      //  console.log(list1);
+       task_input_level3.appendChild(temp);
+        }
         //albo mozesz po prostu przewidziec maksymalna liczbe poziomow 
-    }
+     
 
 
     const textnode = document.createTextNode("+");
@@ -115,7 +128,7 @@ function createSubtaskList( subTasksObjects ) {
             // project id 
 
          createSubTaskBasedOnAboveId(levelAboveId,contentToPost)
-        console.log(levelAboveId);
+       // console.log(levelAboveId);
         
     });
 }

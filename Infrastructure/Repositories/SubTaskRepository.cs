@@ -53,7 +53,16 @@ namespace Infrastructure.Repositories
         {
             var list =  await _context.SubTasks
                 .Where(x => x.LevelAboveId == parentId)
-                .ToListAsync(); 
+                .ToListAsync();
+
+            foreach (var item in list)
+            { 
+             var listBelow =  await CreateListOfTasks(item.Id);
+               
+
+              item.IncludedTasks =  listBelow.ToList(); 
+            }
+
             return list;
         }
     }

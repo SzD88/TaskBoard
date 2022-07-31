@@ -13,3 +13,59 @@ nowy obiekt typu div za kazdym razem
  O
  OO
  OOO	
+
+ p { - all <p> elements
+ #para1 { all id="para1": 
+ .center { all class="center"
+
+p.center { // 
+<p class="center large">  -
+In this example the <p> element will be styled according to class="center" and to class="large": 
+
+ h1, h2, p { - group selector
+* { will affect every HTML element 
+
+//
+// stworz obiekt - dodaj do niego liste obiektow  - wywolaj funkcje w fetch z edit projetk!!!!
+
+// czy ja nie chce tu teraz miec retrive all included tasks ale mam takie cos zawarte juz w project
+//moze zrob funkcję która sprawdza czy są kolejne subtaski w subtasku , w subtasku itd itd...
+
+// mam liste id subtasków - > wykonuje foreach - dla kazdego pobieram z db - content subtasku i jego id 
+
+
+//tutaj chce przekazac content i liste subtaskow - a w sumie ich contentu
+
+
+// foreach 
+
+// cała ta funkcja musi byc jakos sprytnie zapętlona żeby wykonać każdy subtask  z kazdego subtasku
+
+
+
+for all items in list1
+
+
+function createDiv:
+
+create div  put  content visible
+	if element include subtasksk
+		create div  put  content visible - put into above div
+			if element include subtasksk
+				create div  put  content visible - put into above div
+					if element include subtasksk
+					...
+
+					
+					
+					
+project by id tworzy liste subtaskow
+
+	ale nie tworzy w kazdym kolejnym subtasku jego listy
+
+	wiec nalezy zrobic fetch i pobrac poszczegolny element ?
+
+	czy prosciej generowac cala liste list podtaskow z backendu ? 
+
+	ALE po huj cos mapowac, skoro masz id - stworz kontroler pobierajacy wszystkie zawarte taski included tasks
+

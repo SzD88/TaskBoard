@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> AddSubTask(CreateSubTaskDto subTask)
         {
             var toShow = await _subTasks.CreateAsync(subTask); 
-            return Created($"api/Clients/{toShow.Id}", toShow.Id); 
+            return Created($"api/subtask/{toShow.Id}", toShow.Id); 
         }
 
         [SwaggerOperation(Summary = "Retrieves task by id")]
