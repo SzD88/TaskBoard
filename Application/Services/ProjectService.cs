@@ -76,5 +76,11 @@ namespace Application.Services
                await _projects.DeleteAsync(project);
             }
         }
+
+        public async Task CreateExampleProjectsAsync()
+        {
+           await  _projects.CreateExampleProjectsAsync();
+           await _subTasks.CreateExampleSubTasksAsync();
+        }
     }
 }

@@ -10,17 +10,21 @@
 </head>
 <body>
 
-    <button onclick="location.href = '/editproject.html';" type="button" id="createProjectButton"  >Create new project</button>
-     
-    <header>
- 
-    </header>
+    <button onclick="funcCreateExamples()" type="button" id="createExamplesInDb">Create example objects in db</button>
+    <button onclick="location.href = '/editproject.html';" type="button" id="createProjectButton">Create new project</button>
+
+    <script>
+        function funcCreateExamples() {
+            fetch("/api/Project/CreateExamples", { method: 'POST' });
+            location.reload(true);
+        };
+    </script>
     <main>
 
         <section class="task-list">
             <h2 style="color:black;"> Projects List:</h2>
             <div id="tasks">
-               
+
             </div>
         </section>
     </main>

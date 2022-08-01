@@ -10,7 +10,7 @@ namespace Application.Interfaces
     public interface ISubTaskService : IService<SubTaskDto,CreateSubTaskDto, UpdateSubTaskDto>
     {
         Task DeleteAllSubTasks();
-
+        Task CreateExampleSubTasksAsync();
 
     }
 }

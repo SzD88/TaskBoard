@@ -10,5 +10,6 @@ namespace Application.Interfaces
     public interface IProjectService : IService<ProjectDto, CreateProjectDto, UpdateProjectDto>
     {
         Task DeleteAllProjects();
+        Task CreateExampleProjectsAsync();
     }
 }

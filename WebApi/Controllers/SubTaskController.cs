@@ -14,9 +14,9 @@ namespace WebApi.Controllers
     {
         private readonly ISubTaskService _subTasks;
 
-        public SubTaskController(ISubTaskService context)
+        public SubTaskController(ISubTaskService service)
         {
-            _subTasks = context;
+            _subTasks = service;
         }
         [SwaggerOperation(Summary = "Create new task")] 
         [HttpPost]

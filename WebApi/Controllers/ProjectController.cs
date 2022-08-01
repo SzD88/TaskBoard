@@ -13,9 +13,9 @@ namespace WebApi.Controllers
     {
         private readonly IProjectService _projects;
 
-        public ProjectController(IProjectService context)
+        public ProjectController(IProjectService service)
         {
-            _projects = context;
+            _projects = service;
         }
 
         [SwaggerOperation(Summary = "Create new project")]
@@ -61,6 +61,13 @@ namespace WebApi.Controllers
         {
             await _projects.DeleteAllProjects();
             return NoContent();
+        }
+        [SwaggerOperation(Summary = "Create example projects and subtasks in db")]
+        [HttpPost("CreateExamples")]
+        public async Task<IActionResult> CreateExamples()
+        {
+            await _projects.CreateExampleProjectsAsync();
+            return Ok("Created");
         }
     }
 }

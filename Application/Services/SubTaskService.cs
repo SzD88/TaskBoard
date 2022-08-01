@@ -88,5 +88,10 @@ namespace Application.Services
                 await _subTasks.DeleteAsync(subTask);
             }
         }
+
+        public async Task CreateExampleSubTasksAsync()
+        {
+          await _subTasks.CreateExampleSubTasksAsync();
+        }
     }
 }

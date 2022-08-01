@@ -43,8 +43,7 @@ body {
     font-size: 21px;
 }
 
-#createProjectButton {
-    background-color: var(--grey);
+#createProjectButton, #createExamplesInDb {
     height: 33px;
     font-size: 1.125rem;
     width: 60%;
@@ -52,6 +51,13 @@ body {
     max-width: 800px;
     border-radius: 17px;
 }
+#createExamplesInDb {
+    background-color: red;
+}
+#createProjectButton {
+    background-color: var(--grey);
+}
+
 /*header {
     padding: 0rem 1rem;
     max-width: 800px;
