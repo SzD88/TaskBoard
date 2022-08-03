@@ -47,9 +47,15 @@ async function InputDataToForm(pathToGetById) {
  
 
     var listOfSubtasks = y.mainTasks;
+  // console.log(listOfSubtasks[0]);  // level above id 
 
-    createSubtaskList(listOfSubtasks);
+    //!! tutaj juz powinno byc for each a tam powinno byc wyswietlanie listy dla 1 i pozycja ich w lini
+    for (nextTask in listOfSubtasks) {
+        var itemToAppend = createSubtaskList(listOfSubtasks[nextTask]);
+        createListOfSingleMainTask(itemToAppend);
 
+
+    }
 }
 
 // it is the function on click "Zatwierdz zmiany"

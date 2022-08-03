@@ -1,4 +1,38 @@
-﻿a moze to ma byc funkcja ktora zwraca
+﻿div.innerHTML - wraz z komenda html tekst
+
+query selector - łapie opisany obiekt html po jego id np #task - i mozesz go przypisac do zmiennej
+
+setattribute - ustawi nam id danego wpisu44
+
+w obiekcie html masz data-costam - mozna do tego przypisac dowolne dane i beda przechowywane 
+
+const span = document.querySelector("#costam")
+span.dataset.nazwaZmiennej = "cokolwiek";
+
+classlist działa podobnie
+///
+
+function funkcja1(id, upper div name/id/ - to append into it smt)
+{
+new div
+
+div.add id + content
+
+if this div .subtasks != 0
+	
+	foreach item in subtasks
+	funkcja1(id)
+
+
+append child to item get on enter !
+}
+
+
+
+
+///
+
+a moze to ma byc funkcja ktora zwraca
 
 nowy obiekt typu div za kazdym razem 
 
@@ -56,7 +90,7 @@ create div  put  content visible
 					if element include subtasksk
 					...
 
-					
+					rozbij to na jakas przykladowa funkcje i wtedy sprobuj napisac na czyms prostszym
 					
 					
 project by id tworzy liste subtaskow

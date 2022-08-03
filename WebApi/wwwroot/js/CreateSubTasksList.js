@@ -1,119 +1,104 @@
-﻿ const list_el = document.querySelector("#subTasks"); // EditProject.html
- 
-function createSubtaskList(subTasksObjects) { // it is almost prepered 
+﻿// EditProject.html
 
-    console.log(subTasksObjects);
-    const task_el = document.createElement('div');
 
-    task_el.classList.add('subTask');
+//function funkcja1(id, upper div name/id/ - to append into it smt)
+//{
+//    new div
 
-    const task_content_el = document.createElement('div');
+//    div.add id + content
 
-    task_content_el.classList.add('subTaskContent');  // should be changed
+//    if this div.subtasks != 0
 
-    task_el.appendChild(task_content_el);
+//    foreach item in subtasks
+//    funkcja1(id)
 
-    //pseudocod:
 
-    //Strona projektowa: ma podtaski:
+//    append child to item get on enter!
+//}
 
-    //mam liste obiektów2 - subTasksObjects
-    //dla kazdego z obiektow2
-    //wykonaj funkcja1:
- //      // ale to jest lista obiektow bez generycznego id
+// dostajesz 1 id - 
+function createSubtaskList(singleSubTasksObject) { // it is almost prepered 
 
-    for (nextTask in subTasksObjects) {
-        var currentTask = subTasksObjects[nextTask]; 
-      var geten =  func1(currentTask);
-        task_content_el.appendChild(geten);
-        console.log(task_content_el);
+    const wholeBox = document.createElement('div'); // to ma byc div? 
+
+    wholeBox.classList.add('singleSubTasksObject'); // nadaje id 
+
+    // 1 dodaj jego content jako pole tekstowe - nadaj mu id 
+    const wholeBox_input_element = document.createElement('input');
+    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);
+    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);
+    wholeBox_input_element.type = 'text';
+
+    wholeBox.appendChild(wholeBox_input_element);
+     // nowy div ktory przechowa najpierw powyzszy input
+
+    // ponizej ma dostac jeszcze wynik funkcji
+    var allSubTasks = singleSubTasksObject.includedTasks;
+    // foreach
+    for (nextTask in allSubTasks) {
+        // get data to append 
+        var appendBelowLevels = createSubtaskList(allSubTasks[nextTask]); // wyslij go i przypisz do zmiennej
+         
+        wholeBox.appendChild(appendBelowLevels); // to nie do input tylko do div
+
     }
-    list_el.appendChild(task_el);
-    function func1(input)
-    {
-        var tempList = [];
-        const genericDivObject = document.createElement('input');
-        genericDivObject.setAttribute('value', input.content);
-        genericDivObject.setAttribute('id', input.id);
-        genericDivObject.type = 'text';
-
-        const newNode = document.createTextNode(input.content);
-        genericDivObject.appendChild(newNode);
-
-      //   console.log("controla jakosci 1  " + input.includedTasks[1].id);
-
-        var includedTasks = input.includedTasks;
-      //   console.log(includedTasks);
-        for (numberOf in includedTasks)
-        {
-          //  console.log("controla jakosci 2" + includedTasks[numberOf].id);  // dobre zczytuje 
-
-            var selectedSingle = includedTasks[numberOf];
-            
-           // console.log("controla jakosci 3" + selectedSingle);
-            var getenDIV = func1(selectedSingle)
-            //const genericDivObject2 = document.createElement('input');
-            //genericDivObject2.setAttribute('value', selectedSingle.content);
-            //genericDivObject2.setAttribute('id', selectedSingle.id);
-            //genericDivObject2.type = 'text';
+      // wholeBox.appendChild(appendBelowLevels); // to nie do input tylko do div
 
 
-            //const nextRandomElementDIV = document.createElement('div');
-
-            //nextRandomElementDIV.appendChild(selectedSingle.content);
-
-            //nextRandomElementDIV.classList.add(selectedSingle.id);
-
-            //genericDivObject.appendChild(nextRandomElementDIV);
-
-             
-
-        }
-        return genericDivObject;
-    }
-     
-
-
-    async function createSubTaskBasedOnAboveId(levelAboveId, content) {
-
-
-        var subTaskJSON = createSubTaskJSON(levelAboveId, content); //works
-
-        var url = "/api/SubTask";
-
-        try {
-            const config = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: subTaskJSON // JSON.stringify(data)
-            }
-            const response = await fetch(url, config);
-            //const json = await response.json()
-            if (response.ok) {
-                //return json
-                console.log(response);
-                return response
-            } else {
-                //
-            }
-        } catch (error) {
-            //
-        }
-    }
-
-    function createSubTaskJSON(levelAboveId, content) {
-        var subTaskJSON =
-        {
-            "content": content,
-            "levelAboveId": levelAboveId
-        }
-        const subTaskString = JSON.stringify(subTaskJSON);
-        return subTaskString;
-    }
-
-
+    return wholeBox;
 
 }
+//============
+function createListOfSingleMainTask(itemToAppend) {
+
+    const MainTasks = document.querySelector('#MainTasks');
+   
+
+    console.log(itemToAppend);
+    MainTasks.appendChild(itemToAppend);
+   
+}
+
+// ========================
+async function createSubTaskBasedOnAboveId(levelAboveId, content) {
+
+
+    var subTaskJSON = createSubTaskJSON(levelAboveId, content); //works
+
+    var url = "/api/SubTask";
+
+    try {
+        const config = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: subTaskJSON // JSON.stringify(data)
+        }
+        const response = await fetch(url, config);
+        //const json = await response.json()
+        if (response.ok) {
+            //return json
+            console.log(response);
+            return response
+        } else {
+            //
+        }
+    } catch (error) {
+        //
+    }
+}
+
+function createSubTaskJSON(levelAboveId, content) {
+    var subTaskJSON =
+    {
+        "content": content,
+        "levelAboveId": levelAboveId
+    }
+    const subTaskString = JSON.stringify(subTaskJSON);
+    return subTaskString;
+}
+
+
+
