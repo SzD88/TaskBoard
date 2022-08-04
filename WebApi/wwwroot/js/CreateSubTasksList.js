@@ -26,7 +26,7 @@ function createSubtaskList(singleSubTasksObject) {
         wholeBox.appendChild(addButtonObject);
         wholeBox.appendChild(appendBelowLevels);
     }
-    startPosition = startPosition - 20
+    startPosition = startPosition - 20 // tutaj
     var zmiennaString = startPosition.toString() + "px";
     wholeBox.style.textIndent = zmiennaString;
     return wholeBox;
@@ -53,14 +53,16 @@ function addButton(aboveId) {
     addSubTaskOfCurrentLevel.appendChild(addNode);
 
     const newTaskInput = document.createElement('input');
-    newTaskInput.classList.add('addSubTaskInput');
+    newTaskInput.classList.add('addSubTaskInput'); // ten nie ma wciec 
     newTaskInput.setAttribute('value', '');
     newTaskInput.setAttribute('id', aboveId);
     newTaskInput.type = 'text';
+     
+   //  divWithButton.style.textIndent = "130px";
 
+    divWithButton.appendChild(newTaskInput);
 
     divWithButton.appendChild(addSubTaskOfCurrentLevel);
-    divWithButton.appendChild(newTaskInput);
 
 
     return divWithButton;

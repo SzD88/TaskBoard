@@ -7,25 +7,35 @@
     --purple: #8B5CF6;
     --light: #EEE;
 }
-.addSubTask {
-    width:66px;
+ 
 
-}
+
 .subTaskContent {
     display:  list-item;
     color: black;
     font-size: 13px;
     height: 333px;
 }
+div.buttonBox {
+    display: inline;
+    text-indent: 130px;
+}
 
 
 input.addSubTask .addSubTaskInput {
     display: inline;
 }
+button.addSubTask {
+height: 25px;
+width: 28px;
 
-
+}
+/* to odpowiada za szerokosci pionowych zestawów*/
+#MainTasks {
+    width: 30%;
+}
 .singleSubTasksObject {
-    width: 333px;
+    width: 90%;
 }
 input {
     width: 100%;
@@ -41,8 +51,7 @@ input {
 }
 
 .addSubTaskInput {
-    width: fit-content ;
-    
+    width: 80%;
 }
   
 
