@@ -1,64 +1,70 @@
-﻿// EditProject.html
+﻿var startPosition = 80; // distance from the left of first subtask on list
+
+function createSubtaskList(singleSubTasksObject) {
+
+    const wholeBox = document.createElement('div');
+
+    wholeBox.classList.add('singleSubTasksObject');
 
 
-//function funkcja1(id, upper div name/id/ - to append into it smt)
-//{
-//    new div
-
-//    div.add id + content
-
-//    if this div.subtasks != 0
-
-//    foreach item in subtasks
-//    funkcja1(id)
-
-
-//    append child to item get on enter!
-//}
-
-// dostajesz 1 id - 
-function createSubtaskList(singleSubTasksObject) { // it is almost prepered 
-
-    const wholeBox = document.createElement('div'); // to ma byc div? 
-
-    wholeBox.classList.add('singleSubTasksObject'); // nadaje id 
-
-    // 1 dodaj jego content jako pole tekstowe - nadaj mu id 
     const wholeBox_input_element = document.createElement('input');
     wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);
     wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);
     wholeBox_input_element.type = 'text';
 
     wholeBox.appendChild(wholeBox_input_element);
-     // nowy div ktory przechowa najpierw powyzszy input
 
-    // ponizej ma dostac jeszcze wynik funkcji
     var allSubTasks = singleSubTasksObject.includedTasks;
-    // foreach
+
     for (nextTask in allSubTasks) {
-        // get data to append 
-        var appendBelowLevels = createSubtaskList(allSubTasks[nextTask]); // wyslij go i przypisz do zmiennej
-         
-        wholeBox.appendChild(appendBelowLevels); // to nie do input tylko do div
 
+
+        var appendBelowLevels = createSubtaskList(allSubTasks[nextTask]);
+
+        var addButtonObject = addButton(allSubTasks[nextTask].id);
+
+        wholeBox.appendChild(addButtonObject);
+        wholeBox.appendChild(appendBelowLevels);
     }
-      // wholeBox.appendChild(appendBelowLevels); // to nie do input tylko do div
-
-
+    startPosition = startPosition - 20
+    var zmiennaString = startPosition.toString() + "px";
+    wholeBox.style.textIndent = zmiennaString;
     return wholeBox;
-
 }
-//============
+
+
 function createListOfSingleMainTask(itemToAppend) {
-
     const MainTasks = document.querySelector('#MainTasks');
-   
-
     console.log(itemToAppend);
     MainTasks.appendChild(itemToAppend);
-   
-}
+}//
 
+
+function addButton(aboveId) {
+
+    const divWithButton = document.createElement('div');
+    divWithButton.classList.add('buttonBox');
+
+    const addSubTaskOfCurrentLevel = document.createElement('button');
+    addSubTaskOfCurrentLevel.classList.add('addSubTask');
+    addSubTaskOfCurrentLevel.type = 'button';
+    addSubTaskOfCurrentLevel.setAttribute('readonly', 'readonly');
+    const addNode = document.createTextNode("+");
+    addSubTaskOfCurrentLevel.appendChild(addNode);
+
+    const newTaskInput = document.createElement('input');
+    newTaskInput.classList.add('addSubTaskInput');
+    newTaskInput.setAttribute('value', '');
+    newTaskInput.setAttribute('id', aboveId);
+    newTaskInput.type = 'text';
+
+
+    divWithButton.appendChild(addSubTaskOfCurrentLevel);
+    divWithButton.appendChild(newTaskInput);
+
+
+    return divWithButton;
+}
 // ========================
 async function createSubTaskBasedOnAboveId(levelAboveId, content) {
 

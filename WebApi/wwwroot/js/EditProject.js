@@ -4,9 +4,7 @@ let titleToUse;
 let descriptionToUse;
 let projNumberToUse;
 
-window.onload = function () {
-    // splits url to get id transfered from main.js
-
+window.onload = function () { 
     try {
         var url = document.location.href,
             params = url.split('?')[1].split('&'),
@@ -14,16 +12,10 @@ window.onload = function () {
         for (var i = 0, l = params.length; i < l; i++) {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
-        }
-   
-  
-
-
+        } 
     projectId = data.id;
 
-    InputDataToForm("/api/Project/" + projectId);
-
-    // call function creating Main Tasks by ids
+    InputDataToForm("/api/Project/" + projectId); 
 
     } catch (e) {
         "Main Page"
@@ -33,9 +25,7 @@ window.onload = function () {
 async function InputDataToForm(pathToGetById) {
     let x = await fetch(pathToGetById);
     let y = await x.json();
-    // console.log(y);  // returns json of 1 acurate project
-
-    //redirect to editProjecthtml
+ 
     idToUse = y.id;
     titleToUse = y.title;
     descriptionToUse = y.description;
@@ -43,13 +33,9 @@ async function InputDataToForm(pathToGetById) {
 
     // ---- adding variables
     inputValuesToForm(idToUse, projectNumberToUse, titleToUse, descriptionToUse);
-
- 
-
+     
     var listOfSubtasks = y.mainTasks;
-  // console.log(listOfSubtasks[0]);  // level above id 
-
-    //!! tutaj juz powinno byc for each a tam powinno byc wyswietlanie listy dla 1 i pozycja ich w lini
+ 
     for (nextTask in listOfSubtasks) {
         var itemToAppend = createSubtaskList(listOfSubtasks[nextTask]);
         createListOfSingleMainTask(itemToAppend);
@@ -58,11 +44,10 @@ async function InputDataToForm(pathToGetById) {
     }
 }
 
-// it is the function on click "Zatwierdz zmiany"
 function replaceFormValuesToInputed() //changes all fields to filled //or dont change if no changes
 {
     var idFromUpdatedForm = changeAttributeByName("projectId"); // html names/id
-    var projectNumberFromUpdatedForm = changeAttributeByName("projectNumber");// html names/id // null - nie przypisane !
+    var projectNumberFromUpdatedForm = changeAttributeByName("projectNumber");// html names/id  
     var titleFromUpdatedForm = changeAttributeByName("title");// html names/id
     var descriptionFromUpdatedForm = changeAttributeByName("description");// html names/id
     console.log(projectNumberFromUpdatedForm);
@@ -71,8 +56,7 @@ function replaceFormValuesToInputed() //changes all fields to filled //or dont c
 }
 
 async function putDataFromFieldsToDatabase(projecId, projectNumber, title, description) {
-     
-
+      
     var projJson = createJSON(title, description, projectNumber); //works
 
     var url = "/api/Project";
@@ -87,16 +71,14 @@ async function putDataFromFieldsToDatabase(projecId, projectNumber, title, descr
             body: projJson // JSON.stringify(data)
         }
         const response = await fetch(url, config);
-        //const json = await response.json()
         if (response.ok) {
-            //return json
             console.log(response);
             return response
         } else {
-            //
+          
         }
     } catch (error) {
-        //
+         
     }
 }
 
@@ -118,7 +100,6 @@ function changeAttributeByName(attributeName) {
     var attributeChanged = getAtribute.value.replace();
     getAtribute.value = attributeChanged;
 
-    // console.log("from the inside of changeattribute function " + getAtribute.value);
     return getAtribute.value;
 }
 
