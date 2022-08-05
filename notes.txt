@@ -1,4 +1,11 @@
-﻿div.innerHTML - wraz z komenda html tekst
+﻿Co ja chce zrobic, bo juz mnie meczy to pierdolenie sie z tym ? 
+- zrob borders zeby tylko bylo widac co i jak tam sie dzieje
+- zrob zwyklego plusa dla kazdego upper task - zeby dodawać do niego subtaks
+- ten dodany subtask musi pozyskac id 
+- zrob guzik odznaczenia - done - done niech wysyla informacje na serwer z data i godzina done 
+-  widzimy sie tutaj o 13
+
+div.innerHTML - wraz z komenda html tekst
 
 query selector - łapie opisany obiekt html po jego id np #task - i mozesz go przypisac do zmiennej
 

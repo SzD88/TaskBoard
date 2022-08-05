@@ -38,9 +38,9 @@ window.addEventListener('load', () => { //on load :
 
             }
             return data;
-        }).then(data => obj = data)
-        .then(() => console.log('')  //obj
-        );
+        }).then(data => obj = data);
+          //obj
+      
 
     function createList(inputData, inputData2, inputData3, inputData4) {
 
