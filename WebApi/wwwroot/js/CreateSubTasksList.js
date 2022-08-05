@@ -21,9 +21,10 @@ async function createSubtaskList(singleSubTasksObject) { //// tu masz dude
    
     for (nextTask in allSubTasks) {
 
+        //#solve - tutaj cos jest nie tak, nie dopisuje above id takiego jakie ja chce cos zle przekazuje do funkcji, moze napisac ja od nowa
 
         var appendBelowLevels = await createSubtaskList(allSubTasks[nextTask]);
-
+       //  debugger;
         console.log(allSubTasks[nextTask].id + " to sa id kolejnych podtaskow poza glownym a ich tresc to  " + allSubTasks[nextTask].content );
 
         var addButtonObject = await addButton(allSubTasks[nextTask].id);

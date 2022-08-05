@@ -14,7 +14,7 @@ window.onload = function () {
             data[tmp[0]] = tmp[1];
         } 
     projectId = data.id;
-
+    
     InputDataToForm("/api/Project/" + projectId); 
 
     } catch (e) {
