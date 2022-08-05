@@ -6,9 +6,7 @@ using Domain.Interfaces;
 using System.Linq.Expressions;
 
 namespace Application.Services
-{
-
-
+{ 
     public class SubTaskService : ISubTaskService
     {
         private readonly ISubTaskRepository _subTasks;
@@ -37,8 +35,21 @@ namespace Application.Services
 
         public async Task<IEnumerable<SubTaskDto>> GetAllAsync()
         {
-            var allNotes = await _subTasks.GetAllAsync();
-            return _mapper.Map<IEnumerable<SubTaskDto>>(allNotes);
+            var allSubTasks = await _subTasks.GetAllAsync();
+          
+            var mappedSubTasks = _mapper.Map<IEnumerable<SubTaskDto>>(allSubTasks);
+
+            foreach (var item in mappedSubTasks)
+            {
+                var list = await _subTasks.CreateListOfTasks(item.Id);
+                var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+
+                foreach (var lists in mappedList)
+                {
+                    item.IncludedTasks.Add(lists);
+                }
+            }
+            return mappedSubTasks;
         }
         public async Task<SubTaskDto> GetByIDAsync(object id)
         {

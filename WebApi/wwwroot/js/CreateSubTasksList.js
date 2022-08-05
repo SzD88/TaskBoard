@@ -1,6 +1,6 @@
 ﻿var startPosition = 280; // distance from the left of first subtask on list
 
-function createSubtaskList(singleSubTasksObject) { //// tu masz dude
+async function createSubtaskList(singleSubTasksObject) { //// tu masz dude
 
     const wholeBox = document.createElement('div');
 
@@ -22,11 +22,11 @@ function createSubtaskList(singleSubTasksObject) { //// tu masz dude
     for (nextTask in allSubTasks) {
 
 
-        var appendBelowLevels = createSubtaskList(allSubTasks[nextTask]);
+        var appendBelowLevels = await createSubtaskList(allSubTasks[nextTask]);
 
         console.log(allSubTasks[nextTask].id + " to sa id kolejnych podtaskow poza glownym a ich tresc to  " + allSubTasks[nextTask].content );
 
-        var addButtonObject = addButton(allSubTasks[nextTask].id);
+        var addButtonObject = await addButton(allSubTasks[nextTask].id);
 
         wholeBox.appendChild(addButtonObject);
         wholeBox.appendChild(appendBelowLevels);
@@ -47,14 +47,14 @@ function createSubtaskList(singleSubTasksObject) { //// tu masz dude
 }
 
 
-function createListOfSingleMainTask(itemToAppend) {
+async function createListOfSingleMainTask(itemToAppend) {
     const MainTasks = document.querySelector('#MainTasks');
   //   console.log(itemToAppend);
     MainTasks.appendChild(itemToAppend);
 }//
 
 
-function addButton(aboveId) {
+async function addButton(aboveId) {
 
     const divWithButton = document.createElement('div');
     divWithButton.classList.add('buttonBox');
@@ -76,17 +76,16 @@ function addButton(aboveId) {
     // newTaskInput.setAttribute('id', aboveId); /// to chce zrobic ? 
 
     newTaskInput.type = 'text';
-    newTaskInput.onkeypress = function (e) {
+    newTaskInput.onkeypress = async function (e) {
         if (e.keyCode == 13) {
             
             var cont = newTaskInput.value;
-            var aboveId = aboveId; // id poziomu w ktorym stworzyles te funkcje
             // tu bym chcial fetch i nic wiecej i przeladowac strone
-          var gettenId =   createSubTaskBasedOnAboveId(aboveId, cont);
+          var gettenId = await createSubTaskBasedOnAboveId(aboveId, cont);
            // tu opwinienem dostac id i te id przypisac do nowego obiektu
-
+             console.log(gettenId + " po wykonaniu fetch");
             // ktory przekaze do newTaskInput.id
-            newTaskInput.setAttribute('id', "xxx getten id ");
+         //    newTaskInput.setAttribute('id', gettenId);
 
             // i musisz z fetcha uzyskac id i bedzie z górki 
 
@@ -115,18 +114,31 @@ async function createSubTaskBasedOnAboveId(levelAboveId, content) {
             },
             body: subTaskJSON // JSON.stringify(data)
         }
-        const  response = await fetch(url, config);
-        //const json = await response.json()
+        const response = await fetch(url, config);
+         
         if (response.status === 201) {  // response.status === 200 (response.ok)
             //return json
-            console.log(response + "   to response po created ");
-            return response
+            const json = await response.json();
+           //  console.log(json + "   to response po created ");
+          //  var cos = json.stringify();
+            console.log(json + " z wnetrza response");
+            return json;
         } else {
-            //
+            console.log("KOD  response inny niz 201");
         }
     } catch (error) {
         //
     }
+
+    ////
+    //const response = await fetch(url, config);
+    //if (response.ok) {
+    //    console.log(response);
+    //    return response
+    //} else {
+
+    //}
+    ///
 }
 
 function createSubTaskJSON(levelAboveId, content) {

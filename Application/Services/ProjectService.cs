@@ -39,8 +39,21 @@ namespace Application.Services
         public async Task<IEnumerable<ProjectDto>> GetAllAsync()
         {
             
-            var allNotes = await _projects.GetAllAsync();
-            return _mapper.Map<IEnumerable<ProjectDto>>(allNotes);
+            var allProjects = await _projects.GetAllAsync();
+            var mappedProjects =  _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
+
+            foreach (var item in mappedProjects)
+            {
+                var list = await _subTasks.CreateListOfTasks(item.Id);
+                var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+                 
+                foreach (var lists in mappedList)
+                {
+                    item.MainTasks.Add(lists);
+                } 
+            }
+            return mappedProjects;
+
         }
 
         public async Task<ProjectDto> GetByIDAsync(object id)
@@ -48,7 +61,6 @@ namespace Application.Services
             var project = await _projects.GetByIDAsync(id);
 
             var projectDtoType = _mapper.Map<ProjectDto>(project);
-
 
             var list = await _subTasks.CreateListOfTasks(project.Id);
 

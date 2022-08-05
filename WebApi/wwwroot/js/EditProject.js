@@ -37,7 +37,7 @@ async function InputDataToForm(pathToGetById) {
     var listOfSubtasks = y.mainTasks;
  
     for (nextTask in listOfSubtasks) {
-        var itemToAppend = createSubtaskList(listOfSubtasks[nextTask]);
+        var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask]);
         createListOfSingleMainTask(itemToAppend);
 
 

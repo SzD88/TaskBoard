@@ -1,4 +1,7 @@
-﻿Co ja chce zrobic, bo juz mnie meczy to pierdolenie sie z tym ? 
+﻿sprawdz czy ma above id kazdy dodany przez ciebie obiekt ...
+debugger !!! 
+
+Co ja chce zrobic, bo juz mnie meczy to pierdolenie sie z tym ? 
 - zrob borders zeby tylko bylo widac co i jak tam sie dzieje
 - zrob zwyklego plusa dla kazdego upper task - zeby dodawać do niego subtaks
 - ten dodany subtask musi pozyskac id 
