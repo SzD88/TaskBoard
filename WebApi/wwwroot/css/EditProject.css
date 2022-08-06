@@ -33,40 +33,37 @@ width: 28px;
 }
 /* to odpowiada za szerokosci pionowych zestawów*/
 #MainTasks {
-    width: 30%;
+    width: 100%;
+    text-align: left;
+    margin: 20px;
 }
- .singleSubTasksObject {
-    width: 1001px;
-}
+/*input[type="text"] {
+    background: transparent;
+    border: none;
+}*/
+
 input {
-    width: 610vh;
+    width: 55%;
     height: 33px;
     padding: 12px 20px;
     margin: 1px 0;
+    background: transparent;
     box-sizing: border-box;
     border: 3px solid black;
     border-radius: 4px;
-    background-color: darkgray;
     color: black;
     font-size: 16px;
-}
 
+}
+    input.singleSubTasksObject {
+        width: 80%;
+    }
 .addSubTaskInput {
-    width: 40%;
+    width: 50%;
 }
   
 
-output {  
-    vertical-align: central;
-    text-align: left;
-    margin: auto;
-    width: 11%;
-    border: 3px solid green;
-    padding: 1px;
-    letter-spacing: 1px;
-    display: inline-block;
-    font-size: 14px;
-}
+
 * {
     margin: 0;
      box-sizing: border-box;

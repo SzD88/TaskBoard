@@ -1,75 +1,67 @@
-﻿var startPosition = 280; // distance from the left of first subtask on list
+﻿var startPosition = 120; // distance from the left of first subtask on list
 
-async function createSubtaskList(singleSubTasksObject) { //// tu masz błąd na bank
+async function createSubtaskList(singleSubTasksObject) {  
 
     const wholeBox = document.createElement('div');
 
     wholeBox.classList.add('singleSubTasksObject');
 
 
-    const wholeBox_input_element = document.createElement('input');  // wpisujesz w input obsługiwany single task 
-    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id); // to jest blad, bo ty nie masz mu ustawiac id above tylko nowe #blad #bug
-    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content + "- content /  above id: " + singleSubTasksObject.aboveId + " and its id:" + singleSubTasksObject.id);
+    const wholeBox_input_element = document.createElement('input');   
+    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);  
+
+    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content); // + " /above:/ " + singleSubTasksObject.levelAboveId + " /its id:/ " + singleSubTasksObject.id
 
     wholeBox_input_element.type = 'text';
 
     wholeBox.appendChild(wholeBox_input_element);
+    // dodatno opis
 
-    // wszystkie zawarte subtaski w obsługiwanym subtasku
-    if (singleSubTasksObject.includedTasks.length > 0) {
+    var addButtonObjectEarlier = await addButton(singleSubTasksObject.id);
+    wholeBox.appendChild(addButtonObjectEarlier); // #blad
+     
+    // if (singleSubTasksObject.includedTasks.length > 0) {
+     
+    var allSubTasks = singleSubTasksObject.includedTasks; // probuje pobrac to , bo juz kolejny nie ma zawartych taskow #uwaga 
+  
+    for (num in allSubTasks) { // w ktoryms momencie sie robi undefined #blad ktyryczny 
+        // mozesz tu dac if #sugestia
 
+        var currentTaskOfIncluded = allSubTasks[num];
+        var idOfCurrentTask = allSubTasks[num].id;
 
-        var allSubTasks = singleSubTasksObject.includedTasks; // probuje pobrac to , bo juz kolejny nie ma zawartych taskow #uwaga 
+        //if (currentTaskOfIncluded === "undefined") {
+        //    return wholeBox;
+        //}
+        if (currentTaskOfIncluded !== "undefined") {
+             
+            console.log("from second script: id of current task");
+            console.log(idOfCurrentTask);
+            console.log(num + " attempt " + " of all sum of attempts possible : " + allSubTasks.length);
 
-        console.log("all subtasks - before next foreach looop");
-        console.log(allSubTasks);
+            //#solve - tutaj cos jest nie tak, nie dopisuje above id takiego jakie ja chce cos zle przekazuje do funkcji, moze napisac ja od nowa
 
+            var appendBelowLevels = await createSubtaskList(currentTaskOfIncluded);  
+          
+            // wholeBox.appendChild(addButtonObject); // #blad tu byl najpowazniejszy blaaaaaaad #uwaga 
+            wholeBox.appendChild(appendBelowLevels);  
 
-        /*try {*/
-        for (num in allSubTasks) { // w ktoryms momencie sie robi undefined #blad ktyryczny 
-            // mozesz tu dac if #sugestia
+            //background colour inherit 
 
-            var currentTask = allSubTasks[num];
-            var idOfCurrentTask = allSubTasks[num].id;
+            //startPosition = startPosition - 20;// tutaj
+            //var zmiennaString = startPosition.toString() + "px";
+            //wholeBox.style.textIndent = zmiennaString;
+           
 
-            if (currentTask === "undefined") {
-                return wholeBox;
-            }
-            if (currentTask !== "undefined") {
-
-
-                console.log("from second script: id of current task");
-                console.log(idOfCurrentTask);
-                console.log(num + " attempt " + " of all sum of attempts possible : " + allSubTasks.length);
-                //  debugger;
-
-                //#solve - tutaj cos jest nie tak, nie dopisuje above id takiego jakie ja chce cos zle przekazuje do funkcji, moze napisac ja od nowa
-
-                var appendBelowLevels = await createSubtaskList(allSubTasks[num]); // to wywoluje blad !! #blad krytyczny
-                //  debugger;
-             //   console.log(allSubTasks[num].id + " to sa id kolejnych podtaskow poza glownym a ich tresc to  " + allSubTasks[num].content);
-                // to bugowalo no lol
-                var addButtonObject = await addButton(allSubTasks[nextTask].id);
-
-                wholeBox.appendChild(addButtonObject); // #blad
-                wholeBox.appendChild(appendBelowLevels); // #blad - czy one bedac tutaj appendowane nie moga zostac przeskoczone ? 
-
-
-
-
-                startPosition = startPosition - 20;// tutaj
-                var zmiennaString = startPosition.toString() + "px";
-                wholeBox.style.textIndent = zmiennaString;
-
-            }
-         
         }
+       
+        //  }
     }
-    
 
+   
     return wholeBox;
 
-} 
+}
 
 
 async function createListOfSingleMainTask(itemToAppend) {
@@ -93,32 +85,28 @@ async function addButton(aboveId) {
 
     const newTaskInput = document.createElement('input');
     newTaskInput.classList.add('addSubTaskInput'); // ten nie ma wciec 
-    // newTaskInput.setAttribute('value', aboveId);  //'+'
     newTaskInput.addEventListener("focus", () => {
         // clearing the input field value
+        console.log("above id after click = " + aboveId);
         newTaskInput.value = "";
+
+
     })
-    // newTaskInput.setAttribute('id', aboveId); /// to chce zrobic ? 
+    newTaskInput.style.background = "blue";
 
     newTaskInput.type = 'text';
+    newTaskInput.value = '+';
     newTaskInput.onkeypress = async function (e) {
         if (e.keyCode == 13) {
 
 
-               var cont = newTaskInput.value;
-            //  // tu bym chcial fetch i nic wiecej i przeladowac strone
-                var gettenId = await createSubTaskBasedOnAboveId(aboveId, cont);
-            // // tu opwinienem dostac id i te id przypisac do nowego obiektu
-            console.log(gettenId + " po wykonaniu fetch");
-            //  // ktory przekaze do newTaskInput.id
+            var cont = newTaskInput.value;
+            var gettenId = await createSubTaskBasedOnAboveId(aboveId, cont);  
+             
+            newTaskInput.setAttribute('id', gettenId);
 
-
-               newTaskInput.setAttribute('id', gettenId);  // getten should be
-
-            //  // i musisz z fetcha uzyskac id i bedzie z górki 
-             url = "/editproject.html?id=" + projectId;
-
-             document.location.href = url;
+            url = "/editproject.html?id=" + projectId;
+            document.location.href = url;
 
         }
     }

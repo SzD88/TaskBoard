@@ -35,23 +35,28 @@ async function InputDataToForm(pathToGetById) {
     inputValuesToForm(idToUse, projectNumberToUse, titleToUse, descriptionToUse);
      
     var listOfSubtasks = y.mainTasks;
-    console.log("list of subtasks:");
 
-    console.log(listOfSubtasks );
+    const allMainTasksToDisplay = document.createElement('div');
 
-  //  debugger;
+
+    allMainTasksToDisplay.classList.add('allMainTasksToDisplay');
+
     for (nextTask in listOfSubtasks) {
-        console.log("every specyfic subtask of above list: ");
-        console.log(listOfSubtasks[nextTask]);
+        //console.log("every specyfic subtask of above list: ");
+        //console.log(listOfSubtasks[nextTask]);
         // wysyla kazdy z main taskow do kolejnego pliku js - chce stworzyc nowy pełny subtask
         var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask]);
 
-        await createListOfSingleMainTask(itemToAppend);
+      //  await createListOfSingleMainTask(itemToAppend);
         console.log("item to append : ");
         console.log(itemToAppend);
 
-
+        allMainTasksToDisplay.appendChild(itemToAppend);
     }
+
+
+    // tu trzeba stworzyc div i do neigo dodawac kolejne powyzsze stworzone listy, bo to sa listy main taskow a tak tylko 1 pokazuje sie 
+    await createListOfSingleMainTask(allMainTasksToDisplay);
 }
 
 function replaceFormValuesToInputed() //changes all fields to filled //or dont change if no changes
@@ -126,4 +131,6 @@ function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse)
 
 
 }
+
+
 
