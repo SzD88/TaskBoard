@@ -35,10 +35,20 @@ async function InputDataToForm(pathToGetById) {
     inputValuesToForm(idToUse, projectNumberToUse, titleToUse, descriptionToUse);
      
     var listOfSubtasks = y.mainTasks;
- 
+    console.log("list of subtasks:");
+
+    console.log(listOfSubtasks );
+
+  //  debugger;
     for (nextTask in listOfSubtasks) {
+        console.log("every specyfic subtask of above list: ");
+        console.log(listOfSubtasks[nextTask]);
+        // wysyla kazdy z main taskow do kolejnego pliku js - chce stworzyc nowy pełny subtask
         var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask]);
-        createListOfSingleMainTask(itemToAppend);
+
+        await createListOfSingleMainTask(itemToAppend);
+        console.log("item to append : ");
+        console.log(itemToAppend);
 
 
     }

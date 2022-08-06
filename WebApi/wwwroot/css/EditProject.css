@@ -18,7 +18,7 @@
 }
 div.buttonBox {/* to odpowiada za wciecia ktore cie interesuja*/
     display: inline-table;
-    width : 138vh;
+    width : 238vh;
     
 }
 
@@ -35,11 +35,11 @@ width: 28px;
 #MainTasks {
     width: 30%;
 }
-.singleSubTasksObject {
-    width: 90%;
+ .singleSubTasksObject {
+    width: 1001px;
 }
 input {
-    width: 60vh;
+    width: 610vh;
     height: 33px;
     padding: 12px 20px;
     margin: 1px 0;
