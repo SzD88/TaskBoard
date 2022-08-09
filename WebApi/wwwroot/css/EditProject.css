@@ -7,25 +7,19 @@
     --purple: #8B5CF6;
     --light: #EEE;
 }
- 
 
-
-.subTaskContent {
-    display:  list-item;
-    color: black;
-    font-size: 13px;
-    height: 333px;
-}
-div.buttonBox {/* to odpowiada za wciecia ktore cie interesuja*/
-    display: inline-table;
-    width : 238vh;
-    
-}
-
-
-input.addSubTask .addSubTaskInput {
+input[type=checkbox]
+   {
     display: inline;
+   border: 12px;
 }
+
+div.buttonBox { /* to odpowiada za wciecia ktore cie interesuja*/
+    display: inline-table;
+    width: 30vh;
+}
+
+
 button.addSubTask {
 height: 25px;
 width: 28px;
@@ -37,13 +31,13 @@ width: 28px;
     text-align: left;
     margin: 20px;
 }
-/*input[type="text"] {
-    background: transparent;
-    border: none;
-}*/
 
-input {
-    width: 55%;
+
+input#createMainTaskInputValue {
+    width : 60%;
+}
+input.taskInputOnly {
+    width: 33%;
     height: 33px;
     padding: 12px 20px;
     margin: 1px 0;
@@ -53,24 +47,19 @@ input {
     border-radius: 4px;
     color: black;
     font-size: 16px;
+}
+    
 
-}
-    input.singleSubTasksObject {
-        width: 80%;
-    }
-.addSubTaskInput {
-    width: 50%;
-}
 li {
 margin: 15px;
 list-style: disclosure-open;
 
 }
-
+ 
 
 * {
     margin: 0;
-     box-sizing: border-box;
+    box-sizing: border-box;
     font-family: "Fira sans", sans-serif;
 }
 body {
@@ -107,3 +96,9 @@ button {
     color: white;
     background-image: linear-gradient(to right, var(--grey), var(--darker));
 }
+input.addSubTaskInput {
+    width: 110%;
+    background: transparent;
+    display: inline;
+}
+ 

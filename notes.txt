@@ -1,4 +1,5 @@
-﻿dokonczyc dodawanie na enter
+﻿ 
+
 
 
 guzik - checkbox - done nie done

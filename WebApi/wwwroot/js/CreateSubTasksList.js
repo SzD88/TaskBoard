@@ -9,15 +9,12 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
     list_object.classList.add('singleListObject');
 
     const wholeBox_input_element = document.createElement('input');
-    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);
-
-    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);   
-
-    wholeBox_input_element.type = 'text';
-
+    wholeBox_input_element.classList.add('taskInputOnly');
+    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id); 
+    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);    
+    wholeBox_input_element.type = 'text'; 
     wholeBox_input_element.addEventListener("focus", () => {
-        console.log("you clicked input box");
-
+        console.log("you clicked input box"); 
         wholeBox_input_element.onkeypress = async function (e) {
             if (e.keyCode == 13) { 
                 // take this input data
@@ -34,6 +31,13 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
             }
         }
     })
+    const label = document.createElement("label");
+    
+     const doneCheckBox = document.createElement('input');
+    doneCheckBox.classList.add('doneCheckBox');
+    doneCheckBox.type = 'checkbox';
+    label.appendChild(doneCheckBox);
+    wholeBox.appendChild(label);
 
     wholeBox.appendChild(wholeBox_input_element);
     // dodatno opis
@@ -91,7 +95,7 @@ async function addButton(aboveId) {
         console.log("above id after click = " + aboveId);
         newTaskInput.value = ""; 
     })
-    newTaskInput.style.background = "white";
+    //newTaskInput.style.background = "white";
 
     newTaskInput.type = 'text';
     newTaskInput.value = '+';
@@ -109,9 +113,7 @@ async function addButton(aboveId) {
     }
 
     divWithButton.appendChild(newTaskInput);
-
-
-
+     
     return divWithButton;
 }
 // ========================
@@ -146,15 +148,7 @@ async function createSubTaskBasedOnAboveId(levelAboveId, content) {
         //
     }
 
-    ////
-    //const response = await fetch(url, config);
-    //if (response.ok) {
-    //    console.log(response);
-    //    return response
-    //} else {
-
-    //}
-    ///
+    
 }
 
 function createSubTaskJSON(levelAboveId, content) {
@@ -166,9 +160,7 @@ function createSubTaskJSON(levelAboveId, content) {
     const subTaskString = JSON.stringify(subTaskJSON);
     return subTaskString;
 }
-
-
-
+ 
 function createSubTaskJSONToPut(id, content, completed, levelAboveId) {
     var subTaskJSON = {
         "id": id,
