@@ -1,65 +1,90 @@
-﻿var startPosition = 120; // distance from the left of first subtask on list
+﻿var startPosition = 320; // distance from the left of first subtask on list
 
-async function createSubtaskList(singleSubTasksObject) {  
+async function createSubtaskList(singleSubTasksObject, levelAboveId) {
 
-    const wholeBox = document.createElement('div');
+    const wholeBox = document.createElement('div'); // du
 
     wholeBox.classList.add('singleSubTasksObject');
 
+    const list_object = document.createElement("li");
+    list_object.classList.add('singleListObject');
 
-    const wholeBox_input_element = document.createElement('input');   
-    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);  
+    const wholeBox_input_element = document.createElement('input');
+    wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);
 
     wholeBox_input_element.setAttribute('value', singleSubTasksObject.content); // + " /above:/ " + singleSubTasksObject.levelAboveId + " /its id:/ " + singleSubTasksObject.id
 
     wholeBox_input_element.type = 'text';
+
+    wholeBox_input_element.addEventListener("focus", () => {
+        console.log("you clicked input box");
+
+        wholeBox_input_element.onkeypress = async function (e) {
+            if (e.keyCode == 13) {
+
+                // take this input data
+                var idToFetch = wholeBox_input_element.id;
+                var dataToFetch = wholeBox_input_element.value;
+                var completedToFetch = false;
+                var levelAboveIdToFetch = levelAboveId; //singlesubtask.id
+                // tutaja nadajesz level above i dlatego go nie zaciaga
+                // natomiast ten level above moze byc albo id projektu albo subtasku i dlatego to nie dziala
+
+
+                var subTaskJson = createSubTaskJSONToPut(idToFetch, dataToFetch, completedToFetch, levelAboveIdToFetch);
+
+
+                // fetch 
+                var url = "/api/SubTask"
+
+                putSubTaskMethod(subTaskJson, url);
+
+            }
+        }
+    })
 
     wholeBox.appendChild(wholeBox_input_element);
     // dodatno opis
 
     var addButtonObjectEarlier = await addButton(singleSubTasksObject.id);
     wholeBox.appendChild(addButtonObjectEarlier); // #blad
-     
-    // if (singleSubTasksObject.includedTasks.length > 0) {
-     
-    var allSubTasks = singleSubTasksObject.includedTasks; // probuje pobrac to , bo juz kolejny nie ma zawartych taskow #uwaga 
-  
-    for (num in allSubTasks) { // w ktoryms momencie sie robi undefined #blad ktyryczny 
-        // mozesz tu dac if #sugestia
 
+    // if (singleSubTasksObject.includedTasks.length > 0) {
+
+    var allSubTasks = singleSubTasksObject.includedTasks; // probuje pobrac to , bo juz kolejny nie ma zawartych taskow #uwaga 
+
+
+    for (num in allSubTasks) {
         var currentTaskOfIncluded = allSubTasks[num];
         var idOfCurrentTask = allSubTasks[num].id;
 
-        //if (currentTaskOfIncluded === "undefined") {
-        //    return wholeBox;
-        //}
         if (currentTaskOfIncluded !== "undefined") {
-             
-            console.log("from second script: id of current task");
-            console.log(idOfCurrentTask);
-            console.log(num + " attempt " + " of all sum of attempts possible : " + allSubTasks.length);
 
-            //#solve - tutaj cos jest nie tak, nie dopisuje above id takiego jakie ja chce cos zle przekazuje do funkcji, moze napisac ja od nowa
+            var levelAboveToSend = singleSubTasksObject.id;
+            var appendBelowLevels = await createSubtaskList(currentTaskOfIncluded);
 
-            var appendBelowLevels = await createSubtaskList(currentTaskOfIncluded);  
-          
             // wholeBox.appendChild(addButtonObject); // #blad tu byl najpowazniejszy blaaaaaaad #uwaga 
-            wholeBox.appendChild(appendBelowLevels);  
+
+            list_object.appendChild(appendBelowLevels);
+            //  wholeBox.appendChild(appendBelowLevels);  
 
             //background colour inherit 
 
             //startPosition = startPosition - 20;// tutaj
             //var zmiennaString = startPosition.toString() + "px";
-            //wholeBox.style.textIndent = zmiennaString;
-           
+            //console.log(zmiennaString + "this is indent of " + currentTaskOfIncluded.content);
+            // wholeBox.style.textIndent = zmiennaString;
 
+            wholeBox.appendChild(list_object);
         }
-       
-        //  }
     }
 
-   
+
     return wholeBox;
+
+}
+
+function doIndent() {
 
 }
 
@@ -92,7 +117,7 @@ async function addButton(aboveId) {
 
 
     })
-    newTaskInput.style.background = "blue";
+    newTaskInput.style.background = "white";
 
     newTaskInput.type = 'text';
     newTaskInput.value = '+';
@@ -101,8 +126,8 @@ async function addButton(aboveId) {
 
 
             var cont = newTaskInput.value;
-            var gettenId = await createSubTaskBasedOnAboveId(aboveId, cont);  
-             
+            var gettenId = await createSubTaskBasedOnAboveId(aboveId, cont);
+
             newTaskInput.setAttribute('id', gettenId);
 
             url = "/editproject.html?id=" + projectId;
@@ -172,3 +197,38 @@ function createSubTaskJSON(levelAboveId, content) {
 
 
 
+function createSubTaskJSONToPut(id, content, completed, levelAboveId) {
+    var subTaskJSON = {
+        "id": id,
+        "content": content,
+        "completed": completed,
+        "levelAboveId": levelAboveId
+    }
+    const subTaskJSONString = JSON.stringify(subTaskJSON);
+    return subTaskJSONString;
+};
+
+
+async function putSubTaskMethod(jsonToPut, url) {
+
+    try {
+        const config = {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: jsonToPut // JSON.stringify(data)
+        }
+        const response = await fetch(url, config);
+        if (response.ok) {
+            console.log(response);
+            return response
+        } else {
+
+        }
+    } catch (error) {
+
+    }
+
+}

@@ -14,7 +14,6 @@ window.onload = function () {
             data[tmp[0]] = tmp[1];
         } 
     projectId = data.id;
-    
     InputDataToForm("/api/Project/" + projectId); 
 
     } catch (e) {
@@ -45,7 +44,9 @@ async function InputDataToForm(pathToGetById) {
         //console.log("every specyfic subtask of above list: ");
         //console.log(listOfSubtasks[nextTask]);
         // wysyla kazdy z main taskow do kolejnego pliku js - chce stworzyc nowy pełny subtask
-        var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask]);
+
+        var idToSend = idToUse;
+        var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask], idToSend );
 
       //  await createListOfSingleMainTask(itemToAppend);
         console.log("item to append : ");
@@ -133,4 +134,28 @@ function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse)
 }
 
 
+function createMainTask() {
 
+    //ale musi skads jakos pobrac ww dane 
+    //const input = document.querySelector("createMainTaskInputValue");
+    //input.addEventListener("keyup", (event) => {
+    //    if (event.key === "Enter") {
+    //        console.log('Enter key pressed')
+    //    }
+    //});
+    var element = document.getElementById("createMainTaskInputValue");
+
+    //createMainTaskInputValue
+    var content = element.value;
+  
+    element.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            // Enter key was hitcl    
+            console.log("entered x");
+            createSubTaskBasedOnAboveId(idToUse, content);
+            return "created";
+        }
+    });
+    console.log(content);
+    
+}

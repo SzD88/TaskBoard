@@ -1,12 +1,12 @@
-﻿sprawdz czy ma above id kazdy dodany przez ciebie obiekt ...
-debugger !!! 
+﻿
 
-Co ja chce zrobic, bo juz mnie meczy to pierdolenie sie z tym ? 
-- zrob borders zeby tylko bylo widac co i jak tam sie dzieje
-- zrob zwyklego plusa dla kazdego upper task - zeby dodawać do niego subtaks
-- ten dodany subtask musi pozyskac id 
-- zrob guzik odznaczenia - done - done niech wysyla informacje na serwer z data i godzina done 
--  widzimy sie tutaj o 13
+Dobra zeby zamknac temat:
+1. Dodawanie glownego taska
+2. Wyswietlania main taskow bo nie ma imo
+3. Edycja kazdego pola onclick - on focus + enter?
+
+
+ 
 
 div.innerHTML - wraz z komenda html tekst
 

@@ -152,7 +152,6 @@ window.addEventListener('load', () => { //on load :
                 //----
 
                 url = "/editproject.html?id=" + projectId;
-
                 document.location.href = url;
 
             } else {
