@@ -1,4 +1,11 @@
-﻿
+﻿dokonczyc dodawanie na enter
+
+
+guzik - checkbox - done nie done
+
+cofniecie 3 ostatnich akcji 
+
+podglad zadań jakiś
 
 Dobra zeby zamknac temat:
 1. Dodawanie glownego taska

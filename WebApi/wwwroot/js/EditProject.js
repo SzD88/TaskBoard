@@ -111,8 +111,7 @@ function createJSON(title, description,  projectNumberToUse) {
 };
 
 function changeAttributeByName(attributeName) {
-    var getAtribute = document
-        .getElementById(attributeName);
+    var getAtribute = document.getElementById(attributeName);
     var attributeChanged = getAtribute.value.replace();
     getAtribute.value = attributeChanged;
 
@@ -134,28 +133,19 @@ function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse)
 }
 
 
-function createMainTask() {
+async function createMainTask(content) {
 
-    //ale musi skads jakos pobrac ww dane 
-    //const input = document.querySelector("createMainTaskInputValue");
-    //input.addEventListener("keyup", (event) => {
-    //    if (event.key === "Enter") {
-    //        console.log('Enter key pressed')
-    //    }
-    //});
-    var element = document.getElementById("createMainTaskInputValue");
+     
+    createSubTaskBasedOnAboveId(idToUse, content);
+    url = "/editproject.html?id=" + projectId;
+    document.location.href = url;
+} 
+//async function setDomButtons() {
 
-    //createMainTaskInputValue
-    var content = element.value;
-  
-    element.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            // Enter key was hitcl    
-            console.log("entered x");
-            createSubTaskBasedOnAboveId(idToUse, content);
-            return "created";
-        }
-    });
-    console.log(content);
-    
-}
+//    var element = document.getElementById("createMainTaskInputValue");
+//    element.onkeypress = async function (e) {
+//        if (e.keyCode == 13) {
+//            createMainTask(element.value)
+//        }
+//    }
+//}

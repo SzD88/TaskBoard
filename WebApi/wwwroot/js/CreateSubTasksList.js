@@ -1,8 +1,7 @@
-﻿var startPosition = 320; // distance from the left of first subtask on list
-
+﻿
 async function createSubtaskList(singleSubTasksObject, levelAboveId) {
 
-    const wholeBox = document.createElement('div'); // du
+    const wholeBox = document.createElement('div');  
 
     wholeBox.classList.add('singleSubTasksObject');
 
@@ -12,7 +11,7 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
     const wholeBox_input_element = document.createElement('input');
     wholeBox_input_element.setAttribute('id', singleSubTasksObject.id);
 
-    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content); // + " /above:/ " + singleSubTasksObject.levelAboveId + " /its id:/ " + singleSubTasksObject.id
+    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);   
 
     wholeBox_input_element.type = 'text';
 
@@ -20,23 +19,16 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
         console.log("you clicked input box");
 
         wholeBox_input_element.onkeypress = async function (e) {
-            if (e.keyCode == 13) {
-
+            if (e.keyCode == 13) { 
                 // take this input data
                 var idToFetch = wholeBox_input_element.id;
                 var dataToFetch = wholeBox_input_element.value;
                 var completedToFetch = false;
                 var levelAboveIdToFetch = levelAboveId; //singlesubtask.id
-                // tutaja nadajesz level above i dlatego go nie zaciaga
-                // natomiast ten level above moze byc albo id projektu albo subtasku i dlatego to nie dziala
-
-
+               
                 var subTaskJson = createSubTaskJSONToPut(idToFetch, dataToFetch, completedToFetch, levelAboveIdToFetch);
-
-
-                // fetch 
-                var url = "/api/SubTask"
-
+ 
+                var url = "/api/SubTask" 
                 putSubTaskMethod(subTaskJson, url);
 
             }
@@ -66,36 +58,20 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
             // wholeBox.appendChild(addButtonObject); // #blad tu byl najpowazniejszy blaaaaaaad #uwaga 
 
             list_object.appendChild(appendBelowLevels);
-            //  wholeBox.appendChild(appendBelowLevels);  
-
-            //background colour inherit 
-
-            //startPosition = startPosition - 20;// tutaj
-            //var zmiennaString = startPosition.toString() + "px";
-            //console.log(zmiennaString + "this is indent of " + currentTaskOfIncluded.content);
-            // wholeBox.style.textIndent = zmiennaString;
-
+              
             wholeBox.appendChild(list_object);
         }
-    }
-
-
+    } 
     return wholeBox;
 
 }
-
-function doIndent() {
-
-}
-
-
+  
 async function createListOfSingleMainTask(itemToAppend) {
     const MainTasks = document.querySelector('#MainTasks');
     //   console.log(itemToAppend);
     MainTasks.appendChild(itemToAppend);
 }//
-
-
+ 
 async function addButton(aboveId) {
 
     const divWithButton = document.createElement('div');
@@ -113,18 +89,14 @@ async function addButton(aboveId) {
     newTaskInput.addEventListener("focus", () => {
         // clearing the input field value
         console.log("above id after click = " + aboveId);
-        newTaskInput.value = "";
-
-
+        newTaskInput.value = ""; 
     })
     newTaskInput.style.background = "white";
 
     newTaskInput.type = 'text';
     newTaskInput.value = '+';
     newTaskInput.onkeypress = async function (e) {
-        if (e.keyCode == 13) {
-
-
+        if (e.keyCode == 13) { 
             var cont = newTaskInput.value;
             var gettenId = await createSubTaskBasedOnAboveId(aboveId, cont);
 
