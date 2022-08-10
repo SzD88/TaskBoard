@@ -1,6 +1,10 @@
 ﻿ 
 
+ pOWIAZ KAZDdy check box z id tym samym ktore dostaje pole tekstowe input
 
+ jezeli jest oznaczone jako checked - zaznaczone -> fetch put - mark as done - moze zrob endpoint mark as done ? 
+ Jezeli jest done - wtedy go skreślasz 
+ Czas na sortowanie ? jak sortować 
 
 guzik - checkbox - done nie done
 
