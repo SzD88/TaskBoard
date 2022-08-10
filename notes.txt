@@ -1,4 +1,12 @@
-﻿ 
+﻿ todo rano
+
+ poprawic generowane projekty - lastmodified == created 
+
+ to sortowanie od sładka mozna zastosowac do projektow i to bedzie fajny efekt, bo bedzie sie dalo sortowac np po dacie jakies
+ albo po jakiejs własciwosci
+
+ natomiast sortowanie subtaskow powinno byc inaczej rozwiazane, z automatu po last modified - ewentualnie z mozliwoscia
+ zmiany poziomu, 
 
  pOWIAZ KAZDdy check box z id tym samym ktore dostaje pole tekstowe input
 

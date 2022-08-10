@@ -16,11 +16,13 @@ namespace Application.AutoMappings
             (
              cfg =>
              {
-                 //#refactor #needrefactor
-                 cfg.CreateMap<SubTask, SubTaskDto>().ReverseMap();
+                 //#refactor #needrefactor lastchanged == creationDate 
+                 cfg.CreateMap<SubTask, SubTaskDto>()
+                 .ForMember(dest => dest.LastChanged, opt => opt.MapFrom(src => src.LastModified));// was .reversemap()
                  cfg.CreateMap<SubTask, CreateSubTaskDto>().ReverseMap();
                  cfg.CreateMap<SubTaskDto, CreateSubTaskDto>().ReverseMap();
-                 cfg.CreateMap<CreateSubTaskDto, SubTaskDto>() ;
+                 cfg.CreateMap<CreateSubTaskDto, SubTaskDto>();
+                 cfg.CreateMap<SubTaskDto, SubTask>(); // changed - possible problem
                  cfg.CreateMap<UpdateSubTaskDto, SubTask>().ReverseMap();
 
                  cfg.CreateMap<Project, ProjectDto>().ReverseMap();
