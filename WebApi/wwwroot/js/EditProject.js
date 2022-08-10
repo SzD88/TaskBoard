@@ -4,7 +4,7 @@ let titleToUse;
 let descriptionToUse;
 let projNumberToUse;
 
-window.onload = function () { 
+window.onload = function () {
     try {
         var url = document.location.href,
             params = url.split('?')[1].split('&'),
@@ -12,9 +12,9 @@ window.onload = function () {
         for (var i = 0, l = params.length; i < l; i++) {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
-        } 
-    projectId = data.id;
-    InputDataToForm("/api/Project/" + projectId); 
+        }
+        projectId = data.id;
+        InputDataToForm("/api/Project/" + projectId);
 
     } catch (e) {
         "Main Page"
@@ -24,7 +24,7 @@ window.onload = function () {
 async function InputDataToForm(pathToGetById) {
     let x = await fetch(pathToGetById);
     let y = await x.json();
- 
+
     idToUse = y.id;
     titleToUse = y.title;
     descriptionToUse = y.description;
@@ -32,7 +32,7 @@ async function InputDataToForm(pathToGetById) {
 
     // ---- adding variables
     inputValuesToForm(idToUse, projectNumberToUse, titleToUse, descriptionToUse);
-     
+
     var listOfSubtasks = y.mainTasks;
 
     const allMainTasksToDisplay = document.createElement('div');
@@ -46,9 +46,9 @@ async function InputDataToForm(pathToGetById) {
         // wysyla kazdy z main taskow do kolejnego pliku js - chce stworzyc nowy pełny subtask
 
         var idToSend = idToUse;
-        var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask], idToSend );
+        var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask], idToSend);
 
-      //  await createListOfSingleMainTask(itemToAppend);
+        //  await createListOfSingleMainTask(itemToAppend);
         console.log("item to append : ");
         console.log(itemToAppend);
 
@@ -68,11 +68,11 @@ function replaceFormValuesToInputed() //changes all fields to filled //or dont c
     var descriptionFromUpdatedForm = changeAttributeByName("description");// html names/id
     console.log(projectNumberFromUpdatedForm);
 
-    putDataFromFieldsToDatabase(idFromUpdatedForm, projectNumberFromUpdatedForm , titleFromUpdatedForm, descriptionFromUpdatedForm);
+    putDataFromFieldsToDatabase(idFromUpdatedForm, projectNumberFromUpdatedForm, titleFromUpdatedForm, descriptionFromUpdatedForm);
 }
 
 async function putDataFromFieldsToDatabase(projecId, projectNumber, title, description) {
-      
+
     var projJson = createJSON(title, description, projectNumber); //works
 
     var url = "/api/Project";
@@ -91,14 +91,14 @@ async function putDataFromFieldsToDatabase(projecId, projectNumber, title, descr
             console.log(response);
             return response
         } else {
-          
+
         }
     } catch (error) {
-         
+
     }
 }
 
-function createJSON(title, description,  projectNumberToUse) {
+function createJSON(title, description, projectNumberToUse) {
     var projectJSON = {
         "id": idToUse,
         "projectNumber": projectNumberToUse,
@@ -136,10 +136,10 @@ function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse)
 async function createMainTask(content) {
 
     console.log(idToUse, content);
-  await  createSubTaskBasedOnAboveId(idToUse, content);
+    await createSubTaskBasedOnAboveId(idToUse, content);
     url = "/editproject.html?id=" + projectId;
     document.location.href = url;
-} 
+}
 //async function setDomButtons() {
 
 //    var element = document.getElementById("createMainTaskInputValue");
