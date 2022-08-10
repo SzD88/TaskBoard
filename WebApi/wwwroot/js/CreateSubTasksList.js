@@ -32,10 +32,11 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
         }
     })
     const label = document.createElement("label");
-    
+    label.classList.add('form-control');
+
      const doneCheckBox = document.createElement('input');
-    doneCheckBox.classList.add('doneCheckBox');
     doneCheckBox.type = 'checkbox';
+    doneCheckBox.name = 'checkbox';
     label.appendChild(doneCheckBox);
     wholeBox.appendChild(label);
 
