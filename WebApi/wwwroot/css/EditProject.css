@@ -8,23 +8,12 @@
     --light: #EEE;
 }
 
-input[type=checkbox]
-   {
-    display: inline;
-   border: 12px;
-}
 
-div.buttonBox { /* to odpowiada za wciecia ktore cie interesuja*/
+div.buttonBox {   
     display: inline-table;
     width: 30vh;
 }
-
-
-button.addSubTask {
-height: 25px;
-width: 28px;
-
-}
+ 
 /* to odpowiada za szerokosci pionowych zestawów*/
 #MainTasks {
     width: 100%;
@@ -32,6 +21,18 @@ width: 28px;
     margin: 20px;
 }
 
+input#title, #description, #projectId, #projectNumber {
+    width: 100%;
+    height: 11px;
+    padding: 12px 20px;
+    margin: 1px 0;
+    box-sizing: border-box;
+    border: 3px solid black;
+    border-radius: 4px;
+    background-color: darkgray;
+    color: black;
+    font-size: 16px;
+} 
 
 input#createMainTaskInputValue {
     width : 60%;
@@ -48,7 +49,18 @@ input.taskInputOnly {
     color: black;
     font-size: 16px;
 }
-    
+
+/*input[type=checkbox]
+   {
+    display: inline;
+   border: 12px;
+}*/
+
+input.addSubTaskInput {
+    width: 110%;
+    background: transparent;
+    display: inline;
+}
 
 li {
 margin: 15px;
@@ -67,18 +79,7 @@ body {
     color: #FFF;
     background-color: var(--dark);
 }
-input#title,#description,#projectId, #projectNumber   {
-    width: 100%;
-    height: 11px;
-    padding: 12px 20px;
-    margin: 1px 0;
-    box-sizing: border-box;
-    border: 3px solid black;
-    border-radius: 4px;
-    background-color: darkgray;
-    color: black;
-    font-size: 16px;
-}
+
 p3 {
     padding: 12px 1%;
     font-size: 22px;
@@ -96,9 +97,3 @@ button {
     color: white;
     background-image: linear-gradient(to right, var(--grey), var(--darker));
 }
-input.addSubTaskInput {
-    width: 110%;
-    background: transparent;
-    display: inline;
-}
- 
