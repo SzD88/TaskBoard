@@ -135,8 +135,8 @@ function inputValuesToForm(idToUse, projectNumber, titleToUse, descriptionToUse)
 
 async function createMainTask(content) {
 
-     
-    createSubTaskBasedOnAboveId(idToUse, content);
+    console.log(idToUse, content);
+  await  createSubTaskBasedOnAboveId(idToUse, content);
     url = "/editproject.html?id=" + projectId;
     document.location.href = url;
 } 
