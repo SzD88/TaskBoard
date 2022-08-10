@@ -33,6 +33,13 @@ namespace WebApi.Controllers
             var toShow = await _subTasks.GetByIDAsync(id); 
             return Ok(toShow);
         }
+        [SwaggerOperation(Summary = "Change SubTask completed state")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> ChangeCompletedState(Guid id)
+        {
+            var answer =   await _subTasks.ChangeCompletedStateAsync(id); 
+            return Ok("state changed to: "+ answer);
+        }
 
         [SwaggerOperation(Summary = "Retrieves all tasks")]
         [HttpGet]

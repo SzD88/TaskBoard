@@ -12,5 +12,6 @@ namespace Application.Interfaces
         Task DeleteAllSubTasks();
         Task CreateExampleSubTasksAsync();
 
+        Task<bool> ChangeCompletedStateAsync(object id);
     }
 }

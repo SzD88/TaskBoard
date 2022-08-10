@@ -21,7 +21,7 @@ input[type="checkbox"] {
     height: 0.9em;
     border: 0.15em solid currentColor;
     border-radius: 0.15em;
-    transform: translateY(+0.1em);
+    transform: translateY(+0.15em);
 }
 .form-control + .form-control {
     margin-top: 1em;

@@ -49,8 +49,7 @@ async function InputDataToForm(pathToGetById) {
         var itemToAppend = await createSubtaskList(listOfSubtasks[nextTask], idToSend);
 
         //  await createListOfSingleMainTask(itemToAppend);
-        console.log("item to append : ");
-        console.log(itemToAppend);
+       
 
         allMainTasksToDisplay.appendChild(itemToAppend);
     }

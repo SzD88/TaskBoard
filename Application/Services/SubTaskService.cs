@@ -6,7 +6,7 @@ using Domain.Interfaces;
 using System.Linq.Expressions;
 
 namespace Application.Services
-{ 
+{
     public class SubTaskService : ISubTaskService
     {
         private readonly ISubTaskRepository _subTasks;
@@ -24,7 +24,7 @@ namespace Application.Services
             return _mapper.Map<SubTaskDto>(created);
         }
 
-      
+
 
         public async Task DeleteAsync(object id)
         {
@@ -36,7 +36,7 @@ namespace Application.Services
         public async Task<IEnumerable<SubTaskDto>> GetAllAsync()
         {
             var allSubTasks = await _subTasks.GetAllAsync();
-          
+
             var mappedSubTasks = _mapper.Map<IEnumerable<SubTaskDto>>(allSubTasks);
 
             foreach (var item in mappedSubTasks)
@@ -64,19 +64,32 @@ namespace Application.Services
             {
                 subTaskDtoType.IncludedTasks.Add(item);
             }
-          //  subTaskDtoType.IncludedTasks = list.ToList();// #check
+            //  subTaskDtoType.IncludedTasks = list.ToList();// #check
             //zwróc go z lista
 
             return subTaskDtoType;
         }
+       
+        public async Task<bool> ChangeCompletedStateAsync(object id)
+        { 
+            var subTask = await _subTasks.GetByIDAsync(id);
 
+            if (subTask.Completed == true) 
+                subTask.Completed = false; 
+            else 
+                subTask.Completed = true; 
+             
+           await _subTasks.UpdateAsync(subTask);
+
+            return subTask.Completed;
+        }
         public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
         {
-          //   var getSubTaskById = await _subTasks.GetByIDAsync(entityToUpdate.Id);
-             
+            //   var getSubTaskById = await _subTasks.GetByIDAsync(entityToUpdate.Id);
+
             var subTaskType = _mapper.Map<SubTask>(entityToUpdate);
             // set parent
-          //  subTaskType.LevelAboveId = getSubTaskById.LevelAboveId;
+            //  subTaskType.LevelAboveId = getSubTaskById.LevelAboveId;
             await _subTasks.UpdateAsync(subTaskType);
         }
 
@@ -84,7 +97,7 @@ namespace Application.Services
         {
             var list = await _subTasks.CreateListOfTasks(parentId);
 
-            var mappedList =   _mapper.Map<IEnumerable<SubTaskDto>>(list);
+            var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
 
             return mappedList;
 
@@ -102,7 +115,9 @@ namespace Application.Services
 
         public async Task CreateExampleSubTasksAsync()
         {
-          await _subTasks.CreateExampleSubTasksAsync();
+            await _subTasks.CreateExampleSubTasksAsync();
         }
+
+     
     }
 }

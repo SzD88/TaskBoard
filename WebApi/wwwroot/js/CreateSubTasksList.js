@@ -11,7 +11,8 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
     const wholeBox_input_element = document.createElement('input');
     wholeBox_input_element.classList.add('taskInputOnly');
     wholeBox_input_element.setAttribute('id', singleSubTasksObject.id); 
-    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);    
+    wholeBox_input_element.setAttribute('value', singleSubTasksObject.content);
+   //  console.log(singleSubTasksObject.completed);
     wholeBox_input_element.type = 'text'; 
     wholeBox_input_element.addEventListener("focus", () => {
         console.log("you clicked input box"); 
@@ -37,6 +38,35 @@ async function createSubtaskList(singleSubTasksObject, levelAboveId) {
      const doneCheckBox = document.createElement('input');
     doneCheckBox.type = 'checkbox';
     doneCheckBox.name = 'checkbox';
+    doneCheckBox.setAttribute('id', singleSubTasksObject.id);
+
+    if (singleSubTasksObject.completed === true) {
+        wholeBox_input_element.style.textDecoration = 'line-through';
+        console.log(singleSubTasksObject.completed);
+        doneCheckBox.checked = true;
+    }
+    if (singleSubTasksObject.completed === false) {
+
+        wholeBox_input_element.style.textDecoration = 'none';
+        console.log(singleSubTasksObject.completed);
+
+        doneCheckBox.checked = false;
+    }
+    doneCheckBox.addEventListener("click", async () => {
+        if (doneCheckBox.checked == true) {
+           // console.log("true");
+            wholeBox_input_element.style.textDecoration = 'line-through';
+            await reverseCompletedState(doneCheckBox.id);
+            refreshPage();
+        } else {
+           // console.log("false");
+            wholeBox_input_element.style.textDecoration = 'none';
+            await reverseCompletedState(doneCheckBox.id);
+            refreshPage();
+        }
+    })
+
+
     label.appendChild(doneCheckBox);
     wholeBox.appendChild(label);
 
@@ -81,14 +111,7 @@ async function addButton(aboveId) {
 
     const divWithButton = document.createElement('div');
     divWithButton.classList.add('buttonBox');
-
-    //const addSubTaskOfCurrentLevel = document.createElement('button');
-    //addSubTaskOfCurrentLevel.classList.add('addSubTask');
-    //addSubTaskOfCurrentLevel.type = 'button';
-    //addSubTaskOfCurrentLevel.setAttribute('readonly', 'readonly');
-    //const addNode = document.createTextNode("+");
-    //addSubTaskOfCurrentLevel.appendChild(addNode);
-
+ 
     const newTaskInput = document.createElement('input');
     newTaskInput.classList.add('addSubTaskInput'); // ten nie ma wciec 
     newTaskInput.addEventListener("focus", () => {
@@ -194,6 +217,40 @@ async function putSubTaskMethod(jsonToPut, url) {
         }
     } catch (error) {
 
+    } 
+}
+async function reverseCompletedState(subTaskId) {
+
+    var url = "/api/SubTask/" + subTaskId;
+
+    var jsonToPut = {
+        "id": subTaskId 
     }
+
+    try {
+        const config = {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: jsonToPut // JSON.stringify(data)
+        }
+        const response = await fetch(url, config);
+        if (response.ok) {
+            console.log(response);
+            return response
+        } else {
+
+        }
+    } catch (error) {
+
+    }
+}
+
+function refreshPage() {
+
+    url = "/editproject.html?id=" + projectId;
+    document.location.href = url;
 
 }
