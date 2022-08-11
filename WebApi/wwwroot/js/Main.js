@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
  
     const list = [];
 
-    fetch('api/Project')
+    fetch('api/Project') //get by default?
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -102,7 +102,7 @@ window.addEventListener('load', () => {
         } catch (e) {
             console.log("redirected");
         } 
-        task_edit_el.addEventListener('click', (e) => { / 
+        task_edit_el.addEventListener('click', (e) => { 
             if (task_edit_el.innerText.toLowerCase() == "edit") { 
                 task_input_el.removeAttribute("readonly");  
                 url = "/editproject.html?id=" + projectId;

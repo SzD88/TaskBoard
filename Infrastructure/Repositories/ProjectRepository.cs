@@ -2,7 +2,7 @@
 using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-
+using Infrastructure.ExtensionMethods;
 namespace Infrastructure.Repositories
 {
     public class ProjectRepository : IProjectRepository
@@ -30,12 +30,18 @@ namespace Infrastructure.Repositories
         {
             return await _context.Projects.ToListAsync();
         }
+        public async Task<IEnumerable<Project>> GetAllSortedAsync(string sortField, bool ascending)
+        {
+            return await _context.Projects
+                .OrderByPropertyName(sortField, ascending)
+                .ToListAsync();
+        }
 
         public async Task<Project> GetByIDAsync(object id)
         {
             var guid = (Guid)id;
             var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.Id == guid);
-          //  if (toReturn == null) throw new Exception("Not found sd");
+            //  if (toReturn == null) throw new Exception("Not found sd");
             return toReturn;
         }
 
@@ -66,7 +72,8 @@ namespace Infrastructure.Repositories
                         Title = "Example Project Number 1",
                         Description = "Example Description of Project Number 1",
                         Completed = false,
-                        Created = DateTime.Now
+                        Created = DateTime.Now,
+                        LastModified = DateTime.Now
 
                     };
                     var exampleProject2 = new Project()
@@ -76,7 +83,8 @@ namespace Infrastructure.Repositories
                         Title = "Example Project Number 2",
                         Description = "Example Description of Project Number 2",
                         Completed = false,
-                        Created = DateTime.Now
+                        Created = DateTime.Now,
+                        LastModified = DateTime.Now
                     };
 
                     await _context.AddAsync(exampleProject);
@@ -84,10 +92,10 @@ namespace Infrastructure.Repositories
                     await _context.SaveChangesAsync();
 
                 }
-            } 
-            catch ( Exception)
+            }
+            catch (Exception)
             {
-                
+
             }
 
 

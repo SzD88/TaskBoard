@@ -11,5 +11,6 @@ namespace Application.Interfaces
     {
         Task DeleteAllProjects();
         Task CreateExampleProjectsAsync();
+        Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
     }
 }

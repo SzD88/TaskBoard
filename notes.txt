@@ -1,5 +1,7 @@
 ﻿ todo rano
 
+ //#sorthere
+
  poprawic generowane projekty - lastmodified == created 
 
  to sortowanie od sładka mozna zastosowac do projektow i to bedzie fajny efekt, bo bedzie sie dalo sortowac np po dacie jakies

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApi.Helpers;
 
 namespace WebApi.Filters
 {
@@ -12,9 +13,26 @@ namespace WebApi.Filters
         public bool Ascending { get; set; } = false; // #
         public SortingFilter()
         {
-            SortField = "LastChanged";
+            SortField = "Id"; // LastModifiedDate
         }
-        
+        public SortingFilter(string sortField, bool ascending)
+        {
+            var sortFields = SortingHelper.GetSortFields();
+            sortField = sortField.ToLower();
+
+            if (sortFields.Select(x => x.Key).Contains(sortField.ToLower()))
+            {
+                //KeyValuePair<string, string>
+                sortField = sortFields.Where(x => x.Key == sortField).Select(x => x.Value).SingleOrDefault();
+            }
+            else
+            {
+                sortField = "Id";
+            }
+
+            SortField = sortField;
+            Ascending = ascending;
+        }
+
     }
 }
-    
