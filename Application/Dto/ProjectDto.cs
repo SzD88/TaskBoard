@@ -9,6 +9,8 @@ namespace Application.Dto
         public string Title { get; set; }
         public string Description { get; set; }
         public bool Completed { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime LastModifiedDate { get; set; }
         public List<SubTaskDto> MainTasks { get; set; }
 
         

@@ -14,7 +14,7 @@ namespace Application.Dto
         public Guid LevelAboveId { get; set; }
         public List<SubTaskDto> IncludedTasks { get; set; }
 
-        public DateTime LastChanged { get; set; }
+        public DateTime LastModifiedDate { get; set; }
 
         public SubTaskDto(Guid id, string content, bool completed)
         {

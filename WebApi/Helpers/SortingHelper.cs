@@ -11,7 +11,6 @@ namespace WebApi.Helpers
 
     }
     public class SortFields
-    {
-        public static KeyValuePair <string, string> Title
+    { 
     }
 }

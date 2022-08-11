@@ -14,10 +14,7 @@ namespace WebApi.Filters
         {
             SortField = "LastChanged";
         }
-        public SortingFilter(string sortField, bool ascending)
-        {
-            var sortFields = 
-        }
+        
     }
 }
     
