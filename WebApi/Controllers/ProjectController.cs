@@ -41,7 +41,7 @@ namespace WebApi.Controllers
             var toShow = await _projects.GetAllAsync( );
             return Ok(toShow);
         }
-        [SwaggerOperation(Summary = "Retrieves all projects sorted by values")]
+        [SwaggerOperation(Summary = "Retrieves all projects sorted by property")]
         [HttpGet("GetAllSorted")]
         public async Task<IActionResult> GetAllSorted([FromQuery]SortingFilter sortingFilter)
         {

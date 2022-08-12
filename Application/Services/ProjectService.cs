@@ -16,8 +16,7 @@ namespace Application.Services
         {
             _projects = projectRepository;
             _mapper = mapper;
-            _subTasks = subTaskRepository;
-
+            _subTasks = subTaskRepository; 
         }
         public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
         {
@@ -25,9 +24,7 @@ namespace Application.Services
             var created = await _projects.CreateAsync(asProjectType);
             return _mapper.Map<ProjectDto>(created);
         }
-
-
-
+         
         public async Task DeleteAsync(object id)
         {
             var guid = (Guid)id;
@@ -57,7 +54,7 @@ namespace Application.Services
         }
         public async Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending) 
         { 
-            var allProjects = await _projects.GetAllAsync();
+            var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
             var mappedProjects = _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
 
             foreach (var item in mappedProjects)
