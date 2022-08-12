@@ -26,7 +26,8 @@ namespace Application.AutoMappings
                  cfg.CreateMap<UpdateSubTaskDto, SubTask>().ReverseMap();
 
                  cfg.CreateMap<Project, ProjectDto>()
-                 .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.LastModified));// was .reversemap()
+                 .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.LastModified))// was .reversemap()
+                 .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.Created));// was .reversemap()
 
                  cfg.CreateMap<Project, CreateProjectDto>().ReverseMap();
                  cfg.CreateMap<ProjectDto, CreateProjectDto>().ReverseMap();

@@ -22,7 +22,7 @@ window.onload = function () {
 }
 
 async function InputDataToForm(pathToGetById) {
-    let x = await fetch(pathToGetById);
+    let x = await fetch(pathToGetById); //get by default
     let y = await x.json();
 
     idToUse = y.id;
@@ -78,7 +78,7 @@ async function putDataFromFieldsToDatabase(projecId, projectNumber, title, descr
 
     try {
         const config = {
-            method: 'PUT',
+            method: 'PUT', //#projectput
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

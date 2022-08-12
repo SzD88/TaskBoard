@@ -1,5 +1,5 @@
 ﻿ todo rano
-
+ jest problem bo postujesz jako put - zmien to ze po sprawdzeniu czy jest jakies id w pasku dopiero put lub robisz post;/
  //#sorthere
 
  poprawic generowane projekty - lastmodified == created 

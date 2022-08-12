@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
  
     const list = [];
 
-    fetch('api/Project') //get by default?
+    fetch('api/Project') //get by default
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -16,6 +16,7 @@ window.addEventListener('load', () => {
         })
         .then(data => {
             task_content_list = data;
+
             for (nextTask in task_content_list) {
                 let singleObj = task_content_list[nextTask].title;
                 let projectId = task_content_list[nextTask].id;

@@ -89,8 +89,9 @@ namespace Application.Services
         }
 
         public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
-        {
+        { 
             var projectType = _mapper.Map<Project>(entityToUpdate);
+            
             await _projects.UpdateAsync(projectType);
         }
 

@@ -47,6 +47,8 @@ namespace Infrastructure.Repositories
 
         public async Task UpdateAsync(Project entityToUpdate)
         {
+            entityToUpdate.LastModified = DateTime.Now;
+
             _context.Projects.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
