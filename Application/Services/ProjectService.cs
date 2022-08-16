@@ -90,9 +90,14 @@ namespace Application.Services
 
         public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
         { 
-            var projectType = _mapper.Map<Project>(entityToUpdate);
             
-            await _projects.UpdateAsync(projectType);
+            var existinProject = await _projects.GetByIDAsync(entityToUpdate.Id);
+
+            var project = _mapper.Map(entityToUpdate, existinProject);
+
+            await _projects.UpdateAsync(project);
+
+           
         }
 
         public async Task DeleteAllProjects() // just helper 

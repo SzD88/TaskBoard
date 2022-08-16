@@ -47,8 +47,9 @@ namespace Infrastructure.Repositories
 
         public async Task UpdateAsync(Project entityToUpdate)
         {
+            //var projectToUpdate = await _context.Projects.FirstOrDefaultAsync(x => x.Id == entityToUpdate.Id);
             entityToUpdate.LastModified = DateTime.Now;
-
+          //  entityToUpdate.Created = projectToUpdate.Created;
             _context.Projects.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }

@@ -1,6 +1,12 @@
-﻿ todo rano
- jest problem bo postujesz jako put - zmien to ze po sprawdzeniu czy jest jakies id w pasku dopiero put lub robisz post;/
- //#sorthere
+﻿Next:
+
+ 
+ 
+- sprawdz wyswietlanie main taskow w stronie edit
+
+- dodaj sortowanie na stronie glownej projektow
+
+ 
 
  poprawic generowane projekty - lastmodified == created 
 
@@ -23,7 +29,6 @@ cofniecie 3 ostatnich akcji
 podglad zadań jakiś
 
 Dobra zeby zamknac temat:
-1. Dodawanie glownego taska
 2. Wyswietlania main taskow bo nie ma imo
 3. Edycja kazdego pola onclick - on focus + enter?
 

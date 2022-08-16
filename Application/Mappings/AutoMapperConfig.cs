@@ -33,7 +33,8 @@ namespace Application.AutoMappings
                  cfg.CreateMap<ProjectDto, CreateProjectDto>().ReverseMap();
                  cfg.CreateMap<CreateProjectDto, ProjectDto>();
                  cfg.CreateMap<ProjectDto, Project>(); // changed - possible problem
-                 cfg.CreateMap<UpdateProjectDto, Project>().ReverseMap();
+                 cfg.CreateMap<UpdateProjectDto, Project>();
+                   
              }
             ).CreateMapper();
     }

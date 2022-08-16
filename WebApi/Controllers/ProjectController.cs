@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Filters;
+using WebApi.Helpers;
 
 namespace WebApi.Controllers
-{  
-    
+{
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
@@ -36,20 +37,27 @@ namespace WebApi.Controllers
         }
         [SwaggerOperation(Summary = "Retrieves all projects")]
         [HttpGet]
-        public async Task<IActionResult> GetAll( )
-        { 
-            var toShow = await _projects.GetAllAsync( );
+        public async Task<IActionResult> GetAll()
+        {
+            var toShow = await _projects.GetAllAsync();
             return Ok(toShow);
         }
         [SwaggerOperation(Summary = "Retrieves all projects sorted by property")]
         [HttpGet("GetAllSorted")]
-        public async Task<IActionResult> GetAllSorted([FromQuery]SortingFilter sortingFilter)
+        public async Task<IActionResult> GetAllSorted([FromQuery] SortingFilter sortingFilter)
         {
 
             var validSortingFilter = new SortingFilter(sortingFilter.SortField, sortingFilter.Ascending);
 
             var toShow = await _projects.GetAllSortedAsync(validSortingFilter.SortField, validSortingFilter.Ascending);
             return Ok(toShow);
+        }
+
+        [SwaggerOperation(Summary = "Retrieves sort fields")]
+        [HttpGet("[action]")]
+        public IActionResult GetSortFields()
+        {
+            return Ok(SortingHelper.GetSortFields().Select(x => x.Key));
         }
         [SwaggerOperation(Summary = "Update project")]
         [HttpPut]
@@ -67,7 +75,7 @@ namespace WebApi.Controllers
         }
         [SwaggerOperation(Summary = "Delete all projects")]
         [HttpDelete("DeleteAll")]
-        public async Task<IActionResult> DeleteAllProjects( )
+        public async Task<IActionResult> DeleteAllProjects()
         {
             await _projects.DeleteAllProjects();
             return NoContent();
