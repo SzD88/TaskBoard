@@ -53,3 +53,8 @@ async function putDataFromFieldsToDatabase(projecId, projectNumber, title, descr
 
     }
 }
+//CREATE EXAMPLES
+function funcCreateExamples() {
+    fetch("/api/Project/CreateExamples", { method: 'POST' });
+    location.reload(true);
+};

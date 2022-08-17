@@ -13,14 +13,25 @@
     <button onclick="funcCreateExamples()" type="button" id="createExamplesInDb">Create example objects in db</button>
     <button onclick="location.href = '/editproject.html';" type="button" id="createProjectButton">Create new project</button>
 
-    <script>
-        function funcCreateExamples() {
-            fetch("/api/Project/CreateExamples", { method: 'POST' });
-            location.reload(true);
-        };
-    </script>
+    
     <main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <div>
+          Select sorting atributte :  <select id="select">
+               
+            </select>
+        </div>
+        <script>
+            $("#select").change(function () {
+                if ($(this).val() == 1) {
+                    console.log("you pressed one");
+                }
+                if ($(this).val() == 2) {
+                    console.log("y presedd 2 ");
 
+                } 
+            });
+        </script>
         <section class="task-list">
             <h2 style="color:black;"> Projects List:</h2>
             <div id="tasks">
@@ -31,6 +42,8 @@
     <script src="js/Main.js"></script>
     <script src="js/EditProject.js"></script>
     <script src="js/CreateSubTasksList.js"></script>
+    <script src="js/CRUD/ProjectCRUD.js"></script>
+    <script src="js/EditProjectSection/SelectOptionSorting.js"></script>
 
 </body>
 </html>

@@ -1,9 +1,8 @@
 ﻿Next:
 
+- authentykacja i konta hmmm
  
- 
-- sprawdz wyswietlanie main taskow w stronie edit
-
+  
 - dodaj sortowanie na stronie glownej projektow
 
  
