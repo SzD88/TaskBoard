@@ -3,17 +3,29 @@
 window.addEventListener('load', () => {  
     
     const list_el = document.querySelector("#tasks");
-    const selectOptions = document.querySelector("#select");
-    // przenies to do funkcji osobnej
+    //  const selectOptions = document.querySelector("#select");
 
+
+    var x = document.getElementById("select");
+    var option = document.createElement("option");
+    option.text = "Kizzwi";
+    x.add(option);
+    var option2 = document.createElement("option");
+    option2.text = "cccc";
+    x.add(option2);
+
+     
+    // tutaj zacznij bo tu sie dzieje
+
+    var selectOptionsList = createSelectOptionList();
     // w tej funkcji fetch z endpointa zwracajacego pola i te pola tutaj po kolei append w osobnej funkcji
-    const optionTest = document.createElement("option");
-    optionTest.value = "zzz";
-    var t = document.createTextNode("Volvo");
-    optionTest.appendChild(t);
-    selectOptions.appendChild(optionTest);
+     for (numerator in selectOptionsList) {
 
-
+         var option3 = document.createElement("option");
+         option3.text = selectOptionsList[numerator];
+         x.add(option3);
+     }
+     
     fetch('api/Project') //get by default
         .then(response => {
             if (response.ok) {
