@@ -128,12 +128,4 @@ async function createMainTask(content) {
     url = "/editproject.html?id=" + projectId;
     document.location.href = url;
 }
-//async function setDomButtons() {
-
-//    var element = document.getElementById("createMainTaskInputValue");
-//    element.onkeypress = async function (e) {
-//        if (e.keyCode == 13) {
-//            createMainTask(element.value)
-//        }
-//    }
-//}
+ 
