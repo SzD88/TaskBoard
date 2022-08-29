@@ -18,16 +18,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <div>
             Select sorting atributte :  <select id="select">
+                <option value="" selected disabled hidden>last modified date</option>
             </select>
         </div>
         <script>
+             var sortingAttributeFromHtml = "last modified date";
+
             $("#select").change(function () {
 
-                sortingAttribute = $(this).val();
-                console.log($(this).val() );
+                sortingAttributeFromHtml = $(this).val();
+                console.log($(this).val());
 
-              
+                url = "/index.html";
+                console.log(sortingAttributeFromHtml + "from index html");
+                document.location.href = url;
+
             });
+             
         </script>
         <section class="task-list">
             <h2 style="color:black;"> Projects List:</h2>

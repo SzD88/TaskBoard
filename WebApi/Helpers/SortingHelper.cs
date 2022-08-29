@@ -10,7 +10,7 @@ namespace WebApi.Helpers
     {
         public static KeyValuePair<string, string>[] GetSortFields()
         {
-            return new[] { SortFields.Title, SortFields.CreationDate, SortFields.LastModifiedDate,  
+            return new[] { SortFields.Title, SortFields.CreationDate, SortFields.LastModified,  
             SortFields.ProjectNumber, SortFields.Description};
         }
     }
@@ -18,7 +18,7 @@ namespace WebApi.Helpers
     {
         public static KeyValuePair<string, string> Title { get; } = new KeyValuePair<string, string>("title", "Title");
         public static KeyValuePair<string, string> CreationDate { get; } = new KeyValuePair<string, string>("creation date", "Created");
-        public static KeyValuePair<string, string> LastModifiedDate { get; } = new KeyValuePair<string, string>("last modified date", "LastModifiedDate");
+        public static KeyValuePair<string, string> LastModified { get; } = new KeyValuePair<string, string>("last modified date", "LastModified");
         public static KeyValuePair<string, string> ProjectNumber { get; } = new KeyValuePair<string, string>("project number", "ProjectNumber");
         public static KeyValuePair<string, string> Description { get; } = new KeyValuePair<string, string>("description", "Description");
         public static KeyValuePair<string, string> Completed { get; } = new KeyValuePair<string, string>("completed", "Completed");

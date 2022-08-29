@@ -1,5 +1,5 @@
 ﻿var idToTransfer;
-var sortingAttribute = "last modified";
+var sortingAttribute = sortingAttributeFromHtml;
 
 window.addEventListener('load', async () => {
 
@@ -12,8 +12,13 @@ window.addEventListener('load', async () => {
     } catch (e) {
         console.log("redirected");
     }
-     
-   var projects_content_list = await getAllProjects();
+   // var projects_content_list = await getAllProjects(); 
+
+
+    console.log(sortingAttribute + "from main");
+   
+   
+     var projects_content_list = await getAllProjectsSortedByAttribute(sortingAttribute, false); // ascending - false
 
     for (nextTask in projects_content_list) {
         let singleObj = projects_content_list[nextTask].title;
@@ -24,9 +29,7 @@ window.addEventListener('load', async () => {
         createList(singleObj, projectId, projectDescription, projectNumber);
 
     }
-
-
-
+     
     function createList(inputData, inputData2, inputData3, inputData4) {
 
         const projectId = inputData2;

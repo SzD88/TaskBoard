@@ -19,21 +19,13 @@ async function getAllProjects() {
 }
 
 //GET ALL PROJECTS SORTED
-async function getAllProjectsSortedByAttribute(attribute) {
-
-    var attributeJson = {
-        "SortField": attribute,
-        "Ascending": true 
-    }
-    const config = {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: attributeJson   
-    }
-    var dataToReturn = fetch('api/Project', config) //get by default
+async function getAllProjectsSortedByAttribute(attribute, ascending) {
+ 
+   var attributePrepared= attribute.replace(/\s/g, '%20');  // regular expressions in JS
+     
+    var endOfUrl = "/GetAllSorted?SortField=" + attributePrepared + "&Ascending=" + ascending;
+  
+    var dataToReturn = fetch('api/Project' + endOfUrl) //get by default api/project + created string 
         .then(response => {
             if (response.ok) {
                 return response.json();
