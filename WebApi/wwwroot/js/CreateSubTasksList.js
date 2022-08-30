@@ -163,10 +163,9 @@ async function createSubTaskBasedOnAboveId(levelAboveId, content) {
             const json = await response.json();
             //  console.log(json + "   to response po created ");
             //  var cos = json.stringify();
-            console.log(json + " z wnetrza response");
             return json;
         } else {
-            console.log("KOD  response inny niz 201");
+            console.log("Response other than 201");
         }
     } catch (error) {
         //

@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\backups\" />
+    <Folder Include="wwwroot\js\JsonOperations\" />
   </ItemGroup>
 
 </Project>

@@ -47,6 +47,7 @@ namespace Infrastructure.Repositories
         {
             var list = await _context.SubTasks
                 .Where(x => x.LevelAboveId == parentId)
+//#sorthere
                 .ToListAsync();
 
             foreach (var item in list)
@@ -72,7 +73,8 @@ namespace Infrastructure.Repositories
                     Content = "SubTaks 1 of Project 1 Level 0",
                     LevelAboveId = Guid.Parse("56950D32-F426-4B5C-96CB-FFA074A8A37B"), //proj1
                     Completed = false,
-                    Created = DateTime.Now
+                    Created = DateTime.Now,
+                    LastModified = DateTime.Now
                 };
                 var exampleSubTask2 = new SubTask()
                 {
@@ -80,7 +82,8 @@ namespace Infrastructure.Repositories
                     Content = "SubTaks 1 of project 2 Level 0",
                     LevelAboveId = Guid.Parse("1d5672c8-7102-414e-b5cf-95352b172ada"),// proj2
                     Completed = false,
-                    Created = DateTime.Now
+                    Created = DateTime.Now,
+                    LastModified = DateTime.Now
                 };
                 var exampleSubTask3 = new SubTask()
                 {
@@ -88,7 +91,8 @@ namespace Infrastructure.Repositories
                     Content = "SubTaks 2 inside subtask 1 Level 1 Project 1",
                     LevelAboveId = Guid.Parse("392D319D-BAAF-4F52-BCD7-55D8DFB9E0C4"), //subtask1
                     Completed = false,
-                    Created = DateTime.Now
+                    Created = DateTime.Now,
+                    LastModified = DateTime.Now
                 };
                 var exampleSubTask4 = new SubTask()
                 {
@@ -96,7 +100,8 @@ namespace Infrastructure.Repositories
                     Content = "SubTaks 3 inside subtask 2 Level 2 Project 1",
                     LevelAboveId = Guid.Parse("985e18e3-62d5-42f7-a616-0395aa72ac96"), //subtask3
                     Completed = false,
-                    Created = DateTime.Now
+                    Created = DateTime.Now,
+                    LastModified = DateTime.Now
                 };
                 var exampleSubTask5 = new SubTask()
                 {
@@ -104,7 +109,8 @@ namespace Infrastructure.Repositories
                     Content = "SubTaks 4 inside subtask 3 Level 3 Project 1",
                     LevelAboveId = Guid.Parse("dd54de26-87aa-4a9b-90b5-6a0d667d31f5"), //subtask4
                     Completed = false,
-                    Created = DateTime.Now
+                    Created = DateTime.Now,
+                    LastModified = DateTime.Now
                 };
                 try
                 {

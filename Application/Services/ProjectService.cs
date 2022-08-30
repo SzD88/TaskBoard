@@ -7,17 +7,16 @@ using Domain.Interfaces;
 
 namespace Application.Services
 {
-    public class ProjectService : IProjectService  
+    public class ProjectService : IProjectService
     {
         private readonly IProjectRepository _projects;
         private readonly IMapper _mapper;
         private readonly ISubTaskRepository _subTasks;
-        public ProjectService(IProjectRepository projectRepository, IMapper mapper, ISubTaskRepository subTaskRepository)  
+        public ProjectService(IProjectRepository projectRepository, IMapper mapper, ISubTaskRepository subTaskRepository)
         {
             _projects = projectRepository;
             _mapper = mapper;
-            _subTasks = subTaskRepository;
-
+            _subTasks = subTaskRepository; 
         }
         public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
         {
@@ -25,9 +24,7 @@ namespace Application.Services
             var created = await _projects.CreateAsync(asProjectType);
             return _mapper.Map<ProjectDto>(created);
         }
-
-        
-
+         
         public async Task DeleteAsync(object id)
         {
             var guid = (Guid)id;
@@ -38,19 +35,37 @@ namespace Application.Services
 
         public async Task<IEnumerable<ProjectDto>> GetAllAsync()
         {
-            
+
             var allProjects = await _projects.GetAllAsync();
-            var mappedProjects =  _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
+            var mappedProjects = _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
 
             foreach (var item in mappedProjects)
             {
                 var list = await _subTasks.CreateListOfTasks(item.Id);
                 var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
-                 
+
                 foreach (var lists in mappedList)
                 {
                     item.MainTasks.Add(lists);
-                } 
+                }
+            }
+            return mappedProjects;
+
+        }
+        public async Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending) 
+        { 
+            var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
+            var mappedProjects = _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
+
+            foreach (var item in mappedProjects)
+            {
+                var list = await _subTasks.CreateListOfTasks(item.Id);
+                var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+
+                foreach (var lists in mappedList)
+                {
+                    item.MainTasks.Add(lists);
+                }
             }
             return mappedProjects;
 
@@ -69,30 +84,36 @@ namespace Application.Services
             foreach (var item in mappedList)
             {
                 projectDtoType.MainTasks.Add(item);
-            } 
+            }
             return projectDtoType;
         }
 
         public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
         { 
-            var projectType = _mapper.Map<Project>(entityToUpdate); 
-            await _projects.UpdateAsync(projectType);
+            
+            var existinProject = await _projects.GetByIDAsync(entityToUpdate.Id);
+
+            var project = _mapper.Map(entityToUpdate, existinProject);
+
+            await _projects.UpdateAsync(project);
+
+           
         }
 
         public async Task DeleteAllProjects() // just helper 
         {
             var allProjects = await _projects.GetAllAsync();
 
-            foreach (var project in allProjects) 
+            foreach (var project in allProjects)
             {
-               await _projects.DeleteAsync(project);
+                await _projects.DeleteAsync(project);
             }
         }
 
         public async Task CreateExampleProjectsAsync()
         {
-           await  _projects.CreateExampleProjectsAsync();
-           await _subTasks.CreateExampleSubTasksAsync();
+            await _projects.CreateExampleProjectsAsync();
+            await _subTasks.CreateExampleSubTasksAsync();
         }
     }
 }

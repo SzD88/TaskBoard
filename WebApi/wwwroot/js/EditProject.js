@@ -3,10 +3,17 @@ let idToUse;
 let titleToUse;
 let descriptionToUse;
 let projNumberToUse;
+let needToPost = false;
 
 window.onload = function () {
+    var urlBase = document.location.href;
+    var checkIfPost = urlBase.substr(urlBase.length - 16);
+    if (checkIfPost == "editproject.html") {
+        console.log("need to POST");
+        needToPost = true;
+    }
     try {
-        var url = document.location.href,
+        var url = urlBase,
             params = url.split('?')[1].split('&'),
             data = {}, tmp;
         for (var i = 0, l = params.length; i < l; i++) {
@@ -22,10 +29,13 @@ window.onload = function () {
 }
 
 async function InputDataToForm(pathToGetById) {
-    let x = await fetch(pathToGetById);
+    
+
+    let x = await fetch(pathToGetById); //get by default
     let y = await x.json();
 
     idToUse = y.id;
+   
     titleToUse = y.title;
     descriptionToUse = y.description;
     projectNumberToUse = y.projectNumber;
@@ -66,37 +76,16 @@ function replaceFormValuesToInputed() //changes all fields to filled //or dont c
     var titleFromUpdatedForm = changeAttributeByName("title");// html names/id
     var descriptionFromUpdatedForm = changeAttributeByName("description");// html names/id
     console.log(projectNumberFromUpdatedForm);
-
-    putDataFromFieldsToDatabase(idFromUpdatedForm, projectNumberFromUpdatedForm, titleFromUpdatedForm, descriptionFromUpdatedForm);
-}
-
-async function putDataFromFieldsToDatabase(projecId, projectNumber, title, description) {
-
-    var projJson = createJSON(title, description, projectNumber); //works
-
-    var url = "/api/Project";
-
-    try {
-        const config = {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: projJson // JSON.stringify(data)
-        }
-        const response = await fetch(url, config);
-        if (response.ok) {
-            console.log(response);
-            return response
-        } else {
-
-        }
-    } catch (error) {
+    if (needToPost) {
+        //post function
+        CreateProject(titleFromUpdatedForm, descriptionFromUpdatedForm, projectNumberFromUpdatedForm)
+    } else {
+        //put function
+        putDataFromFieldsToDatabase(idFromUpdatedForm, projectNumberFromUpdatedForm, titleFromUpdatedForm, descriptionFromUpdatedForm);
 
     }
 }
-
+ 
 function createJSON(title, description, projectNumberToUse) {
     var projectJSON = {
         "id": idToUse,
@@ -139,12 +128,4 @@ async function createMainTask(content) {
     url = "/editproject.html?id=" + projectId;
     document.location.href = url;
 }
-//async function setDomButtons() {
-
-//    var element = document.getElementById("createMainTaskInputValue");
-//    element.onkeypress = async function (e) {
-//        if (e.keyCode == 13) {
-//            createMainTask(element.value)
-//        }
-//    }
-//}
+ 

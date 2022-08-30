@@ -2,7 +2,7 @@
 using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-
+using Infrastructure.ExtensionMethods;
 namespace Infrastructure.Repositories
 {
     public class ProjectRepository : IProjectRepository
@@ -30,17 +30,26 @@ namespace Infrastructure.Repositories
         {
             return await _context.Projects.ToListAsync();
         }
+        public async Task<IEnumerable<Project>> GetAllSortedAsync(string sortField, bool ascending)
+        {
+            return await _context.Projects
+                .OrderByPropertyName(sortField, ascending)
+                .ToListAsync();
+        }
 
         public async Task<Project> GetByIDAsync(object id)
         {
             var guid = (Guid)id;
             var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.Id == guid);
-          //  if (toReturn == null) throw new Exception("Not found sd");
+            //  if (toReturn == null) throw new Exception("Not found sd");
             return toReturn;
         }
 
         public async Task UpdateAsync(Project entityToUpdate)
         {
+            //var projectToUpdate = await _context.Projects.FirstOrDefaultAsync(x => x.Id == entityToUpdate.Id);
+            entityToUpdate.LastModified = DateTime.Now;
+          //  entityToUpdate.Created = projectToUpdate.Created;
             _context.Projects.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
@@ -66,7 +75,8 @@ namespace Infrastructure.Repositories
                         Title = "Title of Example Project 1",
                         Description = "Description of Example Project Number 1",
                         Completed = false,
-                        Created = DateTime.Now
+                        Created = DateTime.Now,
+                        LastModified = DateTime.Now
 
                     };
                     var exampleProject2 = new Project()
@@ -76,7 +86,8 @@ namespace Infrastructure.Repositories
                         Title = "Title of Example Project 2",
                         Description = "Description of Example Project Number 2",
                         Completed = false,
-                        Created = DateTime.Now
+                        Created = DateTime.Now,
+                        LastModified = DateTime.Now
                     };
 
                     await _context.AddAsync(exampleProject);
@@ -84,10 +95,10 @@ namespace Infrastructure.Repositories
                     await _context.SaveChangesAsync();
 
                 }
-            } 
-            catch ( Exception)
+            }
+            catch (Exception)
             {
-                
+
             }
 
 
