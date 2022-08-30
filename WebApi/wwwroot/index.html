@@ -23,15 +23,15 @@
         </div>
         <script>
              var sortingAttributeFromHtml = "last modified date";
+             var ascendintAttributeFromHtml = true;
 
             $("#select").change(function () {
 
                 sortingAttributeFromHtml = $(this).val();
-                console.log($(this).val());
+               // console.log($(this).val());
 
-                url = "/index.html";
-                console.log(sortingAttributeFromHtml + "from index html");
-                document.location.href = url;
+                clearProjectsList();
+                fillMainPage(sortingAttributeFromHtml, ascendintAttributeFromHtml);
 
             });
              
@@ -49,6 +49,7 @@
     <script src="js/EditProject.js"></script>
     <script src="js/CreateSubTasksList.js"></script>
     <script src="js/ProjectSectionHelpers/SelectOptionSorting.js"></script>
+    <script src="js/ProjectSectionHelpers/FillMainPage.js"></script>
 
 </body>
 </html>
