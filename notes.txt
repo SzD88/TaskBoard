@@ -1,4 +1,15 @@
-﻿ 
+﻿Next:
+
+ok i know how to do that. Create function filling main page
+
+use function on load window
+
+then use function on select change, that simple 
+
+- authentykacja i konta hmmm
+  
+
+ poprawic generowane projekty - lastmodified == created 
 
  pOWIAZ KAZDdy check box z id tym samym ktore dostaje pole tekstowe input
 

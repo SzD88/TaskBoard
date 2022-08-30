@@ -63,8 +63,8 @@ namespace Infrastructure.Repositories
                     {
                         ProjectNumber = "133-22",
                         Id = new Guid("56950D32-F426-4B5C-96CB-FFA074A8A37B"),
-                        Title = "Example Project Number 1",
-                        Description = "Example Description of Project Number 1",
+                        Title = "Title of Example Project 1",
+                        Description = "Description of Example Project Number 1",
                         Completed = false,
                         Created = DateTime.Now
 
@@ -73,8 +73,8 @@ namespace Infrastructure.Repositories
                     {
                         ProjectNumber = "144-22",
                         Id = new Guid("1d5672c8-7102-414e-b5cf-95352b172ada"),
-                        Title = "Example Project Number 2",
-                        Description = "Example Description of Project Number 2",
+                        Title = "Title of Example Project 2",
+                        Description = "Description of Example Project Number 2",
                         Completed = false,
                         Created = DateTime.Now
                     };

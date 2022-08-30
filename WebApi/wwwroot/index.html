@@ -4,23 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects L</title>
+    <title>Projects List</title>
 
     <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
 
-    <button onclick="funcCreateExamples()" type="button" id="createExamplesInDb">Create example objects in db</button>
+    <button onclick="createExampleProjects()" type="button" id="createExamplesInDb">Create example objects in db</button>
+    <button onclick="location.href = '/swagger/index.html';" type="button" id="createExamplesInDb" style="background:green" >Swagger</button>
     <button onclick="location.href = '/editproject.html';" type="button" id="createProjectButton">Create new project</button>
 
-    <script>
-        function funcCreateExamples() {
-            fetch("/api/Project/CreateExamples", { method: 'POST' });
-            location.reload(true);
-        };
-    </script>
+    
     <main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <div>
+            <hr />  
+            Select sorting atributte (allways ascending for now) :  <select id="select">
+                <option value="" selected disabled hidden>last modified date</option>
+            </select>
+        </div>
+        <script>
+             var sortingAttributeFromHtml = "last modified date";
+             var ascendingAttributeFromHtml = true;
 
+            $("#select").change(function () {
+
+                sortingAttributeFromHtml = $(this).val();
+               //  console.log($(this).val());
+
+                clearProjectsList();
+                fillMainPage(sortingAttributeFromHtml, ascendingAttributeFromHtml);
+
+            });
+             
+        </script>
         <section class="task-list">
             <h2 style="color:black;"> Projects List:</h2>
             <div id="tasks">
@@ -31,6 +48,8 @@
     <script src="js/Main.js"></script>
     <script src="js/EditProject.js"></script>
     <script src="js/CreateSubTasksList.js"></script>
+    <script src="js/ProjectSectionHelpers/SelectOptionSorting.js"></script>
+    <script src="js/ProjectSectionHelpers/FillMainPage.js"></script>
 
 </body>
 </html>
