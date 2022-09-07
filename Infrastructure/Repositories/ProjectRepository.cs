@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.ExtensionMethods;
 namespace Infrastructure.Repositories
 {
-    public class ProjectRepository : IProjectRepository
+    internal class ProjectRepository : IProjectRepository
     {
         private readonly ProjectManagerContext _context;
         public ProjectRepository(ProjectManagerContext context)

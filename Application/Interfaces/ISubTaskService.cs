@@ -1,17 +1,15 @@
 ﻿using Application.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Application.Interfaces;
+
+public interface ISubTaskService
 {
-    public interface ISubTaskService : IService<SubTaskDto,CreateSubTaskDto, UpdateSubTaskDto>
-    {
-        Task DeleteAllSubTasks();
-        Task CreateExampleSubTasksAsync();
-
-        Task<bool> ChangeCompletedStateAsync(object id);
-    }
+  Task<SubTaskDto> CreateAsync(CreateSubTaskDto entity);
+  Task DeleteAsync(Guid id);
+  Task<IEnumerable<SubTaskDto>> GetAllAsync();
+  Task<SubTaskDto> GetByIDAsync(Guid id);
+  Task UpdateAsync(UpdateSubTaskDto entityToUpdate);
+  Task DeleteAllSubTasks();
+  Task CreateExampleSubTasksAsync();
+  Task<bool> ChangeCompletedStateAsync(Guid id);
 }

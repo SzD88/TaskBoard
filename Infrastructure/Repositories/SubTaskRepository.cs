@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class SubTaskRepository : ISubTaskRepository
+    internal class SubTaskRepository : ISubTaskRepository
     {
         private readonly ProjectManagerContext _context;
         public SubTaskRepository(ProjectManagerContext context)

@@ -1,41 +1,35 @@
 ﻿using Application.Dto;
 using AutoMapper;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.AutoMappings
-{
-    public static class AutoMapperConfig
-    {
-        public static IMapper Initialize()
-            => new MapperConfiguration
-            (
-             cfg =>
-             {
-                 //#refactor #needrefactor lastchanged == creationDate 
-                 cfg.CreateMap<SubTask, SubTaskDto>()
-                 .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.LastModified));// was .reversemap()
-                 cfg.CreateMap<SubTask, CreateSubTaskDto>().ReverseMap();
-                 cfg.CreateMap<SubTaskDto, CreateSubTaskDto>().ReverseMap();
-                 cfg.CreateMap<CreateSubTaskDto, SubTaskDto>();
-                 cfg.CreateMap<SubTaskDto, SubTask>(); // changed - possible problem
-                 cfg.CreateMap<UpdateSubTaskDto, SubTask>().ReverseMap();
+namespace Application.AutoMappings;
 
-                 cfg.CreateMap<Project, ProjectDto>()
-                 .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.LastModified))// was .reversemap()
-                 .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.Created));// was .reversemap()
+public static class AutoMapperConfig
+  {
+      public static IMapper Initialize()
+          => new MapperConfiguration
+          (
+           cfg =>
+           {
+               //#refactor #needrefactor lastchanged == creationDate 
+               cfg.CreateMap<SubTask, SubTaskDto>()
+               .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.LastModified));// was .reversemap()
+               cfg.CreateMap<SubTask, CreateSubTaskDto>().ReverseMap();
+               cfg.CreateMap<SubTaskDto, CreateSubTaskDto>().ReverseMap();
+               cfg.CreateMap<CreateSubTaskDto, SubTaskDto>();
+               cfg.CreateMap<SubTaskDto, SubTask>(); // changed - possible problem
+               cfg.CreateMap<UpdateSubTaskDto, SubTask>().ReverseMap();
 
-                 cfg.CreateMap<Project, CreateProjectDto>().ReverseMap();
-                 cfg.CreateMap<ProjectDto, CreateProjectDto>().ReverseMap();
-                 cfg.CreateMap<CreateProjectDto, ProjectDto>();
-                 cfg.CreateMap<ProjectDto, Project>(); // changed - possible problem
-                 cfg.CreateMap<UpdateProjectDto, Project>();
-                   
-             }
-            ).CreateMapper();
-    }
-}
+               cfg.CreateMap<Project, ProjectDto>()
+               .ForMember(dest => dest.LastModifiedDate, opt => opt.MapFrom(src => src.LastModified))// was .reversemap()
+               .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.Created));// was .reversemap()
+
+               cfg.CreateMap<Project, CreateProjectDto>().ReverseMap();
+               cfg.CreateMap<ProjectDto, CreateProjectDto>().ReverseMap();
+               cfg.CreateMap<CreateProjectDto, ProjectDto>();
+               cfg.CreateMap<ProjectDto, Project>(); // changed - possible problem
+               cfg.CreateMap<UpdateProjectDto, Project>();
+                 
+           }
+          ).CreateMapper();
+  }

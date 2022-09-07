@@ -1,16 +1,15 @@
 ﻿using Application.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Application.Interfaces;
+
+public interface IProjectService
 {
-    public interface IProjectService : IService<ProjectDto, CreateProjectDto, UpdateProjectDto>
-    {
-        Task DeleteAllProjects();
-        Task CreateExampleProjectsAsync();
-        Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
-    }
+  Task<ProjectDto> CreateAsync(CreateProjectDto entity);
+  Task DeleteAsync(Guid id);
+  Task<IEnumerable<ProjectDto>> GetAllAsync(); // #refactor
+  Task<ProjectDto> GetByIDAsync(object id);
+  Task UpdateAsync(UpdateProjectDto entityToUpdate);
+  Task DeleteAllProjects();
+  Task CreateExampleProjectsAsync();
+  Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
 }

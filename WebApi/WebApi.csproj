@@ -5,7 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="Properties\ServiceDependencies\javaScriptNotesSD - Web Deploy\profile.arm.json" />
     <Content Include="Properties\ServiceDependencies\javaScriptNotesSD - Zip Deploy\profile.arm.json" />

@@ -9,8 +9,7 @@ namespace Domain.Entities
     {
         [Key]
         public Guid Id { get;  set; } //#refactor : protected should be added to set!
-        // what type in sql server is guid ? answer: uniqueidentifier
-
+          
         public string ProjectNumber { get;   set; }
 
         [Required] 
