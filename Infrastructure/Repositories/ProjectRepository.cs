@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.ExtensionMethods;
+
 namespace Infrastructure.Repositories
 {
     internal class ProjectRepository : IProjectRepository

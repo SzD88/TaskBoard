@@ -5,11 +5,12 @@ namespace Domain.Entities
 {
     [Table("Projects")]
 
-    public class Project : AuditibleEntity
+    public class Project : AuditibleEntity // #refactor
     {
+
         [Key]
-        public Guid Id { get;  set; } //#refactor : protected should be added to set!
-          
+        public Guid Id { get;  set; } //#refactor : private(thismore) or  protected should be added to set!
+
         public string ProjectNumber { get;   set; }
 
         [Required] 

@@ -5,11 +5,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace WebAPI
-{
-
-    public class Program
-    {
+ 
         //public IConfiguration Configuration { get; }
 
         //public Program(IConfiguration configuration)
@@ -17,8 +13,7 @@ namespace WebAPI
         //    Configuration = configuration;
         //}
          
-        public static void Main(string[] args)
-        {
+        
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +58,4 @@ namespace WebAPI
 
             app.Run();
 
-        }
-    }
-}
+    
