@@ -30,7 +30,9 @@ namespace Infrastructure.Data
             builder
                .Property(b => b.Completed)
                .IsRequired();
-
+            builder
+              .Property(b => b.Working);
+             
             builder
                 .Ignore(b => b.MainTasks); 
         }
