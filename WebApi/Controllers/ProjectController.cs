@@ -77,7 +77,7 @@ namespace WebApi.Controllers
         [HttpDelete("DeleteAll")]
         public async Task<IActionResult> DeleteAllProjects()
         {
-            await _projects.DeleteAllProjects();
+            await _projects.DeleteAllProjectsAsync();
             return NoContent();
         }
         [SwaggerOperation(Summary = "Create example projects and subtasks in db")]

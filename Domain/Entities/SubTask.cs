@@ -1,22 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
-    [Table("SubTasks")]
     public class SubTask : AuditibleEntity
-    {
-
-        [Key]
-        public Guid Id { get;   set; } // #refactor protected need to be added
-
-        [Required]
-        [MaxLength(100)]
+    { 
+        public Guid Id { get;   set; } // #refactor protected need to be added 
         public string Content { get; set; } 
         public bool Completed { get; set; }
-        public Guid LevelAboveId { get; set; } //LevelAboveIt
-
-        [NotMapped]
+        public Guid LevelAboveId { get; set; }  
         public List<SubTask> IncludedTasks { get; set; }
         public SubTask(string content)
         {

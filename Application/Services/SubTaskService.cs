@@ -3,7 +3,6 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
-using System.Linq.Expressions;
 
 namespace Application.Services;
 
@@ -56,7 +55,7 @@ internal class SubTaskService : ISubTaskService
           var subTask = await _subTasks.GetByIDAsync(id);
           // mam subtask
           //wygeneruj mu liste
-          var list = await CreateListOfTasks(subTask.Id);
+          var list = await CreateListOfTasksAsync(subTask.Id);
           // first map
           var subTaskDtoType = _mapper.Map<SubTaskDto>(subTask);
           //przypisz mu liste
@@ -93,7 +92,7 @@ internal class SubTaskService : ISubTaskService
           await _subTasks.UpdateAsync(subTaskType);
       }
 
-      internal async Task<IEnumerable<SubTaskDto>> CreateListOfTasks(Guid parentId)
+      internal async Task<IEnumerable<SubTaskDto>> CreateListOfTasksAsync(Guid parentId)
       {
           var list = await _subTasks.CreateListOfTasks(parentId);
 
@@ -103,7 +102,7 @@ internal class SubTaskService : ISubTaskService
 
       }
 
-      public async Task DeleteAllSubTasks()
+      public async Task DeleteAllSubTasksAsync()
       {
           var allSubTasks = await _subTasks.GetAllAsync();
 

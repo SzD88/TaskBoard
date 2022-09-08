@@ -68,7 +68,7 @@ namespace WebApi.Controllers
         [HttpDelete("DeleteAll")]
         public async Task<IActionResult> DeleteAllProjects()
         {
-            await _subTasks.DeleteAllSubTasks();
+            await _subTasks.DeleteAllSubTasksAsync();
             return NoContent();
         }
     }

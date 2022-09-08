@@ -10,6 +10,8 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new ProjectEntityTypeConfiguration().Configure(modelBuilder.Entity<Project>());
+            //     modelBuilder.Entity<SubTask>()
+            //.ToTable("IncludedTasks", t => t.ExcludeFromMigrations());
             new SubTaskEntityTypeConfiguration().Configure(modelBuilder.Entity<SubTask>());
         }
         public ProjectManagerContext(DbContextOptions options) : base(options)

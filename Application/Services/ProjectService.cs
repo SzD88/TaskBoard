@@ -100,7 +100,7 @@ internal class ProjectService : IProjectService
 
     }
 
-    public async Task DeleteAllProjects() // just helper 
+    public async Task DeleteAllProjectsAsync() // just helper 
     {
         var allProjects = await _projects.GetAllAsync();
 
