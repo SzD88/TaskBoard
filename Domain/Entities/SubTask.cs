@@ -4,12 +4,11 @@ namespace Domain.Entities
 {
     public class SubTask : AuditibleEntity
     {
-        public Id Id { get; private set; }  
-        private Content _content;
-        private Completed _completed;
-        private Id _levelAboveId;
-        private readonly LinkedList<SubTask> _includedSubTasks = new();
-
+        public Id? Id { get; private set; }  
+        private Content? _content;
+        private Completed? _completed;
+        private Id? _levelAboveId;
+        private readonly LinkedList<SubTask> _includedSubTasks = new(); 
         public SubTask()
         {
         }
@@ -19,15 +18,13 @@ namespace Domain.Entities
             _content = content;
             _completed = false;
             Created = DateTime.Now; 
-        }
-
+        } 
         public void EditContent(string toUpdate) =>
          _content.Edit(toUpdate);
         public void EditCompleted(bool toUpdate) =>
          _completed.Edit(toUpdate);
         public void EditLevelAboveId(Guid toUpdate) =>
-         _levelAboveId.Edit(toUpdate); 
-        // methods 
+         _levelAboveId.Edit(toUpdate);   
         public void AddMainTask(SubTask item)
         {
             var alreadyExists = _includedSubTasks.Any(i => i.Id == item.Id);

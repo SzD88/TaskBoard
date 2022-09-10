@@ -4,14 +4,12 @@ namespace Domain.Entities
 {
     public class Project : AuditibleEntity // #refactor
     {
-        public Id Id { get; private set; }
-        private ProjectNumber _projectNumber;
-        private Title _title;
-        private Description _description;
-        private Completed _completed;
-        private readonly LinkedList<SubTask> _mainTasksAsSubTasks = new();
-
-        //ctors 
+        public Id? Id { get; private set; }
+        private ProjectNumber? _projectNumber;
+        private Title? _title;
+        private Description? _description;
+        private Completed? _completed;
+        private readonly LinkedList<SubTask> _mainTasksAsSubTasks = new(); 
         public Project()
         {
         }
@@ -23,8 +21,7 @@ namespace Domain.Entities
             _description = description;
             _completed = false;
             Created = DateTime.Now;
-        }
-         
+        } 
         public void EditProjectNumber(string toUpdate) =>
          _projectNumber.Edit(toUpdate); 
         public void EditTitle(string toUpdate) =>
@@ -32,9 +29,7 @@ namespace Domain.Entities
         public void EditDescription(string toUpdate) =>
           _description.Edit(toUpdate); 
         public void EditCompleted(bool toUpdate) =>
-         _completed.Edit(toUpdate);
-
-        // methods 
+         _completed.Edit(toUpdate); 
         public void AddMainTask(SubTask item)
         {
             var alreadyExists = _mainTasksAsSubTasks.Any(i => i.Id == item.Id);
