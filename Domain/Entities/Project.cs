@@ -1,26 +1,63 @@
-﻿namespace Domain.Entities
+﻿using Domain.ValueObjects;
+
+namespace Domain.Entities
 {
     public class Project : AuditibleEntity // #refactor
-    { 
-        public Guid Id { get;  set; } //#refactor : private(thismore) or  protected should be added to set! 
-        public string ProjectNumber { get;   set; } 
-        public string Title { get; set; } 
-        public string Description { get; set; } 
-        public bool Completed { get; set; } 
-        public bool Working { get; set; } 
-        public List<SubTask> MainTasks { get; set;}
-        public Project(string projNumber, string title, string description)
-        {
-            ProjectNumber = projNumber;
-            Id = Guid.NewGuid();
-            Title = title; 
-            Description = description;
-            Completed = false;
-            Created = DateTime.Now;
-        }
+    {
+        public Id Id { get; private set; }
+        private ProjectNumber _projectNumber;
+        private Title _title;
+        private Description _description;
+        private Completed _completed;
+        private readonly LinkedList<SubTask> _mainTasksAsSubTasks = new();
+
+        //ctors 
         public Project()
         {
+        }
+        public Project(string projNumber, string title, string description)
+        {
+            Id = Guid.NewGuid();
+            _projectNumber = projNumber;
+            _title = title;
+            _description = description;
+            _completed = false;
+            Created = DateTime.Now;
+        }
+         
+        public void EditProjectNumber(string toUpdate) =>
+         _projectNumber.Edit(toUpdate); 
+        public void EditTitle(string toUpdate) =>
+         _title.Edit(toUpdate); 
+        public void EditDescription(string toUpdate) =>
+          _description.Edit(toUpdate); 
+        public void EditCompleted(bool toUpdate) =>
+         _completed.Edit(toUpdate);
 
+        // methods 
+        public void AddMainTask(SubTask item)
+        {
+            var alreadyExists = _mainTasksAsSubTasks.Any(i => i.Id == item.Id);
+            if (alreadyExists)
+            {
+                throw new Exception($"{item} alredy exists");
+            }
+            _mainTasksAsSubTasks.AddLast(item);
+        }
+        public SubTask GetMainTask(Id id)
+        {
+            var task = _mainTasksAsSubTasks.SingleOrDefault(i => i.Id == id);
+
+            if (task is null)
+            {
+                throw new Exception($"Item with {id} does not exists");
+            }
+            return task;
+        }
+        public void RemoveMainTask(SubTask item)
+        {
+            var itemToRemove = GetMainTask(item.Id);
+            _mainTasksAsSubTasks.Remove(itemToRemove);
         }
     }
 }
