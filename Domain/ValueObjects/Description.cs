@@ -28,6 +28,10 @@
             }
             Value = description;
         }
+        public string GetValue()
+        {
+            return Value;
+        }
     }
     public class EmptyDescriptionException : Exception
     {

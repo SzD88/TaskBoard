@@ -4,7 +4,7 @@ namespace Application.Dto
 {
     public class ProjectDto
     {
-        public Guid Id { get; protected set; } // what type in sql server is guid ? answer: uniqueidentifier
+        public Guid Id { get; set; }  
         public string ProjectNumber { get; set; } 
         public string Title { get; set; }
         public string Description { get; set; }

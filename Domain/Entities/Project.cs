@@ -9,7 +9,7 @@ namespace Domain.Entities
         private Title? _title;
         private Description? _description;
         private Completed? _completed;
-        private readonly LinkedList<SubTask> _mainTasksAsSubTasks = new(); 
+        private readonly List<SubTask> _mainTasksAsSubTasks; // = new();
         public Project()
         {
         }
@@ -21,38 +21,50 @@ namespace Domain.Entities
             _description = description;
             _completed = false;
             Created = DateTime.Now;
+            _mainTasksAsSubTasks =  new List<SubTask>();
         } 
         public void EditProjectNumber(string toUpdate) =>
-         _projectNumber.Edit(toUpdate); 
+         _projectNumber.Edit(toUpdate);
         public void EditTitle(string toUpdate) =>
-         _title.Edit(toUpdate); 
+         _title.Edit(toUpdate);
         public void EditDescription(string toUpdate) =>
-          _description.Edit(toUpdate); 
+         _description.GetValue();
         public void EditCompleted(bool toUpdate) =>
-         _completed.Edit(toUpdate); 
-        public void AddMainTask(SubTask item)
-        {
-            var alreadyExists = _mainTasksAsSubTasks.Any(i => i.Id == item.Id);
-            if (alreadyExists)
-            {
-                throw new Exception($"{item} alredy exists");
-            }
-            _mainTasksAsSubTasks.AddLast(item);
-        }
-        public SubTask GetMainTask(Id id)
-        {
-            var task = _mainTasksAsSubTasks.SingleOrDefault(i => i.Id == id);
+         _completed.GetValue();
+        public Guid GetProjectId() =>
+         Id;
+        public string GetProjectNumber() =>
+         _projectNumber.GetValue();
+        public string GetTitle() =>
+         _title.GetValue();
+        public string GetDescription() =>
+         _description.GetValue();
+        public bool GetCompleted() =>
+         _completed.GetValue();
+        //public void AddMainTask(SubTask item)
+        //{
+        //    var alreadyExists = _mainTasksAsSubTasks.Any(i => i.Id == item.Id);
+        //    if (alreadyExists)
+        //    {
+        //        throw new Exception($"{item} alredy exists");
+        //    }
+        //    _mainTasksAsSubTasks.AddLast(item);
+        //}
+        //public SubTask GetMainTask(Id id)
+        //{
+        //    var task = _mainTasksAsSubTasks.SingleOrDefault(i => i.Id == id);
 
-            if (task is null)
-            {
-                throw new Exception($"Item with {id} does not exists");
-            }
-            return task;
-        }
-        public void RemoveMainTask(SubTask item)
-        {
-            var itemToRemove = GetMainTask(item.Id);
-            _mainTasksAsSubTasks.Remove(itemToRemove);
-        }
+        //    if (task is null)
+        //    {
+        //        throw new Exception($"Item with {id} does not exists");
+        //    }
+        //    return task;
+        //}
+        //public void RemoveMainTask(SubTask item)
+        //{
+        //    var itemToRemove = GetMainTask(item.Id);
+        //    _mainTasksAsSubTasks.Remove(itemToRemove);
+        //} 
+        
     }
 }

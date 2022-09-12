@@ -19,6 +19,10 @@
         { 
             Value = state;
         }
+        public bool GetValue()
+        {
+           return Value;
+        }
     }
     public class EmptyCompletedNameException : Exception
     {

@@ -26,6 +26,10 @@
             }
             Value = content;
         }
+        public string GetValue()
+        {
+            return Value;
+        }
     }
     public class EmptyDContentException : Exception
     {

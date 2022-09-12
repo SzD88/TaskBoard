@@ -28,6 +28,10 @@
             }
             Value = projNumber;
         }
+        public string GetValue()
+        {
+            return Value;
+        }
     }
     public class EmptyProjectNumberException : Exception
     {

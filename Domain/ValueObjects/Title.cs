@@ -28,6 +28,10 @@
             }
             Value = title;
         }
+        public string GetValue()
+        {
+            return Value;
+        }
     }
     public class EmptyTitleException : Exception
     {

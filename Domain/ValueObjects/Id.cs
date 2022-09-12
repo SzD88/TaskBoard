@@ -28,6 +28,10 @@
             }
             Value = id;
         }
+        public Guid GetValue()
+        {
+            return Value;
+        }
     }
 
     public class IdIsNullException : Exception
