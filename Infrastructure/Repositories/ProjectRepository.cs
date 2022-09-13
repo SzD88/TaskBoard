@@ -15,23 +15,23 @@ namespace Infrastructure.Repositories
         }
         public async Task<Project> CreateAsync(Project entity)
         {
-            entity.EditCompleted(false); 
+            entity.EditCompleted(false);
             entity.Created = DateTime.Now;
             entity.LastModified = DateTime.Now;
             await _context.Projects.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task DeleteAsync(object projectToDelete)
+        public async Task DeleteAsync(Guid projectToDelete)
         {
             _context.Remove(projectToDelete);
             await _context.SaveChangesAsync();
         }
-        public async Task<IEnumerable<Project>> GetAllAsync()
+        public async Task<IReadOnlyList<Project>> GetAllAsync()
         {
             return await _context.Projects.ToListAsync();
         }
-        public async Task<IEnumerable<Project>> GetAllSortedAsync(string sortField, bool ascending)
+        public async Task<IReadOnlyList<Project>> GetAllSortedAsync(string sortField, bool ascending)
         {
             return await _context.Projects
                 .OrderByPropertyName(sortField, ascending)
@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
         public async Task<Project> GetByIDAsync(Guid id)
         {
             var guid = (Guid)id;
-            var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.GetProjectId() == guid); 
+            var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.GetProjectId() == guid);
             return toReturn;
         }
 
@@ -51,7 +51,7 @@ namespace Infrastructure.Repositories
             _context.Projects.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
-        public async Task<IEnumerable<SubTask>> CreateListOfMainTasks(Guid parentId)
+        public async Task<IReadOnlyList<SubTask>> CreateListOfMainTasks(Guid parentId)
         {
             var list = await _context.SubTasks
                   .Where(x => x.GetLevelAboveId() == parentId)
@@ -59,6 +59,10 @@ namespace Infrastructure.Repositories
 
             return list;
         }
+
+      
+
+        
         //public async Task CreateExampleProjectsAsync()
         //{
         //    try
@@ -101,6 +105,6 @@ namespace Infrastructure.Repositories
 
 
 
-        }
     }
 }
+

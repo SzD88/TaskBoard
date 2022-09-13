@@ -2,24 +2,24 @@
 {
 
     public record Description
+    {
+        public string Value { get; private set; }
+
+        public Description(string value)
         {
-            public string Value { get; private set; }
-
-            public Description(string value)
+            if (string.IsNullOrWhiteSpace(value))
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new EmptyDescriptionException();
-                }
-
-                Value = value;
+                throw new EmptyDescriptionException();
             }
 
-            public static implicit operator string(Description name)
-                => name.Value;
+            Value = value;
+        }
 
-            public static implicit operator Description(string name)
-                => new(name);
+        public static implicit operator string(Description name)
+            => name.Value;
+
+        public static implicit operator Description(string name)
+            => new(name);
         public void Edit(string description)
         {
             if (string.IsNullOrWhiteSpace(description))

@@ -27,22 +27,19 @@ internal class ProjectService : IProjectService
 
     public async Task DeleteAsync(Guid id)
     {
-        var guid = (Guid)id;
-        var toDelete = await _projects.GetByIDAsync(guid);
-        await _projects.DeleteAsync(toDelete);
-
+        await _projects.DeleteAsync(id); 
     }
 
-    public async Task<IEnumerable<ProjectDto>> GetAllAsync()
+    public async Task<IReadOnlyList<ProjectDto>> GetAllAsync()
     {
 
         var allProjects = await _projects.GetAllAsync();
-        var mappedProjects = _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
+        var mappedProjects = _mapper.Map<IReadOnlyList<ProjectDto>>(allProjects);
 
         foreach (var item in mappedProjects)
         {
             var list = await _subTasks.CreateListOfTasks(item.Id);
-            var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+            var mappedList = _mapper.Map<IReadOnlyList<SubTaskDto>>(list);
 
             foreach (var lists in mappedList)
             {
@@ -52,15 +49,15 @@ internal class ProjectService : IProjectService
         return mappedProjects;
 
     }
-    public async Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
+    public async Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
     {
         var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
-        var mappedProjects = _mapper.Map<IEnumerable<ProjectDto>>(allProjects);
+        var mappedProjects = _mapper.Map<IReadOnlyList<ProjectDto>>(allProjects);
 
         foreach (var item in mappedProjects)
         {
             var list = await _subTasks.CreateListOfTasks(item.Id);
-            var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+            var mappedList = _mapper.Map<IReadOnlyList<SubTaskDto>>(list);
 
             foreach (var lists in mappedList)
             {
@@ -71,7 +68,7 @@ internal class ProjectService : IProjectService
 
     }
 
-    public async Task<ProjectDto> GetByIDAsync(object id)
+    public async Task<ProjectDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);
 
@@ -100,15 +97,14 @@ internal class ProjectService : IProjectService
 
     }
 
-    public async Task DeleteAllProjectsAsync() // just helper 
+    public async Task DeleteAllProjectsAsync()  
     {
         var allProjects = await _projects.GetAllAsync();
 
         foreach (var project in allProjects)
         {
-            await _projects.DeleteAsync(project);
+            await _projects.DeleteAsync(project.Id);
         }
     }
-
-   
+ 
 }

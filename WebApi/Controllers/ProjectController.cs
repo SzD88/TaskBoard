@@ -20,7 +20,7 @@ namespace WebApi.Controllers
             _projects = service;
         }
 
-        [SwaggerOperation(Summary = "Create new project")]
+        [SwaggerOperation(Summary = "Create new project")] //post=>/api/project/
         [HttpPost]
         public async Task<IActionResult> AddProject(CreateProjectDto project)
         {
@@ -28,14 +28,15 @@ namespace WebApi.Controllers
             return Created($"api/Clients/{toShow.Id}", "Created, new id is : " + toShow.Id);
         }
 
-        [SwaggerOperation(Summary = "Retrieves project by id")]
+        [SwaggerOperation(Summary = "Retrieves project by id")] 
+        //get=>/api/project/id
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProjectById(Guid id)
         {
             var toShow = await _projects.GetByIDAsync(id);
             return Ok(toShow);
         }
-        [SwaggerOperation(Summary = "Retrieves all projects")]
+        [SwaggerOperation(Summary = "Retrieves all projects")]//get=>/api/project/
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -43,7 +44,8 @@ namespace WebApi.Controllers
             return Ok(toShow);
         }
         [SwaggerOperation(Summary = "Retrieves all projects sorted by property")]
-        [HttpGet("GetAllSorted")]
+        //get=>/api/Project/Sort?SortField=title&Ascending=true'
+        [HttpGet("Sort")]
         public async Task<IActionResult> GetAllSorted([FromQuery] SortingFilter sortingFilter)
         {
 
@@ -54,7 +56,8 @@ namespace WebApi.Controllers
         }
 
         [SwaggerOperation(Summary = "Retrieves sort fields")]
-        [HttpGet("[action]")]
+        //get=>/api/Project/sort/sortfields
+        [HttpGet("sort/sortfields")] // ???????????get?
         public IActionResult GetSortFields()
         {
             return Ok(SortingHelper.GetSortFields().Select(x => x.Key));
@@ -80,12 +83,6 @@ namespace WebApi.Controllers
             await _projects.DeleteAllProjectsAsync();
             return NoContent();
         }
-        [SwaggerOperation(Summary = "Create example projects and subtasks in db")]
-        [HttpPost("CreateExamples")]
-        public async Task<IActionResult> CreateExamples()
-        {
-            await _projects.CreateExampleProjectsAsync();
-            return Ok("Created");
-        }
+        
     }
 }

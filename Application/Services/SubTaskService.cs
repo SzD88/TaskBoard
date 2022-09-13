@@ -21,27 +21,22 @@ internal class SubTaskService : ISubTaskService
           var asSubTaskType = _mapper.Map<SubTask>(subTask);
           var created = await _subTasks.CreateAsync(asSubTaskType);
           return _mapper.Map<SubTaskDto>(created);
-      }
-
-
-
+      } 
       public async Task DeleteAsync(Guid id)
-      {
-         
-          var toDelete = await _subTasks.GetByIDAsync(id);
-          await _subTasks.DeleteAsync(toDelete);
+      { 
+          await _subTasks.DeleteAsync(id);
       }
 
-      public async Task<IEnumerable<SubTaskDto>> GetAllAsync()
+      public async Task<IReadOnlyList<SubTaskDto>> GetAllAsync()
       {
           var allSubTasks = await _subTasks.GetAllAsync();
 
-          var mappedSubTasks = _mapper.Map<IEnumerable<SubTaskDto>>(allSubTasks);
+          var mappedSubTasks = _mapper.Map<IReadOnlyList<SubTaskDto>>(allSubTasks);
 
           foreach (var item in mappedSubTasks)
           {
               var list = await _subTasks.CreateListOfTasks(item.Id);
-              var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+              var mappedList = _mapper.Map<IReadOnlyList<SubTaskDto>>(list);
 
               foreach (var lists in mappedList)
               {
@@ -92,11 +87,11 @@ internal class SubTaskService : ISubTaskService
           await _subTasks.UpdateAsync(subTaskType);
       }
 
-      internal async Task<IEnumerable<SubTaskDto>> CreateListOfTasksAsync(Guid parentId)
+      internal async Task<IReadOnlyList<SubTaskDto>> CreateListOfTasksAsync(Guid parentId)
       {
           var list = await _subTasks.CreateListOfTasks(parentId);
 
-          var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+          var mappedList = _mapper.Map<IReadOnlyList<SubTaskDto>>(list);
 
           return mappedList;
 
@@ -108,11 +103,9 @@ internal class SubTaskService : ISubTaskService
 
           foreach (var subTask in allSubTasks)
           {
-              await _subTasks.DeleteAsync(subTask);
+              await _subTasks.DeleteAsync(subTask.Id);
           }
       }
 
    
-
-   
-  }
+}

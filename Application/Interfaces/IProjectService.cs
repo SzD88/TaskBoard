@@ -6,9 +6,9 @@ public interface IProjectService
 {
   Task<ProjectDto> CreateAsync(CreateProjectDto entity);
   Task DeleteAsync(Guid id);
-  Task<IEnumerable<ProjectDto>> GetAllAsync(); // #refactor
-  Task<ProjectDto> GetByIDAsync(object id);
+  Task<IReadOnlyList<ProjectDto>> GetAllAsync(); // #refactor
+  Task<ProjectDto> GetByIDAsync(Guid id);
   Task UpdateAsync(UpdateProjectDto entityToUpdate);
   Task DeleteAllProjectsAsync();
-  Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
+  Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
 }

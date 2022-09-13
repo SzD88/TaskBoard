@@ -22,20 +22,20 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task DeleteAsync(object subTaskToDelete) // tu ma wejsc note
+        public async Task DeleteAsync(Guid subTaskToDelete) // tu ma wejsc note
         {
             _context.Remove(subTaskToDelete);
             await _context.SaveChangesAsync();
         }
-        public async Task<IEnumerable<SubTask>> GetAllAsync()
+        public async Task<IReadOnlyList<SubTask>> GetAllAsync()
         {
             return await _context.SubTasks.ToListAsync();
         }
         public async Task<SubTask> GetByIDAsync(Guid id)
         {
             var guid = (Guid)id;
-            var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.Id == guid);
-          //   if (toReturn == null) throw new Exception("Not found sd");
+            var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.GetSubTaskId() == guid);
+            //   if (toReturn == null) throw new Exception("Not found sd");
             return toReturn;
         }
         public async Task UpdateAsync(SubTask entityToUpdate)
@@ -43,23 +43,28 @@ namespace Infrastructure.Repositories
             _context.SubTasks.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
-        public async Task<IEnumerable<SubTask>> CreateListOfTasks(Guid parentId)
+        public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId)
         {
             var list = await _context.SubTasks
-                .Where(x => x.LevelAboveId == parentId)
-//#sorthere
+                .Where(x => x.GetLevelAboveId() == parentId)
+                //#sorthere
                 .ToListAsync();
+            //mam liste subtaskow ktore maja wskazane parent id
+            //te liste musze gdzies przypisac do ILIST
 
-            foreach (var item in list)
+
+            foreach (var subtask in list)
             {
-                var listBelow = await CreateListOfTasks(item.Id);
+                var listBelow = await CreateListOfTasks(subtask.Id);
 
-
-                item.IncludedTasks = listBelow.ToList();
+                foreach (var itemBelow in listBelow)
+                {
+                    subtask.AddSubTask(itemBelow);
+                }
             }
             return list;
         }
-
+ 
         //public async Task CreateExampleSubTasksAsync()
         //{// ("56950D32-F426-4B5C-96CB-FFA074A8A37B"),
         // // ("11150Z32-Z336-3B5C-33ZZ-FFA034A8A36Z"),
