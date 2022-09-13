@@ -9,7 +9,7 @@ namespace Domain.Entities
         private Title? _title;
         private Description? _description;
         private Completed? _completed;
-        private readonly List<SubTask> _mainTasksAsSubTasks; // = new();
+        private readonly IReadOnlyList<SubTask> _mainTasksAsSubTasks; // = new();
         public Project()
         {
         }
@@ -34,7 +34,7 @@ namespace Domain.Entities
         public Guid GetProjectId() =>
          Id;
         public string GetProjectNumber() =>
-         _projectNumber.GetValue();
+         _projectNumber.GetValue(); 
         public string GetTitle() =>
          _title.GetValue();
         public string GetDescription() =>

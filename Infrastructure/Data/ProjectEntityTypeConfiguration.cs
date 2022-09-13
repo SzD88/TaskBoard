@@ -15,26 +15,22 @@ namespace Infrastructure.Data
                 .HasKey(b => b.Id);
 
             builder
-                .Property(b => b.ProjectNumber);
+                .Property(b => b.GetProjectNumber());
 
             builder
-                 .Property(b => b.Title)
+                 .Property(b => b.GetTitle())
                  .HasMaxLength(100)
                  .IsRequired(); 
 
             builder
-               .Property(b => b.Description)
+               .Property(b => b.GetDescription())
                .HasMaxLength(100)
                .IsRequired();
 
             builder
-               .Property(b => b.Completed)
+               .Property(b => b.GetCompleted())
                .IsRequired();
-            builder
-              .Property(b => b.Working);
              
-            builder
-                .Ignore(b => b.MainTasks); 
         }
     }
 }

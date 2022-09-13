@@ -10,6 +10,5 @@ public interface IProjectService
   Task<ProjectDto> GetByIDAsync(object id);
   Task UpdateAsync(UpdateProjectDto entityToUpdate);
   Task DeleteAllProjectsAsync();
-  Task CreateExampleProjectsAsync();
   Task<IEnumerable<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
 }

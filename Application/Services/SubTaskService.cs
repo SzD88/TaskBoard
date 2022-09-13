@@ -73,14 +73,14 @@ internal class SubTaskService : ISubTaskService
       { 
           var subTask = await _subTasks.GetByIDAsync(id);
 
-          if (subTask.Completed == true) 
-              subTask.Completed = false; 
+          if (subTask.GetCompleted() == true) 
+              subTask.EditCompleted(false); 
           else 
-              subTask.Completed = true; 
+              subTask.EditCompleted(true); 
            
          await _subTasks.UpdateAsync(subTask);
 
-          return subTask.Completed;
+          return subTask.GetCompleted();
       }
       public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
       {
@@ -112,10 +112,7 @@ internal class SubTaskService : ISubTaskService
           }
       }
 
-      public async Task CreateExampleSubTasksAsync()
-      {
-          await _subTasks.CreateExampleSubTasksAsync();
-      }
+   
 
    
   }

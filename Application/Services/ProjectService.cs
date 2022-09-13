@@ -110,9 +110,5 @@ internal class ProjectService : IProjectService
         }
     }
 
-    public async Task CreateExampleProjectsAsync()
-    {
-        await _projects.CreateExampleProjectsAsync();
-        await _subTasks.CreateExampleSubTasksAsync();
-    }
+   
 }

@@ -15,17 +15,17 @@ namespace Infrastructure.Data
                 .HasKey(b => b.Id);
 
             builder
-                .Property(b => b.Content);
+                .Property(b => b.GetContent());
 
             builder
-                 .Property(b => b.Completed)
+                 .Property(b => b.GetCompleted())
                  .IsRequired();
 
             builder
-               .Property(b => b.LevelAboveId);
+               .Property(b => b.GetLevelAboveId());
 
-            builder
-                .Ignore(b => b.IncludedTasks);
+            //builder
+            //    .Ignore(b => b.IncludedTasks);
         }
     }
 }

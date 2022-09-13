@@ -10,6 +10,5 @@ public interface ISubTaskService
   Task<SubTaskDto> GetByIDAsync(Guid id);
   Task UpdateAsync(UpdateSubTaskDto entityToUpdate);
   Task DeleteAllSubTasksAsync();
-  Task CreateExampleSubTasksAsync();
   Task<bool> ChangeCompletedStateAsync(Guid id);
 }
