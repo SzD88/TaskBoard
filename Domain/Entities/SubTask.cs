@@ -8,7 +8,7 @@ namespace Domain.Entities
         private Content? _content;
         private Completed? _completed;
         private Id? _levelAboveId;
-        private readonly LinkedList<SubTask> _includedSubTasks = new(); 
+        private readonly LinkedList<Guid> _includedSubTasks = new(); 
         public SubTask()
         {
         }
@@ -35,29 +35,35 @@ namespace Domain.Entities
         public Guid GetLevelAboveId() =>
          _levelAboveId.GetValue();
 
-        public void AddSubTask(SubTask item)
+        public void AddMainTask(Guid mainTaskId)
         {
-            var alreadyExists = _includedSubTasks.Any(i => i.Id == item.Id);
+            var alreadyExists = _includedSubTasks.Any(i => i == mainTaskId);
+
             if (alreadyExists)
             {
-                throw new Exception($"{item} alredy exists");
+                throw new Exception($"Object with id: {mainTaskId} alredy exists");
             }
-            _includedSubTasks.AddLast(item);
+            _includedSubTasks.AddLast(mainTaskId);
         }
-        public SubTask GetSubTask(Id id)
+        public bool CheckExistance(Guid id) // method was Get SubTask, now i see no point in it
         {
-            var task = _includedSubTasks.SingleOrDefault(i => i.Id == id);
+            var task = _includedSubTasks.FirstOrDefault(i => i == id);
 
-            if (task is null)
+            if (task == Guid.Empty)
             {
-                throw new Exception($"Item with {id} does not exists");
+                throw new Exception($"Object with {id} does not exists");
             }
-            return task;
+            return true;
         }
-        public void RemoveSubTask(SubTask item)
+        public void RemoveMainTask(Guid item)
         {
-            var itemToRemove = GetSubTask(item.Id);
-            _includedSubTasks.Remove(itemToRemove);
+            var alreadyExists = _includedSubTasks.Any(i => i == item);
+
+            if (!alreadyExists)
+            {
+                throw new Exception($"Object with id: {item} does not exists");
+            }
+            _includedSubTasks.Remove(item);
         }
     }
 }

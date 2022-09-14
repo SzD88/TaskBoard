@@ -9,7 +9,7 @@ namespace Domain.Entities
         private Title? _title;
         private Description? _description;
         private Completed? _completed;
-        private readonly IReadOnlyList<SubTask> _mainTasksAsSubTasks; // = new();
+        private readonly LinkedList<Guid> _mainTasksAsSubTasks; // = new();
         public Project()
         {
         }
@@ -21,7 +21,7 @@ namespace Domain.Entities
             _description = description;
             _completed = false;
             Created = DateTime.Now;
-            _mainTasksAsSubTasks =  new List<SubTask>();
+            _mainTasksAsSubTasks =  new LinkedList<Guid>();
         } 
         public void EditProjectNumber(string toUpdate) =>
          _projectNumber.Edit(toUpdate);
@@ -41,30 +41,37 @@ namespace Domain.Entities
          _description.GetValue();
         public bool GetCompleted() =>
          _completed.GetValue();
-        //public void AddMainTask(SubTask item)
-        //{
-        //    var alreadyExists = _mainTasksAsSubTasks.Any(i => i.Id == item.Id);
-        //    if (alreadyExists)
-        //    {
-        //        throw new Exception($"{item} alredy exists");
-        //    }
-        //    _mainTasksAsSubTasks.AddLast(item);
-        //}
-        //public SubTask GetMainTask(Id id)
-        //{
-        //    var task = _mainTasksAsSubTasks.SingleOrDefault(i => i.Id == id);
 
-        //    if (task is null)
-        //    {
-        //        throw new Exception($"Item with {id} does not exists");
-        //    }
-        //    return task;
-        //}
-        //public void RemoveMainTask(SubTask item)
-        //{
-        //    var itemToRemove = GetMainTask(item.Id);
-        //    _mainTasksAsSubTasks.Remove(itemToRemove);
-        //} 
-        
+        public void AddMainTask(Guid mainTaskId)
+        {
+            var alreadyExists = _mainTasksAsSubTasks.Any(i => i == mainTaskId);
+
+            if (alreadyExists)
+            {
+                throw new Exception($"Object with id: {mainTaskId} alredy exists");
+            }
+            _mainTasksAsSubTasks.AddLast(mainTaskId);
+        }
+        public bool CheckExistance(Guid id) // method was Get SubTask, now i see no point in it
+        {
+            var task = _mainTasksAsSubTasks.FirstOrDefault(i => i == id);
+
+            if (task == Guid.Empty)
+            {
+                throw new Exception($"Object with {id} does not exists");
+            }
+            return true;
+        }
+        public void RemoveMainTask(Guid item)
+        {
+            var alreadyExists = _mainTasksAsSubTasks.Any(i => i == item);
+
+            if (!alreadyExists)
+            {
+                throw new Exception($"Object with id: {item} does not exists");
+            }
+            _mainTasksAsSubTasks.Remove(item);
+        }
+
     }
 }
