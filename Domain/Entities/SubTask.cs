@@ -35,7 +35,7 @@ namespace Domain.Entities
         public Guid GetLevelAboveId() =>
          _levelAboveId.GetValue();
 
-        public void AddMainTask(Guid mainTaskId)
+        public void AddSubTask(Guid mainTaskId)
         {
             var alreadyExists = _includedSubTasks.Any(i => i == mainTaskId);
 

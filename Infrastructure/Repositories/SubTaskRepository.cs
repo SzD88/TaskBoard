@@ -48,18 +48,15 @@ namespace Infrastructure.Repositories
             var list = await _context.SubTasks
                 .Where(x => x.GetLevelAboveId() == parentId)
                 //#sorthere
-                .ToListAsync();
-            //mam liste subtaskow ktore maja wskazane parent id
-            //te liste musze gdzies przypisac do ILIST
-
-
+                .ToListAsync(); 
+             
             foreach (var subtask in list)
             {
                 var listBelow = await CreateListOfTasks(subtask.Id);
 
                 foreach (var itemBelow in listBelow)
                 {
-                    subtask.AddSubTask(itemBelow);
+                    subtask.AddSubTask(itemBelow.GetSubTaskId());
                 }
             }
             return list;

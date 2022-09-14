@@ -25,34 +25,33 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Project", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Completed")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProjectNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("_completed")
+                        .HasColumnType("bit")
+                        .HasColumnName("Completed");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("_description")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("Description");
 
-                    b.Property<bool>("Working")
-                        .HasColumnType("bit");
+                    b.Property<string>("_projectNumber")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ProjectNumber");
+
+                    b.Property<string>("_title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("Title");
 
                     b.HasKey("Id");
 
@@ -62,15 +61,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.SubTask", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Completed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -78,8 +69,19 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("LevelAboveId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<bool>("_completed")
+                        .HasColumnType("bit")
+                        .HasColumnName("Completed");
+
+                    b.Property<string>("_content")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasColumnName("Content");
+
+                    b.Property<Guid>("_levelAboveId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LevelAboveId");
 
                     b.HasKey("Id");
 

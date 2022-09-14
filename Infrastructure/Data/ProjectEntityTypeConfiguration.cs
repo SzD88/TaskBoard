@@ -10,7 +10,6 @@ namespace Infrastructure.Data
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            //sets both side conversion
             var projectNumberConverter = new ValueConverter<ProjectNumber, string>(pnr => pnr.GetValue(),
                 dbvalue => new ProjectNumber(dbvalue));
             var titleConverter = new ValueConverter<Title, string>(title => title.GetValue(),
@@ -20,45 +19,38 @@ namespace Infrastructure.Data
             var completedConverter = new ValueConverter<Completed, bool>(desc => desc.GetValue(),
                 dbvalue => new Completed(dbvalue));
             builder
-                .ToTable("Projects"); 
+                .ToTable("Projects");
             builder
-                .HasKey(b => b.Id); 
+                .HasKey(b => b.Id);
 
+            builder
+             .Property(pl => pl.Id)
+             .HasConversion(id => id.GetValue(), id => new Id(id));
+             
             builder.Property(typeof(ProjectNumber), "_projectNumber")
                 .HasConversion(projectNumberConverter)
                 .HasColumnName("ProjectNumber");
 
             builder.Property(typeof(Title), "_title")
                 .HasConversion(titleConverter)
-                .HasColumnName("Title");
+                .HasColumnName("Title")
+                .HasMaxLength(100)
+                .IsRequired();
 
             builder.Property(typeof(Description), "_description")
                 .HasConversion(descriptionConverter)
-                .HasColumnName("Description");
+                .HasColumnName("Description")
+                .HasMaxLength(100)
+                .IsRequired();
 
             builder.Property(typeof(Completed), "_completed")
                 .HasConversion(completedConverter)
-                .HasColumnName("Completed");
-
-            builder.HasMany(typeof(Guid), "_items");
-            //private readonly IReadOnlyList<SubTask> _mainTasksAsSubTasks; // = new();
-            builder
-                .Property(b => b.GetProjectNumber());
-
-            builder
-                 .Property(b => b.GetTitle())
-                 .HasMaxLength(100)
-                 .IsRequired(); 
-
-            builder
-               .Property(b => b.GetDescription())
-               .HasMaxLength(100)
-               .IsRequired();
-
-            builder
-               .Property(b => b.GetCompleted())
-               .IsRequired();
+                .HasColumnName("Completed")
+                .IsRequired();
              
+             builder.HasMany(typeof(SubTask), "_items");  // was guid 
+             
+
         }
     }
 }
