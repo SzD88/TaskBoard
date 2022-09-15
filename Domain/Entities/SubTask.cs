@@ -8,7 +8,7 @@ namespace Domain.Entities
         private Content? _content;
         private Completed? _completed;
         private Id? _levelAboveId;
-        private readonly LinkedList<Guid> _includedSubTasks = new(); 
+        private readonly List<Guid> _includedSubTasks = new(); 
         public SubTask()
         {
         }
@@ -43,7 +43,7 @@ namespace Domain.Entities
             {
                 throw new Exception($"Object with id: {mainTaskId} alredy exists");
             }
-            _includedSubTasks.AddLast(mainTaskId);
+            _includedSubTasks.Append(mainTaskId);
         }
         public bool CheckExistance(Guid id) // method was Get SubTask, now i see no point in it
         {

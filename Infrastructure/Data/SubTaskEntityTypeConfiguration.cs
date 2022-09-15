@@ -43,7 +43,7 @@ namespace Infrastructure.Data
                .HasColumnName("LevelAboveId")
                .IsRequired();
 
-             builder.HasMany(typeof(SubTask), "_includedSubTasks"); // tu jest blad 
+           //  builder.HasMany(typeof(SubTask), "_includedSubTasks"); // tu jest blad 
 
         }
     }

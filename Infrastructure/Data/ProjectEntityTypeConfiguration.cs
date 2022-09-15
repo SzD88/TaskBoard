@@ -18,6 +18,8 @@ namespace Infrastructure.Data
                 dbvalue => new Description(dbvalue));
             var completedConverter = new ValueConverter<Completed, bool>(desc => desc.GetValue(),
                 dbvalue => new Completed(dbvalue));
+            var idConverter = new ValueConverter<Id, Guid>(id => id.GetValue(),
+             dbvalue => new Id(dbvalue));
             builder
                 .ToTable("Projects");
             builder
@@ -47,8 +49,9 @@ namespace Infrastructure.Data
                 .HasConversion(completedConverter)
                 .HasColumnName("Completed")
                 .IsRequired();
-             
-             builder.HasMany(typeof(SubTask), "_items");  // was guid 
+
+          //  builder
+           //    .HasMany(typeof(Guid), "_items"); // was guid 
              
 
         }

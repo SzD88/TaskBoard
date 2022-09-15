@@ -9,7 +9,7 @@ namespace Domain.Entities
         private Title? _title;
         private Description? _description;
         private Completed? _completed;
-        private readonly LinkedList<Guid> _mainTasksAsSubTasks; // = new();
+        private readonly List<Guid> _mainTasksAsSubTasks; // = new();
         public Project()
         {
         }
@@ -21,7 +21,7 @@ namespace Domain.Entities
             _description = description;
             _completed = false;
             Created = DateTime.Now;
-            _mainTasksAsSubTasks =  new LinkedList<Guid>();
+            _mainTasksAsSubTasks =  new List<Guid>();
         } 
         public void EditProjectNumber(string toUpdate) =>
          _projectNumber.Edit(toUpdate);
@@ -50,7 +50,7 @@ namespace Domain.Entities
             {
                 throw new Exception($"Object with id: {mainTaskId} alredy exists");
             }
-            _mainTasksAsSubTasks.AddLast(mainTaskId);
+            _mainTasksAsSubTasks.Append(mainTaskId);
         }
         public bool CheckExistance(Guid id) // method was Get SubTask, now i see no point in it
         {

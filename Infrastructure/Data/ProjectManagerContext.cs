@@ -9,9 +9,10 @@ namespace Infrastructure.Data
         public DbSet<Project> Projects { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            new SubTaskEntityTypeConfiguration().Configure(modelBuilder.Entity<SubTask>());
+
             new ProjectEntityTypeConfiguration().Configure(modelBuilder.Entity<Project>());
            
-            new SubTaskEntityTypeConfiguration().Configure(modelBuilder.Entity<SubTask>());
         }
         public ProjectManagerContext(DbContextOptions options) : base(options)
         {
