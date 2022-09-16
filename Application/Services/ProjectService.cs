@@ -2,16 +2,13 @@
 using Application.Interfaces;
 using Application.Mappings;
 using Domain.Interfaces;
-
-
-namespace Application.Services;
+ namespace Application.Services;
 
 internal class ProjectService : IProjectService
 {
     private readonly IProjectRepository _projects;
-   //  private readonly IMapper _mapper;
     private readonly ISubTaskRepository _subTasks;
-    public ProjectService(IProjectRepository projectRepository,  ISubTaskRepository subTaskRepository) //IMapper mapper,
+    public ProjectService(IProjectRepository projectRepository,  ISubTaskRepository subTaskRepository)  
     {
         _projects = projectRepository;
         _subTasks = subTaskRepository;

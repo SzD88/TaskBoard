@@ -54,53 +54,7 @@ namespace Infrastructure.Repositories
                   .ToListAsync();
 
             return list;
-        }
-
-      
-
-        
-        //public async Task CreateExampleProjectsAsync()
-        //{
-        //    try
-        //    {
-        //        var ifCreated = await GetByIDAsync(new Guid("56950D32-F426-4B5C-96CB-FFA074A8A37B"));
-        //        if (ifCreated == null)
-        //        {
-        //            var exampleProject = new Project()
-        //            {
-        //                ProjectNumber = "133-22",
-        //                Id = new Guid("56950D32-F426-4B5C-96CB-FFA074A8A37B"),
-        //                Title = "Title of Example Project 1",
-        //                Description = "Description of Example Project Number 1",
-        //                Completed = false,
-        //                Created = DateTime.Now,
-        //                LastModified = DateTime.Now
-
-        //            };
-        //            var exampleProject2 = new Project()
-        //            {
-        //                ProjectNumber = "144-22",
-        //                Id = new Guid("1d5672c8-7102-414e-b5cf-95352b172ada"),
-        //                Title = "Title of Example Project 2",
-        //                Description = "Description of Example Project Number 2",
-        //                Completed = false,
-        //                Created = DateTime.Now,
-        //                LastModified = DateTime.Now
-        //            };
-
-        //            await _context.AddAsync(exampleProject);
-        //            await _context.AddAsync(exampleProject2);
-        //            await _context.SaveChangesAsync();
-
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-
-
-
+        } 
     }
 }
 
