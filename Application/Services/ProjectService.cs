@@ -31,60 +31,44 @@ internal class ProjectService : IProjectService
     public async Task<IReadOnlyList<ProjectDto>> GetAllAsync()
     { 
         var allProjects = await _projects.GetAllAsync();
-        //mam liste
-        var mappedProjects = new List<ProjectDto>();
-        foreach (var item in allProjects)
+        var mappedProjects = Map.ListConvert(allProjects);
+         
+        foreach (var projectObject in mappedProjects)
         {
-            mappedProjects.Add(Map.ProjectToProjectDto(item));
-        } 
-        foreach (var item in mappedProjects)
-        {
-            //dla kazdego z juz zmapowanych typow tworzysz liste pobranych dla niego
-            //pod taskow . 
-            var list = await _subTasks.CreateListOfTasks(item.Id);
-            // tylko ta lista jest nie zmapowana, wiec po prostu foreach tu jebnij 
-            var mappedList = new List<ProjectDto>();
-            foreach (var item in allProjects)
-            {
-                mappedList.Add(Map.ProjectToProjectDto(item);
-            }
-
-            foreach (var lists in mappedList)
-            {
-                item.MainTasks.Add(lists);
-            }
+            var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
+            var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
+              
+            projectObject.MainTasks = mappedListOfIncludedSubTasks;
         }
-        return mappedProjects;
-
+        return mappedProjects; 
     }
     public async Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
     {
         var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
-        var mappedProjects = _mapper.Map<IReadOnlyList<ProjectDto>>(allProjects);
-
+        var mappedProjects =  Map.ListConvert(allProjects) ;
+              
         foreach (var item in mappedProjects)
         {
             var list = await _subTasks.CreateListOfTasks(item.Id);
-            var mappedList = _mapper.Map<IReadOnlyList<SubTaskDto>>(list);
-
+            var mappedList = Map.ListConvert(list);
+                
             foreach (var lists in mappedList)
             {
                 item.MainTasks.Add(lists);
             }
         }
-        return mappedProjects;
-
+        return mappedProjects; 
     }
 
     public async Task<ProjectDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);
 
-        var projectDtoType = _mapper.Map<ProjectDto>(project);
-
+        var projectDtoType = Map.ProjectToProjectDto(project);
+            
         var list = await _subTasks.CreateListOfTasks(project.Id);
 
-        var mappedList = _mapper.Map<IEnumerable<SubTaskDto>>(list);
+        var mappedList = Map.ListConvert(list); 
 
         foreach (var item in mappedList)
         {
@@ -94,15 +78,10 @@ internal class ProjectService : IProjectService
     }
 
     public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
-    {
+    {  
+        var project = Map.UpdateProjectDtoToProject(entityToUpdate); 
 
-        var existinProject = await _projects.GetByIDAsync(entityToUpdate.Id);
-
-        var project = _mapper.Map(entityToUpdate, existinProject);
-
-        await _projects.UpdateAsync(project);
-
-
+        await _projects.UpdateAsync(project); 
     }
 
     public async Task DeleteAllProjectsAsync()  

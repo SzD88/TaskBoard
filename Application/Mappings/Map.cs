@@ -17,7 +17,7 @@ namespace Application.Mappings
                 CreationDate = projectType.Created,
                 LastModifiedDate = projectType.LastModified,
                 MainTasks = new List<SubTaskDto>()
-            }; 
+            };
         }
         public static Project ProjectDtoToProject(ProjectDto enter)
         {
@@ -30,7 +30,7 @@ namespace Application.Mappings
             projectType.Created = enter.CreationDate;
             projectType.LastModified = enter.LastModifiedDate;
 
-            return projectType; 
+            return projectType;
         }
         public static Project CreateProjectDtoToProject(CreateProjectDto enter)
         {
@@ -57,7 +57,7 @@ namespace Application.Mappings
             projectType.LastModified = DateTime.UtcNow;
 
             return projectType;
-        } 
+        }
         public static SubTaskDto SubTaskToSubTaskDto(SubTask subTaskType)
         {
             return new SubTaskDto
@@ -67,8 +67,8 @@ namespace Application.Mappings
                 Content = subTaskType.GetContent(),
                 LevelAboveId = subTaskType.GetLevelAboveId()
             };
-         
-    } 
+
+        }
         public static SubTask SubTaskDtoToSubTask(SubTaskDto enter)
         {
             var subTaskType = new SubTask();
@@ -78,7 +78,7 @@ namespace Application.Mappings
             subTaskType.Id.Edit(enter.Id);
 
             return subTaskType;
-        } 
+        }
         public static SubTask CreateSubTaskDtoToSubTask(CreateSubTaskDto enter)
         {
             var subTaskType = new SubTask();
@@ -88,18 +88,35 @@ namespace Application.Mappings
             subTaskType.Id.Edit(new Guid());
 
             return subTaskType;
-        } 
+        }
         public static SubTask UpdateSubTaskDtoToSubTask(UpdateSubTaskDto enter)
         {
             var subTaskType = new SubTask();
             subTaskType.EditCompleted(false);
             subTaskType.EditContent(enter.Content);
             subTaskType.EditLevelAboveId(enter.LevelAboveId);
-            subTaskType.Id.Edit(enter.Id); 
+            subTaskType.Id.Edit(enter.Id);
             //projectType.Created = ??; #refactor
             subTaskType.LastModified = DateTime.UtcNow;
             return subTaskType;
         }
+        public static List<ProjectDto> ListConvert(IReadOnlyList<Project> enter)
+        {
+            var toReturn = new List<ProjectDto>();
+            foreach (var item in enter)
+            {
+                toReturn.Add(Map.ProjectToProjectDto(item));
+            }
+            return toReturn;
+        }
+        public static List<SubTaskDto> ListConvert(IReadOnlyList<SubTask> enter)
+        {
+            var toReturn = new List<SubTaskDto>();
+            foreach (var item in enter)
+            {
+                toReturn.Add(Map.SubTaskToSubTaskDto(item));
+            }
+            return toReturn;
+        }
     }
-
 }
