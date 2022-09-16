@@ -14,10 +14,7 @@ namespace Infrastructure.Repositories
             _context = context;
         }
         public async Task<Project> CreateAsync(Project entity)
-        {
-            entity.EditCompleted(false);
-            entity.Created = DateTime.Now;
-            entity.LastModified = DateTime.Now;
+        { 
             await _context.Projects.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
@@ -43,8 +40,7 @@ namespace Infrastructure.Repositories
             var guid = (Guid)id;
             var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.GetProjectId() == guid);
             return toReturn;
-        }
-
+        } 
         public async Task UpdateAsync(Project entityToUpdate)
         {
             entityToUpdate.LastModified = DateTime.Now;

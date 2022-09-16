@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Dto
+﻿namespace Application.Dto
 {
     public class SubTaskDto
     {
@@ -21,6 +15,10 @@ namespace Application.Dto
             Id = id;
             Content = content;  
             Completed = completed; 
+        }
+        public SubTaskDto()
+        {
+
         }
     }
 }

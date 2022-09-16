@@ -1,7 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
-using AutoMapper;
-using Domain.Entities;
+using Application.Mappings;
 using Domain.Interfaces;
 
 
@@ -10,36 +9,45 @@ namespace Application.Services;
 internal class ProjectService : IProjectService
 {
     private readonly IProjectRepository _projects;
-    private readonly IMapper _mapper;
+   //  private readonly IMapper _mapper;
     private readonly ISubTaskRepository _subTasks;
-    public ProjectService(IProjectRepository projectRepository, IMapper mapper, ISubTaskRepository subTaskRepository)
+    public ProjectService(IProjectRepository projectRepository,  ISubTaskRepository subTaskRepository) //IMapper mapper,
     {
         _projects = projectRepository;
-        _mapper = mapper;
         _subTasks = subTaskRepository;
     }
     public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
-    {
-        var asProjectType = _mapper.Map<Project>(project);
+    { 
+        var asProjectType = Map.CreateProjectDtoToProject(project);
         var created = await _projects.CreateAsync(asProjectType);
-        return _mapper.Map<ProjectDto>(created);
-    }
-
+         
+        return Map.ProjectToProjectDto(created);
+    } 
     public async Task DeleteAsync(Guid id)
     {
         await _projects.DeleteAsync(id); 
     }
 
     public async Task<IReadOnlyList<ProjectDto>> GetAllAsync()
-    {
-
+    { 
         var allProjects = await _projects.GetAllAsync();
-        var mappedProjects = _mapper.Map<IReadOnlyList<ProjectDto>>(allProjects);
-
+        //mam liste
+        var mappedProjects = new List<ProjectDto>();
+        foreach (var item in allProjects)
+        {
+            mappedProjects.Add(Map.ProjectToProjectDto(item));
+        } 
         foreach (var item in mappedProjects)
         {
+            //dla kazdego z juz zmapowanych typow tworzysz liste pobranych dla niego
+            //pod taskow . 
             var list = await _subTasks.CreateListOfTasks(item.Id);
-            var mappedList = _mapper.Map<IReadOnlyList<SubTaskDto>>(list);
+            // tylko ta lista jest nie zmapowana, wiec po prostu foreach tu jebnij 
+            var mappedList = new List<ProjectDto>();
+            foreach (var item in allProjects)
+            {
+                mappedList.Add(Map.ProjectToProjectDto(item);
+            }
 
             foreach (var lists in mappedList)
             {
