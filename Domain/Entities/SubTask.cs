@@ -4,11 +4,11 @@ namespace Domain.Entities
 {
     public class SubTask : AuditibleEntity
     {
-        public Id? Id { get; private set; }  
-        private Content? _content;
-        private Completed? _completed;
-        private Id? _levelAboveId;
-        private readonly List<Guid> _includedSubTasks = new(); 
+        public Id Id { get; private set; }
+        private Content _content;
+        private Completed _completed;
+        private Id _levelAboveId;
+        private readonly List<Guid> _includedSubTasks = new();
         public SubTask()
         {
         }
@@ -17,8 +17,16 @@ namespace Domain.Entities
             Id = Guid.NewGuid();
             _content = content;
             _completed = false;
-            Created = DateTime.Now; 
-        } 
+            Created = DateTime.Now;
+        }
+        public SubTask(Guid id, string content, bool completed, Guid levelAboveId)
+        {
+            Id = id;
+            _content = content;
+            _completed = completed;
+            _levelAboveId = levelAboveId;
+
+        }
         public void EditContent(string toUpdate) =>
          _content.Edit(toUpdate);
         public void EditCompleted(bool toUpdate) =>

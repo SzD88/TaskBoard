@@ -17,6 +17,10 @@
             => new(completed);
         public void Edit(bool state)
         {
+            if (state != true && state != false)
+            {
+                throw new Exception("Nie byl anu try ani false");
+            }
             Value = state;
         }
         public bool GetValue()

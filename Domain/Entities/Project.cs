@@ -4,33 +4,35 @@ namespace Domain.Entities
 {
     public class Project : AuditibleEntity // #refactor
     {
-        public Id? Id { get; private set; }
-        private ProjectNumber? _projectNumber;
-        private Title? _title;
-        private Description? _description;
-        private Completed? _completed;
+        public Id Id;
+        private ProjectNumber _projectNumber;
+        private Title _title;
+        private Description _description;
+        private Completed _completed;
         private readonly List<Guid> _mainTasksAsSubTasks; // = new();
         public Project()
         {
         }
-        public Project(string projNumber, string title, string description)
+      
+        public Project(Guid id, string projNumber, string title, string description, bool completed ) //DateTime created, DateTime lastmodified
         {
-            Id = Guid.NewGuid();
+            Id = id;
             _projectNumber = projNumber;
             _title = title;
             _description = description;
-            _completed = false;
-            Created = DateTime.Now;
-            _mainTasksAsSubTasks =  new List<Guid>();
-        } 
+            _completed = completed;
+            //Created = created;
+            //LastModified = lastmodified;
+            _mainTasksAsSubTasks = new List<Guid>();
+        }
         public void EditProjectNumber(string toUpdate) =>
-         _projectNumber.Edit(toUpdate);
-        public void EditTitle(string toUpdate) =>
+         _projectNumber.Edit(toUpdate);  // null reference 
+        public void EditTitle(string toUpdate) => 
          _title.Edit(toUpdate);
         public void EditDescription(string toUpdate) =>
-         _description.GetValue();
+         _description.Edit(toUpdate);
         public void EditCompleted(bool toUpdate) =>
-         _completed.GetValue();
+         _completed.Edit(toUpdate) ;
         public Guid GetProjectId() =>
          Id;
         public string GetProjectNumber() =>
@@ -52,7 +54,7 @@ namespace Domain.Entities
             }
             _mainTasksAsSubTasks.Append(mainTaskId);
         }
-        public bool CheckExistance(Guid id) // method was Get SubTask, now i see no point in it
+        public bool CheckExistance(Guid id) 
         {
             var task = _mainTasksAsSubTasks.FirstOrDefault(i => i == id);
 

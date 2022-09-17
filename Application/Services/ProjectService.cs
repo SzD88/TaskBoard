@@ -15,7 +15,7 @@ internal class ProjectService : IProjectService
     }
     public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
     { 
-        var asProjectType = Map.CreateProjectDtoToProject(project);
+        var asProjectType = Map.CreateProjectDtoToProject(project); // null reference 
         var created = await _projects.CreateAsync(asProjectType);
          
         return Map.ProjectToProjectDto(created);

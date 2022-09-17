@@ -21,46 +21,38 @@ namespace Application.Mappings
         }
         public static Project ProjectDtoToProject(ProjectDto enter)
         {
-            var projectType = new Project();
-            projectType.EditProjectNumber(enter.ProjectNumber);
-            projectType.EditCompleted(enter.Completed);
-            projectType.EditDescription(enter.Description);
-            projectType.EditTitle(enter.Title);
-            projectType.Id.Edit(enter.Id);
-            projectType.Created = enter.CreationDate;
-            projectType.LastModified = enter.LastModifiedDate;
-
+            var projectType = new Project(
+            enter.Id,
+            enter.ProjectNumber,
+            enter.Title,
+            enter.Description,
+            enter.Completed);
             return projectType;
         }
         public static Project CreateProjectDtoToProject(CreateProjectDto enter)
         {
-            var projectType = new Project();
-            projectType.EditProjectNumber(enter.ProjectNumber);
-            projectType.EditCompleted(false);
-            projectType.EditDescription(enter.Description);
-            projectType.EditTitle(enter.Title);
-            projectType.Id.Edit(new Guid());
-            projectType.Created = DateTime.UtcNow;
-            projectType.LastModified = DateTime.UtcNow;
+            var projectType = new Project(
+                Guid.NewGuid(),
+                enter.ProjectNumber,
+                enter.Title,
+                enter.Description,
+                false);
 
             return projectType;
         }
         public static Project UpdateProjectDtoToProject(UpdateProjectDto enter)
         {
-            var projectType = new Project();
-            projectType.EditProjectNumber(enter.ProjectNumber);
-            projectType.EditCompleted(false);
-            projectType.EditDescription(enter.Description);
-            projectType.EditTitle(enter.Title);
-            projectType.Id.Edit(enter.Id);
-            //projectType.Created = ??; #refactor
-            projectType.LastModified = DateTime.UtcNow;
-
+            var projectType = new Project(
+            enter.Id,
+            enter.ProjectNumber,
+            enter.Title,
+            enter.Description,
+            enter.Completed);
             return projectType;
         }
         public static SubTaskDto SubTaskToSubTaskDto(SubTask subTaskType)
         {
-            return new SubTaskDto
+            return new SubTaskDto  
             {
                 Id = subTaskType.GetSubTaskId(),
                 Completed = subTaskType.GetCompleted(),
@@ -70,12 +62,13 @@ namespace Application.Mappings
 
         }
         public static SubTask SubTaskDtoToSubTask(SubTaskDto enter)
-        {
-            var subTaskType = new SubTask();
-            subTaskType.EditCompleted(enter.Completed);
-            subTaskType.EditContent(enter.Content);
-            subTaskType.EditLevelAboveId(enter.LevelAboveId);
-            subTaskType.Id.Edit(enter.Id);
+        { // SubTask(Guid id, string content, bool completed, Guid levelAboveId)
+            var subTaskType = new SubTask(
+                Guid.NewGuid(), 
+                enter.Content,
+                enter.Completed,
+                enter.LevelAboveId 
+                ); 
 
             return subTaskType;
         }
@@ -85,7 +78,7 @@ namespace Application.Mappings
             subTaskType.EditCompleted(false);
             subTaskType.EditContent(enter.Content);
             subTaskType.EditLevelAboveId(enter.LevelAboveId);
-            subTaskType.Id.Edit(new Guid());
+            subTaskType.Id.Edit(Guid.NewGuid());
 
             return subTaskType;
         }
