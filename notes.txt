@@ -1,12 +1,18 @@
-﻿Next:
+﻿Zapętla ci sie tworzenie subtasków nie wiem dlaczego nalezy to naprawic
+w pracy musisz nowa db zrobic 
 
-ok i know how to do that. Create function filling main page
+Llevel above id musisz jakos przypisac wg niego z bazy danych liste stworzyc tych rekordow
+ktore sie z nim zgadzaja, ale nie mozesz tego zrobic bo masz xtyp id a nie guid
 
-use function on load window
+zacznij od passengera - zobacz jak tam sa kolekcje rozwiazane na swiezo to wez 
 
-then use function on select change, that simple 
 
-- authentykacja i konta hmmm
+Next:
+
+
+
+
+- authentykacja i konta  
  
   
 - dodaj sortowanie na stronie glownej projektow

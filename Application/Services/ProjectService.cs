@@ -15,7 +15,7 @@ internal class ProjectService : IProjectService
     }
     public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
     { 
-        var asProjectType = Map.CreateProjectDtoToProject(project); // null reference 
+        var asProjectType = Map.CreateProjectDtoToProject(project);  
         var created = await _projects.CreateAsync(asProjectType);
          
         return Map.ProjectToProjectDto(created);
@@ -87,7 +87,8 @@ internal class ProjectService : IProjectService
 
         foreach (var project in allProjects)
         {
-            await _projects.DeleteAsync(project.Id);
+            var id = (Guid)project.Id;
+            await _projects.DeleteAsync(id);
         }
     }
  

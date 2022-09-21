@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Domain.ValueObjects;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,16 +15,14 @@ namespace Infrastructure.Repositories
         }
 
         public async Task<SubTask> CreateAsync(SubTask entity)
-        {
-            entity.EditCompleted(false);
-            entity.Created = DateTime.Now;
-            entity.LastModified = DateTime.Now;
+        { 
             await _context.SubTasks.AddAsync(entity); //(SubTask)
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task DeleteAsync(Guid subTaskToDelete) // tu ma wejsc note
+        public async Task DeleteAsync(Guid idToDelete) // tu ma wejsc note
         {
+            var subTaskToDelete = await GetByIDAsync(idToDelete);
             _context.Remove(subTaskToDelete);
             await _context.SaveChangesAsync();
         }
@@ -33,20 +32,21 @@ namespace Infrastructure.Repositories
         }
         public async Task<SubTask> GetByIDAsync(Guid id)
         {
-            var guid = (Guid)id;
-            var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.GetSubTaskId() == guid);
-            //   if (toReturn == null) throw new Exception("Not found sd");
+            var guid = (Id)id;
+            var toReturn = await _context.SubTasks.FirstOrDefaultAsync(x => x.Id == guid);
             return toReturn;
         }
         public async Task UpdateAsync(SubTask entityToUpdate)
         {
+            entityToUpdate.LastModified = DateTime.Now; 
             _context.SubTasks.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
         public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId)
         {
+            var cos = (Id)parentId;
             var list = await _context.SubTasks
-                .Where(x => x._levelAboveId == parentId) // #problem // nie mozesz tak zrobic przeciez
+                .Where(x => x.Id == cos) // #problem // nie mozesz tak zrobic przeciez
                 //#sorthere
                 .ToListAsync(); 
              
@@ -60,7 +60,6 @@ namespace Infrastructure.Repositories
                 }
             }
             return list;
-        }
- 
+        } 
     }
 }

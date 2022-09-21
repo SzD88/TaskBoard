@@ -16,7 +16,6 @@ internal class SubTaskService : ISubTaskService
     public async Task<SubTaskDto> CreateAsync(CreateSubTaskDto subTask)
     {
         var asSubTaskType = Map.CreateSubTaskDtoToSubTask(subTask);
-
         var created = await _subTasks.CreateAsync(asSubTaskType);
         return Map.SubTaskToSubTaskDto(created);
     }
@@ -32,12 +31,12 @@ internal class SubTaskService : ISubTaskService
 
         foreach (var item in mappedSubTasks)
         {
-            var list = await _subTasks.CreateListOfTasks(item.Id);
-            var mappedList = Map.ListConvert(list);
+           // var list = await _subTasks.CreateListOfTasks(item.Id);
+          //  var mappedList = Map.ListConvert(list);
 
-            foreach (var lists in mappedList)
+           // foreach (var lists in mappedList)
             {
-                item.IncludedTasks.Add(lists);
+          //      item.IncludedTasks.Add(lists);
             }
         }
         return mappedSubTasks;

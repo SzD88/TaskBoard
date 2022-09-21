@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.ExtensionMethods;
+using Domain.ValueObjects;
 
 namespace Infrastructure.Repositories
 {
@@ -19,9 +20,10 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task DeleteAsync(Guid projectToDelete)
-        {
-            _context.Remove(projectToDelete);
+        public async Task DeleteAsync(Guid idToDelete)
+        { 
+            var projectToDelete = await GetByIDAsync(idToDelete);
+            _context.Remove(projectToDelete); 
             await _context.SaveChangesAsync();
         }
         public async Task<IReadOnlyList<Project>> GetAllAsync()
@@ -37,8 +39,8 @@ namespace Infrastructure.Repositories
 
         public async Task<Project> GetByIDAsync(Guid id)
         {
-            var guid = (Guid)id;
-            var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.GetProjectId() == guid);
+            var guid =  (Id)id;
+            var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.Id == guid);
             return toReturn;
         } 
         public async Task UpdateAsync(Project entityToUpdate)

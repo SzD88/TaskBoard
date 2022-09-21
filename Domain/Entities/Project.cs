@@ -4,7 +4,7 @@ namespace Domain.Entities
 {
     public class Project : AuditibleEntity // #refactor
     {
-        public Id Id;
+        public Id Id { get; private set; }
         private ProjectNumber _projectNumber;
         private Title _title;
         private Description _description;
@@ -24,7 +24,7 @@ namespace Domain.Entities
             //Created = created;
             //LastModified = lastmodified;
             _mainTasksAsSubTasks = new List<Guid>();
-        }
+        } 
         public void EditProjectNumber(string toUpdate) =>
          _projectNumber.Edit(toUpdate);  // null reference 
         public void EditTitle(string toUpdate) => 

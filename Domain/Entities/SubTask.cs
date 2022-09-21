@@ -11,22 +11,15 @@ namespace Domain.Entities
         private readonly List<Guid> _includedSubTasks = new();
         public SubTask()
         {
-        }
-        public SubTask(string content)
-        {
-            Id = Guid.NewGuid();
-            _content = content;
-            _completed = false;
-            Created = DateTime.Now;
-        }
+        } 
         public SubTask(Guid id, string content, bool completed, Guid levelAboveId)
         {
             Id = id;
             _content = content;
-            _completed = completed;
-            _levelAboveId = levelAboveId;
-
+            _completed = completed; // null reference 
+            _levelAboveId = levelAboveId; 
         }
+       
         public void EditContent(string toUpdate) =>
          _content.Edit(toUpdate);
         public void EditCompleted(bool toUpdate) =>
