@@ -44,13 +44,12 @@ namespace Infrastructure.Repositories
         }
         public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId)
         {
-            var cos = (Id)parentId;
-            var list = await _context.SubTasks
-                .Where(x => x.Id == cos) // #problem // nie mozesz tak zrobic przeciez
-                //#sorthere
+            var cos =  (Id)parentId;
+            var listOfChilds = await _context.SubTasks
+                .Where(x => x._levelAboveId == cos)  
                 .ToListAsync(); 
              
-            foreach (var subtask in list)
+            foreach (var subtask in listOfChilds)
             {
                 var listBelow = await CreateListOfTasks(subtask.Id);
 
@@ -59,7 +58,7 @@ namespace Infrastructure.Repositories
                     subtask.AddSubTask(itemBelow.GetSubTaskId());
                 }
             }
-            return list;
+            return listOfChilds;
         } 
     }
 }

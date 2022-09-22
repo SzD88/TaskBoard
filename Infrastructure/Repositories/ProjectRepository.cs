@@ -49,14 +49,14 @@ namespace Infrastructure.Repositories
             _context.Projects.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
-        public async Task<IReadOnlyList<SubTask>> CreateListOfMainTasks(Guid parentId)
-        {
-            var list = await _context.SubTasks
-                  .Where(x => x.GetLevelAboveId() == parentId)
-                  .ToListAsync();
+        //public async Task<IReadOnlyList<SubTask>> CreateListOfMainTasks(Guid parentId)
+        //{
+        //    var list = await _context.SubTasks
+        //          .Where(x => x.GetLevelAboveId() == parentId)
+        //          .ToListAsync();
 
-            return list;
-        } 
+        //    return list;
+        //} 
     }
 }
 

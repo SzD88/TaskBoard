@@ -1,6 +1,5 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApi.Filters;
@@ -11,7 +10,7 @@ namespace WebApi.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectController : ControllerBase
+    public class ProjectController : BaseController
     {
         private readonly IProjectService _projects;
 
@@ -31,10 +30,10 @@ namespace WebApi.Controllers
         [SwaggerOperation(Summary = "Retrieves project by id")] 
         //get=>/api/project/id
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProjectById(Guid id)
+        public async Task<ActionResult<ProjectDto>> GetProjectById(Guid id)
         {
             var toShow = await _projects.GetByIDAsync(id);
-            return Ok(toShow);
+            return OkOrNotFound(toShow);
         }
         [SwaggerOperation(Summary = "Retrieves all projects")]//get=>/api/project/
         [HttpGet]

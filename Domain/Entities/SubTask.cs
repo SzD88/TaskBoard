@@ -7,7 +7,7 @@ namespace Domain.Entities
         public Id Id { get; private set; }
         private Content _content;
         private Completed _completed;
-        private Id _levelAboveId;
+        public Id _levelAboveId { get; private set; }
         private readonly List<Guid> _includedSubTasks = new();
         public SubTask()
         {

@@ -10,7 +10,7 @@ namespace WebApi.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class SubTaskController : ControllerBase
+    public class SubTaskController : BaseController
     {
         private readonly ISubTaskService _subTasks;
 
