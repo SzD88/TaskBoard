@@ -1,4 +1,7 @@
-﻿Next:
+﻿
+Great solution for EF Core. Although it seems to have an issue whit char to string conversion. I had to implement it like such: .HasConversion( v => string.Join(";", v), v => v.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries)); 
+
+Next:
 
 ok i know how to do that. Create function filling main page
 

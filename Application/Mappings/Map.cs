@@ -19,7 +19,22 @@ namespace Application.Mappings
                 MainTasks = new List<SubTaskDto>()
             }; 
         }
-        
+        public static Project ProjectDtoToProject(ProjectDto projectDtoType)
+        {
+            var projectType = new Project();
+            projectType.EditCompleted(projectDtoType.Completed);
+            {
+                Id = projectType.GetProjectId(),
+                ProjectNumber = projectType.GetProjectNumber(),
+                Title = projectType.GetTitle(),
+                Description = projectType.GetDescription(),
+                Completed = projectType.GetCompleted(),
+                CreationDate = projectType.Created,
+                LastModifiedDate = projectType.LastModified,
+                MainTasks = new List<SubTaskDto>()
+            };
+        }
+
     }
 
 }
