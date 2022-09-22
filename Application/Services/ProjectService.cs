@@ -60,6 +60,7 @@ internal class ProjectService : IProjectService
     public async Task<ProjectDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);
+        if (project == null) return null;
 
         var projectDtoType = Map.ProjectToProjectDto(project);
             

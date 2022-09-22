@@ -50,11 +50,7 @@ namespace Application.Mappings
             enter.Completed);
             return projectType;
         }
-        /// <summary>
-        /// //
-        /// </summary>
-        /// <param name="subTaskType"></param>
-        /// <returns></returns>
+       
         public static SubTaskDto SubTaskToSubTaskDto(SubTask subTaskType)
         {
             return new SubTaskDto
