@@ -25,55 +25,46 @@ namespace Domain.Entities
             //LastModified = lastmodified;
             _mainTasksAsSubTasks = new List<Guid>();
         } 
-        public void EditProjectNumber(string toUpdate) =>
-         _projectNumber.Edit(toUpdate);  // null reference 
-        public void EditTitle(string toUpdate) => 
-         _title.Edit(toUpdate);
-        public void EditDescription(string toUpdate) =>
-         _description.Edit(toUpdate);
-        public void EditCompleted(bool toUpdate) =>
-         _completed.Edit(toUpdate) ;
-        public Guid GetProjectId() =>
-         Id;
+       
         public string GetProjectNumber() =>
-         _projectNumber.GetValue(); 
+         _projectNumber.Value;
         public string GetTitle() =>
-         _title.GetValue();
+         _title.Value;
         public string GetDescription() =>
-         _description.GetValue();
+         _description.Value;
         public bool GetCompleted() =>
-         _completed.GetValue();
+         _completed.Value;
 
-        public void AddMainTask(Guid mainTaskId)
-        {
-            var alreadyExists = _mainTasksAsSubTasks.Any(i => i == mainTaskId);
+        //public void AddMainTask(Guid mainTaskId)
+        //{
+        //    var alreadyExists = _mainTasksAsSubTasks.Any(i => i == mainTaskId);
 
-            if (alreadyExists)
-            {
-                throw new Exception($"Object with id: {mainTaskId} alredy exists");
-            }
-            _mainTasksAsSubTasks.Append(mainTaskId);
-        }
-        public bool CheckExistance(Guid id) 
-        {
-            var task = _mainTasksAsSubTasks.FirstOrDefault(i => i == id);
+        //    if (alreadyExists)
+        //    {
+        //        throw new Exception($"Object with id: {mainTaskId} alredy exists");
+        //    }
+        //    _mainTasksAsSubTasks.Append(mainTaskId);
+        //}
+        //public bool CheckExistance(Guid id) 
+        //{
+        //    var task = _mainTasksAsSubTasks.FirstOrDefault(i => i == id);
 
-            if (task == Guid.Empty)
-            {
-                throw new Exception($"Object with {id} does not exists");
-            }
-            return true;
-        }
-        public void RemoveMainTask(Guid item)
-        {
-            var alreadyExists = _mainTasksAsSubTasks.Any(i => i == item);
+        //    if (task == Guid.Empty)
+        //    {
+        //        throw new Exception($"Object with {id} does not exists");
+        //    }
+        //    return true;
+        //}
+        //public void RemoveMainTask(Guid item)
+        //{
+        //    var alreadyExists = _mainTasksAsSubTasks.Any(i => i == item);
 
-            if (!alreadyExists)
-            {
-                throw new Exception($"Object with id: {item} does not exists");
-            }
-            _mainTasksAsSubTasks.Remove(item);
-        }
+        //    if (!alreadyExists)
+        //    {
+        //        throw new Exception($"Object with id: {item} does not exists");
+        //    }
+        //    _mainTasksAsSubTasks.Remove(item);
+        //}
 
     }
 }

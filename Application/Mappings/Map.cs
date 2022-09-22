@@ -9,7 +9,7 @@ namespace Application.Mappings
         {
             return new ProjectDto
             {
-                Id = projectType.GetProjectId(),
+                Id = projectType.Id,
                 ProjectNumber = projectType.GetProjectNumber(),
                 Title = projectType.GetTitle(),
                 Description = projectType.GetDescription(),

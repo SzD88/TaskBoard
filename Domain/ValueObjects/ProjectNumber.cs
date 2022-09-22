@@ -19,19 +19,7 @@
             => name.Value;
 
         public static implicit operator ProjectNumber(string name)
-            => new(name);
-        public void Edit(string projNumber)
-        {
-            if (string.IsNullOrWhiteSpace(projNumber))
-            {
-                throw new EmptyProjectNumberException();
-            }
-            Value = projNumber;
-        }
-        public string GetValue()
-        {
-            return Value;
-        }
+            => new(name); 
     }
     public class EmptyProjectNumberException : Exception
     {

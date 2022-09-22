@@ -1,6 +1,5 @@
 ﻿namespace Domain.ValueObjects
-{
-
+{ 
     public record Title
     {
         public string Value { get; private set; }
@@ -10,8 +9,7 @@
             if (string.IsNullOrWhiteSpace(value))
             {
                 throw new EmptyTitleException();
-            }
-
+            } 
             Value = value;
         }
 
@@ -19,19 +17,7 @@
             => name.Value;
 
         public static implicit operator Title(string name)
-            => new(name);
-        public void Edit(string title)
-        {
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                throw new EmptyTitleException();
-            }
-            Value = title;
-        }
-        public string GetValue()
-        {
-            return Value;
-        }
+            => new(name); 
     }
     public class EmptyTitleException : Exception
     {

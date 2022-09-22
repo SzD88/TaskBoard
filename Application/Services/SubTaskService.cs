@@ -52,17 +52,7 @@ internal class SubTaskService : ISubTaskService
         } 
         return subTaskDtoType;
     } 
-    public async Task<bool> ChangeCompletedStateAsync(Guid id) //#refactor
-    {
-        var subTask = await _subTasks.GetByIDAsync(id);
-
-        if (subTask.GetCompleted() == true)
-            subTask.EditCompleted(false);
-        else
-            subTask.EditCompleted(true); 
-        await _subTasks.UpdateAsync(subTask); 
-        return subTask.GetCompleted();
-    }
+   
     public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
     { 
         var subTaskType = Map.UpdateSubTaskDtoToSubTask(entityToUpdate); 

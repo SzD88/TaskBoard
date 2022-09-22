@@ -9,13 +9,12 @@ namespace Infrastructure.Data
     public class SubTaskEntityTypeConfiguration : IEntityTypeConfiguration<SubTask>
     {
         public void Configure(EntityTypeBuilder<SubTask> builder)
-        {
-            //private readonly LinkedList<Guid> _includedSubTasks = new();
-            var contentConverter = new ValueConverter<Content, string>(cnt => cnt.GetValue(),
+        { 
+            var contentConverter = new ValueConverter<Content, string>(cnt => cnt.Value,
                  dbvalue => new Content(dbvalue));
-            var completedConverter = new ValueConverter<Completed, bool>(desc => desc.GetValue(),
+            var completedConverter = new ValueConverter<Completed, bool>(desc => desc.Value,
                 dbvalue => new Completed(dbvalue));
-            var idConverter = new ValueConverter<Id, Guid>(id => id.GetValue(),
+            var idConverter = new ValueConverter<Id, Guid>(id => id.Value,
                 dbvalue => new Id(dbvalue));
 
             builder
@@ -25,7 +24,7 @@ namespace Infrastructure.Data
 
             builder
              .Property(pl => pl.Id)
-             .HasConversion(id => id.GetValue(), id => new Id(id));
+             .HasConversion(id => id.Value, id => new Id(id));
 
             builder.Property(typeof(Content), "_content")
                 .HasConversion(contentConverter)
@@ -41,9 +40,7 @@ namespace Infrastructure.Data
             builder.Property(typeof(Id), "_levelAboveId")
                .HasConversion(idConverter)
                .HasColumnName("LevelAboveId")
-               .IsRequired();
-
-           //  builder.HasMany(typeof(SubTask), "_includedSubTasks"); // tu jest blad 
+               .IsRequired(); 
 
         }
     }

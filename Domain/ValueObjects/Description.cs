@@ -19,19 +19,7 @@
             => name.Value;
 
         public static implicit operator Description(string name)
-            => new(name);
-        public void Edit(string description)
-        {
-            if (string.IsNullOrWhiteSpace(description))
-            {
-                throw new EmptyDescriptionException();
-            }
-            Value = description;
-        }
-        public string GetValue()
-        {
-            return Value;
-        }
+            => new(name); 
     }
     public class EmptyDescriptionException : Exception
     {

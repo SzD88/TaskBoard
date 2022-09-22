@@ -17,19 +17,7 @@
             => content.Value;
 
         public static implicit operator Content(string content)
-            => new(content);
-        public void Edit(string content)
-        {
-            if (string.IsNullOrWhiteSpace(content))
-            {
-                throw new EmptyDContentException();
-            }
-            Value = content;
-        }
-        public string GetValue()
-        {
-            return Value;
-        }
+            => new(content); 
     }
     public class EmptyDContentException : Exception
     {
