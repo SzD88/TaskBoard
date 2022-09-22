@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProject(CreateProjectDto project)
         {
-            var toShow = await _projects.CreateAsync(project);
+            var toShow = await _projects.CreateAsync(project); // null reference 
             return Created($"api/Clients/{toShow.Id}", "Created, new id is : " + toShow.Id);
         }
 
