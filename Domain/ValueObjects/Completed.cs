@@ -6,7 +6,7 @@
         public bool Value { get; private set; }
 
         public Completed(bool value)
-        {
+        { 
             Value = value;
         }
 
@@ -15,13 +15,5 @@
 
         public static implicit operator Completed(bool completed)
             => new(completed); 
-    }
-    public class EmptyCompletedNameException : Exception
-    {
-        public EmptyCompletedNameException()
-            : base(" ")
-        {
-
-        }
-    }
+    } 
 }

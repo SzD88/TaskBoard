@@ -31,12 +31,12 @@ internal class SubTaskService : ISubTaskService
 
         foreach (var item in mappedSubTasks)
         {
-           // var list = await _subTasks.CreateListOfTasks(item.Id);
-          //  var mappedList = Map.ListConvert(list);
+            var list = await _subTasks.CreateListOfTasks(item.Id);
+            var mappedList = Map.ListConvert(list);
 
-           // foreach (var lists in mappedList)
+            foreach (var lists in mappedList)
             {
-          //      item.IncludedTasks.Add(lists);
+                item.IncludedTasks.Add(lists); // null reference - po co to jest doh
             }
         }
         return mappedSubTasks;

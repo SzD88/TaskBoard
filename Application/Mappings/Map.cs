@@ -77,7 +77,8 @@ namespace Application.Mappings
                 Guid.NewGuid(),
                 enter.Content,
                 false,  // completed
-                enter.LevelAboveId);
+                enter.LevelAboveId
+                );
             return subTaskType;
         }
         public static SubTask UpdateSubTaskDtoToSubTask(UpdateSubTaskDto enter)
@@ -86,7 +87,8 @@ namespace Application.Mappings
                 enter.Id,
                 enter.Content,
                 enter.Completed,
-                enter.LevelAboveId ); 
+                enter.LevelAboveId
+                ); 
             return subTaskType;
         }
         public static List<ProjectDto> ListConvert(IReadOnlyList<Project> enter)

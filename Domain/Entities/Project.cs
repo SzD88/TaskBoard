@@ -12,8 +12,7 @@ namespace Domain.Entities
         private readonly List<Guid> _mainTasksAsSubTasks; // = new();
         public Project()
         {
-        }
-      
+        } 
         public Project(Guid id, string projNumber, string title, string description, bool completed ) //DateTime created, DateTime lastmodified
         {
             Id = id;
@@ -23,7 +22,7 @@ namespace Domain.Entities
             _completed = completed;
             //Created = created;
             //LastModified = lastmodified;
-            _mainTasksAsSubTasks = new List<Guid>();
+           //  _mainTasksAsSubTasks = new List<Guid>();
         } 
        
         public string GetProjectNumber() =>
@@ -33,38 +32,6 @@ namespace Domain.Entities
         public string GetDescription() =>
          _description.Value;
         public bool GetCompleted() =>
-         _completed.Value;
-
-        //public void AddMainTask(Guid mainTaskId)
-        //{
-        //    var alreadyExists = _mainTasksAsSubTasks.Any(i => i == mainTaskId);
-
-        //    if (alreadyExists)
-        //    {
-        //        throw new Exception($"Object with id: {mainTaskId} alredy exists");
-        //    }
-        //    _mainTasksAsSubTasks.Append(mainTaskId);
-        //}
-        //public bool CheckExistance(Guid id) 
-        //{
-        //    var task = _mainTasksAsSubTasks.FirstOrDefault(i => i == id);
-
-        //    if (task == Guid.Empty)
-        //    {
-        //        throw new Exception($"Object with {id} does not exists");
-        //    }
-        //    return true;
-        //}
-        //public void RemoveMainTask(Guid item)
-        //{
-        //    var alreadyExists = _mainTasksAsSubTasks.Any(i => i == item);
-
-        //    if (!alreadyExists)
-        //    {
-        //        throw new Exception($"Object with id: {item} does not exists");
-        //    }
-        //    _mainTasksAsSubTasks.Remove(item);
-        //}
-
+         _completed.Value; 
     }
 }
