@@ -19,22 +19,15 @@ namespace Domain.Entities
             _completed = completed; // null reference 
             _levelAboveId = levelAboveId; 
         }
-       
-        public void EditContent(string toUpdate) =>
-         _content.Edit(toUpdate);
-        public void EditCompleted(bool toUpdate) =>
-         _completed.Edit(toUpdate);
-        public void EditLevelAboveId(Guid toUpdate) =>
-         _levelAboveId.Edit(toUpdate);
-
+        
         public Guid GetSubTaskId() =>
-        Id;
-        public string GetContent() =>
-         _content.GetValue();
-        public bool GetCompleted() =>
-        _completed.GetValue();
+            Id;
+        public string GetContent() => 
+            _content.Value;
+        public bool GetCompleted() => 
+            _completed.Value; 
         public Guid GetLevelAboveId() =>
-         _levelAboveId.GetValue();
+             _levelAboveId.Value;
 
         public void AddSubTask(Guid mainTaskId)
         {

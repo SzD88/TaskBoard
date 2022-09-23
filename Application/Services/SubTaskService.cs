@@ -31,12 +31,12 @@ internal class SubTaskService : ISubTaskService
 
         foreach (var item in mappedSubTasks)
         {
-           // var list = await _subTasks.CreateListOfTasks(item.Id);
-          //  var mappedList = Map.ListConvert(list);
+            var list = await _subTasks.CreateListOfTasks(item.Id);
+            var mappedList = Map.ListConvert(list);
 
-           // foreach (var lists in mappedList)
+            foreach (var lists in mappedList)
             {
-          //      item.IncludedTasks.Add(lists);
+                item.IncludedTasks.Add(lists); // null reference - po co to jest doh
             }
         }
         return mappedSubTasks;
@@ -52,17 +52,7 @@ internal class SubTaskService : ISubTaskService
         } 
         return subTaskDtoType;
     } 
-    public async Task<bool> ChangeCompletedStateAsync(Guid id) //#refactor
-    {
-        var subTask = await _subTasks.GetByIDAsync(id);
-
-        if (subTask.GetCompleted() == true)
-            subTask.EditCompleted(false);
-        else
-            subTask.EditCompleted(true); 
-        await _subTasks.UpdateAsync(subTask); 
-        return subTask.GetCompleted();
-    }
+   
     public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
     { 
         var subTaskType = Map.UpdateSubTaskDtoToSubTask(entityToUpdate); 

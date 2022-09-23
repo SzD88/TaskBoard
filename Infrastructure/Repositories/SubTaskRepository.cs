@@ -16,11 +16,11 @@ namespace Infrastructure.Repositories
 
         public async Task<SubTask> CreateAsync(SubTask entity)
         { 
-            await _context.SubTasks.AddAsync(entity); //(SubTask)
+            await _context.SubTasks.AddAsync(entity); 
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task DeleteAsync(Guid idToDelete) // tu ma wejsc note
+        public async Task DeleteAsync(Guid idToDelete)  
         {
             var subTaskToDelete = await GetByIDAsync(idToDelete);
             _context.Remove(subTaskToDelete);
@@ -44,11 +44,11 @@ namespace Infrastructure.Repositories
         }
         public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId)
         {
-            var cos =  (Id)parentId;
+            var cos = (Id)parentId;
             var listOfChilds = await _context.SubTasks
-                .Where(x => x._levelAboveId == cos)  
-                .ToListAsync(); 
-             
+                .Where(x => x._levelAboveId == cos)
+                .ToListAsync();
+
             foreach (var subtask in listOfChilds)
             {
                 var listBelow = await CreateListOfTasks(subtask.Id);
@@ -59,6 +59,7 @@ namespace Infrastructure.Repositories
                 }
             }
             return listOfChilds;
-        } 
+        }
+ 
     }
 }

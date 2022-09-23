@@ -10,15 +10,15 @@ namespace Infrastructure.Data
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            var projectNumberConverter = new ValueConverter<ProjectNumber, string>(pnr => pnr.GetValue(),
+            var projectNumberConverter = new ValueConverter<ProjectNumber, string>(pnr => pnr.Value,
                 dbvalue => new ProjectNumber(dbvalue));
-            var titleConverter = new ValueConverter<Title, string>(title => title.GetValue(),
+            var titleConverter = new ValueConverter<Title, string>(title => title.Value,
                 dbvalue => new Title(dbvalue));
-            var descriptionConverter = new ValueConverter<Description, string>(desc => desc.GetValue(),
+            var descriptionConverter = new ValueConverter<Description, string>(desc => desc.Value,
                 dbvalue => new Description(dbvalue));
-            var completedConverter = new ValueConverter<Completed, bool>(desc => desc.GetValue(),
+            var completedConverter = new ValueConverter<Completed, bool>(desc => desc.Value,
                 dbvalue => new Completed(dbvalue));
-            var idConverter = new ValueConverter<Id, Guid>(id => id.GetValue(),
+            var idConverter = new ValueConverter<Id, Guid>(id => id.Value,
              dbvalue => new Id(dbvalue));
             builder
                 .ToTable("Projects");
@@ -27,7 +27,7 @@ namespace Infrastructure.Data
 
             builder
              .Property(pl => pl.Id)
-             .HasConversion(id => id.GetValue(), id => new Id(id));
+             .HasConversion(id => id.Value, id => new Id(id));
              
             builder.Property(typeof(ProjectNumber), "_projectNumber")
                 .HasConversion(projectNumberConverter)
@@ -49,11 +49,7 @@ namespace Infrastructure.Data
                 .HasConversion(completedConverter)
                 .HasColumnName("Completed")
                 .IsRequired();
-
-          //  builder
-           //    .HasMany(typeof(Guid), "_items"); // was guid 
-             
-
+              
         }
     }
 }
