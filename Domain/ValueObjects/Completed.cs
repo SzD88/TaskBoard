@@ -19,7 +19,7 @@
         {
             if (state != true && state != false)
             {
-                throw new Exception("Nie byl anu try ani false");
+                throw new Exception("Nie byl anu try ani false"); // #refactor
             }
             Value = state;
         }
