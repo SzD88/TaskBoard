@@ -10,5 +10,5 @@ public interface IProjectService
   Task<ProjectDto> GetByIDAsync(Guid id);
   Task UpdateAsync(UpdateProjectDto entityToUpdate);
   Task DeleteAllProjectsAsync();
-  Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
+ // Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending);
 }

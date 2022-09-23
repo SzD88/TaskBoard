@@ -10,57 +10,44 @@ namespace WebApi.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectController : BaseController
+    public class ProjectsController : BaseController
     {
         private readonly IProjectService _projects;
 
-        public ProjectController(IProjectService service)
+        public ProjectsController(IProjectService service)
         {
             _projects = service;
         }
-
-        [SwaggerOperation(Summary = "Create new project")] //post=>/api/project/
-        [HttpPost]
-        public async Task<IActionResult> AddProject(CreateProjectDto project)
+        [HttpPost] 
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Summary = "Create new project")] //post=>/api/projects
+        public async Task<ActionResult> AddProject(CreateProjectDto project)
         {
             var toShow = await _projects.CreateAsync(project); // null reference 
-            return Created($"api/Clients/{toShow.Id}", "Created, new id is : " + toShow.Id);
+            return Created($"/api/projects/{toShow.Id}",toShow);
         }
-
+         
+        [HttpGet("{id}")]//get=>/api/projects/id
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Retrieves project by id")] 
-        //get=>/api/project/id
-        [HttpGet("{id}")]
         public async Task<ActionResult<ProjectDto>> GetProjectById(Guid id)
         {
             var toShow = await _projects.GetByIDAsync(id);
             return OkOrNotFound(toShow);
         }
-        [SwaggerOperation(Summary = "Retrieves all projects")]//get=>/api/project/
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+
+        [HttpGet]//get=>/api/projects
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Retrieves all projects")] 
+        public async Task<ActionResult<IReadOnlyList<ProjectDto>>> GetAll() //([FromQuery] SearchPackingLists query)
         {
             var toShow = await _projects.GetAllAsync();
-            return Ok(toShow);
+            return OkOrNotFound(toShow);
         }
-        [SwaggerOperation(Summary = "Retrieves all projects sorted by property")]
-        //get=>/api/Project/Sort?SortField=title&Ascending=true'
-        [HttpGet("Sort")]
-        public async Task<IActionResult> GetAllSorted([FromQuery] SortingFilter sortingFilter)
-        {
-
-            var validSortingFilter = new SortingFilter(sortingFilter.SortField, sortingFilter.Ascending);
-
-            var toShow = await _projects.GetAllSortedAsync(validSortingFilter.SortField, validSortingFilter.Ascending);
-            return Ok(toShow);
-        }
-
-        [SwaggerOperation(Summary = "Retrieves sort fields")]
-        //get=>/api/Project/sort/sortfields
-        [HttpGet("sort/sortfields")] // ???????????get?
-        public IActionResult GetSortFields()
-        {
-            return Ok(SortingHelper.GetSortFields().Select(x => x.Key));
-        }
+       
         [SwaggerOperation(Summary = "Update project")]
         [HttpPut]
         public async Task<IActionResult> UpdateProject(UpdateProjectDto projectToUpdate)

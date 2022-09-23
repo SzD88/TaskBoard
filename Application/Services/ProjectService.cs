@@ -37,25 +37,26 @@ internal class ProjectService : IProjectService
               
             projectObject.MainTasks = mappedListOfIncludedSubTasks;
         }
-        return mappedProjects; 
+        
+        return  mappedProjects ; 
     }
-    public async Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
-    {
-        var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
-        var mappedProjects =  Map.ListConvert(allProjects) ;
+    //public async Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
+    //{
+    //    var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
+    //    var mappedProjects =  Map.ListConvert(allProjects) ;
               
-        foreach (var item in mappedProjects)
-        {
-            var list = await _subTasks.CreateListOfTasks(item.Id);
-            var mappedList = Map.ListConvert(list);
+    //    foreach (var item in mappedProjects)
+    //    {
+    //        var list = await _subTasks.CreateListOfTasks(item.Id);
+    //        var mappedList = Map.ListConvert(list);
                 
-            foreach (var lists in mappedList)
-            {
-                item.MainTasks.Add(lists);
-            }
-        }
-        return mappedProjects; 
-    }
+    //        foreach (var lists in mappedList)
+    //        {
+    //            item.MainTasks.Add(lists);
+    //        }
+    //    }
+    //    return mappedProjects; 
+    //}
 
     public async Task<ProjectDto> GetByIDAsync(Guid id)
     {
