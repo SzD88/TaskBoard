@@ -28,7 +28,7 @@ namespace Infrastructure.Data
             builder
              .Property(pl => pl.Id)
              .HasConversion(id => id.Value, id => new Id(id));
-             
+
             builder.Property(typeof(ProjectNumber), "_projectNumber")
                 .HasConversion(projectNumberConverter)
                 .HasColumnName("ProjectNumber");
@@ -49,7 +49,7 @@ namespace Infrastructure.Data
                 .HasConversion(completedConverter)
                 .HasColumnName("Completed")
                 .IsRequired();
-              
+
         }
     }
 }

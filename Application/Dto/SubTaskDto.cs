@@ -2,7 +2,7 @@
 {
     public class SubTaskDto
     {
-        public Guid Id { get; set; } // remember about protect set #refactor
+        public Guid Id { get; set; }  
         public string? Content { get; set; }
         public bool Completed { get; set; }
         public Guid LevelAboveId { get; set; }

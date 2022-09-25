@@ -5,6 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54D74C2A-22E3-4785-A889-4FDCAE0A485D}"
 	ProjectSection(SolutionItems) = preProject
+		archiveCode.txt = archiveCode.txt
 		notes.txt = notes.txt
 	EndProjectSection
 EndProject

@@ -36,38 +36,38 @@ internal class SubTaskService : ISubTaskService
 
             foreach (var lists in mappedList)
             {
-                item.IncludedTasks.Add(lists); // null reference - po co to jest doh
+                item.IncludedTasks.Add(lists);  
             }
         }
         return mappedSubTasks;
     }
     public async Task<SubTaskDto> GetByIDAsync(Guid id)
     {
-        var subTask = await _subTasks.GetByIDAsync(id); 
-        var list = await CreateListOfTasksAsync(subTask.Id); 
-        var subTaskDtoType = Map.SubTaskToSubTaskDto(subTask); 
+        var subTask = await _subTasks.GetByIDAsync(id);
+        var list = await CreateListOfTasksAsync(subTask.Id);
+        var subTaskDtoType = Map.SubTaskToSubTaskDto(subTask);
         foreach (var item in list)
         {
             subTaskDtoType.IncludedTasks.Add(item);
-        } 
+        }
         return subTaskDtoType;
-    } 
-   
+    }
+
     public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
-    { 
-        var subTaskType = Map.UpdateSubTaskDtoToSubTask(entityToUpdate); 
+    {
+        var subTaskType = Map.UpdateSubTaskDtoToSubTask(entityToUpdate);
         await _subTasks.UpdateAsync(subTaskType);
-    } 
+    }
     internal async Task<IReadOnlyList<SubTaskDto>> CreateListOfTasksAsync(Guid parentId)
     {
-        var list = await _subTasks.CreateListOfTasks(parentId); 
-        var mappedList = Map.ListConvert(list);  
-        return mappedList; 
+        var list = await _subTasks.CreateListOfTasks(parentId);
+        var mappedList = Map.ListConvert(list);
+        return mappedList;
     }
 
     public async Task DeleteAllSubTasksAsync()
     {
-        var allSubTasks = await _subTasks.GetAllAsync(); 
+        var allSubTasks = await _subTasks.GetAllAsync();
         foreach (var subTask in allSubTasks)
         {
             await _subTasks.DeleteAsync(subTask.Id);

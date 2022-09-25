@@ -2,72 +2,55 @@
 using Application.Interfaces;
 using Application.Mappings;
 using Domain.Interfaces;
- namespace Application.Services;
+
+namespace Application.Services;
 
 internal class ProjectService : IProjectService
 {
     private readonly IProjectRepository _projects;
     private readonly ISubTaskRepository _subTasks;
-    public ProjectService(IProjectRepository projectRepository,  ISubTaskRepository subTaskRepository)  
+    public ProjectService(IProjectRepository projectRepository, ISubTaskRepository subTaskRepository)
     {
         _projects = projectRepository;
         _subTasks = subTaskRepository;
     }
     public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
-    { 
-        var asProjectType = Map.CreateProjectDtoToProject(project);  
+    {
+        var asProjectType = Map.CreateProjectDtoToProject(project);
         var created = await _projects.CreateAsync(asProjectType);
-         
+
         return Map.ProjectToProjectDto(created);
-    } 
+    }
     public async Task DeleteAsync(Guid id)
     {
-        await _projects.DeleteAsync(id); 
+        await _projects.DeleteAsync(id);
     }
 
     public async Task<IReadOnlyList<ProjectDto>> GetAllAsync()
-    { 
+    {
         var allProjects = await _projects.GetAllAsync();
         var mappedProjects = Map.ListConvert(allProjects);
-         
+
         foreach (var projectObject in mappedProjects)
         {
             var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
             var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
-              
+
             projectObject.MainTasks = mappedListOfIncludedSubTasks;
         }
-        
-        return  mappedProjects ; 
-    }
-    //public async Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
-    //{
-    //    var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
-    //    var mappedProjects =  Map.ListConvert(allProjects) ;
-              
-    //    foreach (var item in mappedProjects)
-    //    {
-    //        var list = await _subTasks.CreateListOfTasks(item.Id);
-    //        var mappedList = Map.ListConvert(list);
-                
-    //        foreach (var lists in mappedList)
-    //        {
-    //            item.MainTasks.Add(lists);
-    //        }
-    //    }
-    //    return mappedProjects; 
-    //}
 
+        return mappedProjects;
+    }
     public async Task<ProjectDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);
         if (project == null) return null;
 
         var projectDtoType = Map.ProjectToProjectDto(project);
-            
+
         var list = await _subTasks.CreateListOfTasks(project.Id);
 
-        var mappedList = Map.ListConvert(list); 
+        var mappedList = Map.ListConvert(list);
 
         foreach (var item in mappedList)
         {
@@ -75,15 +58,13 @@ internal class ProjectService : IProjectService
         }
         return projectDtoType;
     }
-
     public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
-    {  
-        var project = Map.UpdateProjectDtoToProject(entityToUpdate); 
+    {
+        var project = Map.UpdateProjectDtoToProject(entityToUpdate);
 
-        await _projects.UpdateAsync(project); 
+        await _projects.UpdateAsync(project);
     }
-
-    public async Task DeleteAllProjectsAsync()  
+    public async Task DeleteAllProjectsAsync()
     {
         var allProjects = await _projects.GetAllAsync();
 
@@ -93,5 +74,5 @@ internal class ProjectService : IProjectService
             await _projects.DeleteAsync(id);
         }
     }
- 
+
 }

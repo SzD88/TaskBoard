@@ -16,7 +16,7 @@ namespace Domain.Entities
         {
             Id = id;
             _content = content;
-            _completed = completed; // null reference 
+            _completed = completed;  
             _levelAboveId = levelAboveId; 
         }
         
@@ -39,25 +39,6 @@ namespace Domain.Entities
             }
             _includedSubTasks.Append(mainTaskId);
         }
-        public bool CheckExistance(Guid id) // method was Get SubTask, now i see no point in it
-        {
-            var task = _includedSubTasks.FirstOrDefault(i => i == id);
-
-            if (task == Guid.Empty)
-            {
-                throw new Exception($"Object with {id} does not exists");
-            }
-            return true;
-        }
-        public void RemoveMainTask(Guid item)
-        {
-            var alreadyExists = _includedSubTasks.Any(i => i == item);
-
-            if (!alreadyExists)
-            {
-                throw new Exception($"Object with id: {item} does not exists");
-            }
-            _includedSubTasks.Remove(item);
-        }
+    
     }
 }

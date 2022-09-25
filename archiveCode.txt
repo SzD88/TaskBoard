@@ -1,0 +1,57 @@
+﻿    public bool CheckExistance(Guid id) 
+        {
+            var task = _includedSubTasks.FirstOrDefault(i => i == id);
+
+            if (task == Guid.Empty)
+            {
+                throw new Exception($"Object with {id} does not exists");
+            }
+            return true;
+        }
+        public void RemoveMainTask(Guid item)
+        {
+            var alreadyExists = _includedSubTasks.Any(i => i == item);
+
+            if (!alreadyExists)
+            {
+                throw new Exception($"Object with id: {item} does not exists");
+            }
+            _includedSubTasks.Remove(item);
+        }
+       public async Task<IReadOnlyList<ProjectDto>> GetAllSortedAsync(string sortField, bool ascending)
+   {
+       var allProjects = await _projects.GetAllSortedAsync(sortField, ascending);
+       var mappedProjects =  Map.ListConvert(allProjects) ;
+           
+       foreach (var item in mappedProjects)
+       {
+           var list = await _subTasks.CreateListOfTasks(item.Id);
+           var mappedList = Map.ListConvert(list);
+                
+       foreach (var lists in mappedList)
+          {
+               item.MainTasks.Add(lists);
+          }
+       }
+       return mappedProjects; 
+  }
+
+          public async Task<IReadOnlyList<SubTask>> CreateListOfMainTasks(Guid parentId)
+        {
+            var list = await _context.SubTasks
+                  .Where(x => x.GetLevelAboveId() == parentId)
+                  .ToListAsync();
+
+            return list;
+        }
+
+ ---- get all sorted 
+
+         public async Task<IReadOnlyList<Project>> GetAllSortedAsync(string sortField, bool ascending)
+        {
+            return await _context.Projects
+                .OrderByPropertyName(sortField, ascending)
+                .ToListAsync();
+        }
+          Task<IReadOnlyList<Project>> GetAllSortedAsync(string sortField, bool ascending); 
+        Task<IReadOnlyList<SubTask>> CreateListOfMainTasks(Guid parentId);

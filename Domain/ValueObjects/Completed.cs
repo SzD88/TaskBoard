@@ -1,6 +1,5 @@
 ﻿namespace Domain.ValueObjects
-{
-
+{ 
     public record Completed
     {
         public bool Value { get; private set; }

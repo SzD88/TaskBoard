@@ -1,6 +1,5 @@
 ﻿namespace Domain.ValueObjects
-{
-
+{ 
     public record Content
     {
         public string Value { get; private set; }

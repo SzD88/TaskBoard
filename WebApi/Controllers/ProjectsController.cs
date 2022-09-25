@@ -2,12 +2,9 @@
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using WebApi.Filters;
-using WebApi.Helpers;
 
 namespace WebApi.Controllers
-{
-
+{ 
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : BaseController
@@ -18,17 +15,18 @@ namespace WebApi.Controllers
         {
             _projects = service;
         }
+
         [HttpPost] 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [SwaggerOperation(Summary = "Create new project")] //post=>/api/projects
+        [SwaggerOperation(Summary = "Create new project")]  
         public async Task<ActionResult> AddProject(CreateProjectDto project)
         {
-            var toShow = await _projects.CreateAsync(project); // null reference 
+            var toShow = await _projects.CreateAsync(project); 
             return Created($"/api/projects/{toShow.Id}",toShow);
         }
          
-        [HttpGet("{id}")]//get=>/api/projects/id
+        [HttpGet("{id}")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Retrieves project by id")] 
@@ -38,7 +36,7 @@ namespace WebApi.Controllers
             return OkOrNotFound(toShow);
         }
 
-        [HttpGet]//get=>/api/projects
+        [HttpGet] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Retrieves all projects")] 
@@ -48,27 +46,24 @@ namespace WebApi.Controllers
             return OkOrNotFound(toShow);
         }
        
-        [SwaggerOperation(Summary = "Update project")]
         [HttpPut]
-        public async Task<IActionResult> UpdateProject(UpdateProjectDto projectToUpdate)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] 
+        [SwaggerOperation(Summary = "Update project")] 
+        public async Task<ActionResult> UpdateProject(UpdateProjectDto projectToUpdate)
         {
             await _projects.UpdateAsync(projectToUpdate);
-            return Ok();
+            return NoContent(); 
         }
+
+        [HttpDelete] 
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [SwaggerOperation(Summary = "Delete project by id")]
-        [HttpDelete]
-        public async Task<IActionResult> DeleteProject(Guid id)
+        public async Task<ActionResult> DeleteProject(Guid id)
         {
             await _projects.DeleteAsync(id);
-            return Ok($"Deleted task with id : {id} ");
-        }
-        [SwaggerOperation(Summary = "Delete all projects")]
-        [HttpDelete("DeleteAll")]
-        public async Task<IActionResult> DeleteAllProjects()
-        {
-            await _projects.DeleteAllProjectsAsync();
             return NoContent();
-        }
-        
+        } 
     }
 }

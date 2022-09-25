@@ -1,13 +1,10 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
 {
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class SubTasksController : BaseController
@@ -18,50 +15,55 @@ namespace WebApi.Controllers
         {
             _subTasks = service;
         }
-        [SwaggerOperation(Summary = "Create new task")] 
+
         [HttpPost]
-        public async Task<IActionResult> AddSubTask(CreateSubTaskDto subTask)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Summary = "Create new task")] 
+        public async Task<ActionResult> AddSubTask(CreateSubTaskDto subTask)
         {
             var toShow = await _subTasks.CreateAsync(subTask); 
-            return Created($"api/subtask/{toShow.Id}", toShow.Id); 
+            return Created($"api/subtask/{toShow.Id}", toShow); 
         }
 
-        [SwaggerOperation(Summary = "Retrieves task by id")]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSubTaskById(Guid id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Retrieves task by id")] 
+        public async Task<ActionResult<SubTaskDto>> GetSubTaskById(Guid id)
         { 
             var toShow = await _subTasks.GetByIDAsync(id); 
-            return Ok(toShow);
+            return OkOrNotFound(toShow);
         } 
-        [SwaggerOperation(Summary = "Retrieves all tasks")]
+
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Retrieves all tasks")] 
+        public async Task<ActionResult<IReadOnlyList<SubTaskDto>>>  GetAll()
         { 
             var toShow = await _subTasks.GetAllAsync(); 
-            return Ok(toShow);
+            return OkOrNotFound(toShow);
         }
-        // change by content and id
-        [SwaggerOperation(Summary = "Update task")]
+
         [HttpPut]
-        public async Task<IActionResult> UpdateTask(UpdateSubTaskDto newSubTask)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Summary = "Update task")] 
+        public async Task<ActionResult> UpdateTask(UpdateSubTaskDto newSubTask)
         {
             await _subTasks.UpdateAsync(newSubTask);
-            return Ok();
+            return NoContent(); 
         }
-        //delete by id
-        [SwaggerOperation(Summary = "Delete task by id")]
+
         [HttpDelete]
-        public async Task<IActionResult> DeleteTask(Guid id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Summary = "Delete task by id")]
+        public async Task<ActionResult> DeleteTask(Guid id)
         {
             await _subTasks.DeleteAsync(id);
-            return Ok($"Deleted task with id : {id} ");
-        }
-        [SwaggerOperation(Summary = "Delete all subTasks")]
-        [HttpDelete("DeleteAll")]
-        public async Task<IActionResult> DeleteAllProjects()
-        {
-            await _subTasks.DeleteAllSubTasksAsync();
-            return NoContent();
+            return NoContent(); 
         }
     }
 }
