@@ -13,14 +13,13 @@ namespace Infrastructure.Repositories
         {
             _context = context;
         }
-
         public async Task<SubTask> CreateAsync(SubTask entity)
-        { 
-            await _context.SubTasks.AddAsync(entity); 
+        {
+            await _context.SubTasks.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
-        public async Task DeleteAsync(Guid idToDelete)  
+        public async Task DeleteAsync(Guid idToDelete)
         {
             var subTaskToDelete = await GetByIDAsync(idToDelete);
             _context.Remove(subTaskToDelete);
@@ -38,7 +37,7 @@ namespace Infrastructure.Repositories
         }
         public async Task UpdateAsync(SubTask entityToUpdate)
         {
-            entityToUpdate.LastModified = DateTime.Now; 
+            entityToUpdate.LastModified = DateTime.Now;
             _context.SubTasks.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
@@ -60,6 +59,6 @@ namespace Infrastructure.Repositories
             }
             return listOfChilds;
         }
- 
+
     }
 }

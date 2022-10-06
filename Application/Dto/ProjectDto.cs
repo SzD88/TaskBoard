@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Application.Dto
+﻿namespace Application.Dto
 {
     public class ProjectDto
     {

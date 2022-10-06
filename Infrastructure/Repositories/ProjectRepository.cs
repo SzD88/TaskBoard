@@ -1,9 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Domain.ValueObjects;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Infrastructure.ExtensionMethods;
-using Domain.ValueObjects;
 
 namespace Infrastructure.Repositories
 {
@@ -29,14 +28,7 @@ namespace Infrastructure.Repositories
         public async Task<IReadOnlyList<Project>> GetAllAsync()
         {
             return await _context.Projects.ToListAsync();
-        }
-        public async Task<IReadOnlyList<Project>> GetAllSortedAsync(string sortField, bool ascending)
-        {
-            return await _context.Projects
-                .OrderByPropertyName(sortField, ascending)
-                .ToListAsync();
-        }
-
+        } 
         public async Task<Project> GetByIDAsync(Guid id)
         {
             var guid =  (Id)id;
@@ -49,14 +41,7 @@ namespace Infrastructure.Repositories
             _context.Projects.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
-        //public async Task<IReadOnlyList<SubTask>> CreateListOfMainTasks(Guid parentId)
-        //{
-        //    var list = await _context.SubTasks
-        //          .Where(x => x.GetLevelAboveId() == parentId)
-        //          .ToListAsync();
 
-        //    return list;
-        //} 
     }
 }
 

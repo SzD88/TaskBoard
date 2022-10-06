@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Project : AuditibleEntity // #refactor
+    public class Project : AuditibleEntity  
     {
         public Id Id { get; private set; }
         private ProjectNumber _projectNumber;

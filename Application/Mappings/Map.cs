@@ -50,7 +50,7 @@ namespace Application.Mappings
             enter.Completed);
             return projectType;
         }
-       
+
         public static SubTaskDto SubTaskToSubTaskDto(SubTask subTaskType)
         {
             return new SubTaskDto
@@ -83,12 +83,12 @@ namespace Application.Mappings
         }
         public static SubTask UpdateSubTaskDtoToSubTask(UpdateSubTaskDto enter)
         {
-            var subTaskType = new SubTask( 
+            var subTaskType = new SubTask(
                 enter.Id,
                 enter.Content,
                 enter.Completed,
                 enter.LevelAboveId
-                ); 
+                );
             return subTaskType;
         }
         public static List<ProjectDto> ListConvert(IReadOnlyList<Project> enter)
