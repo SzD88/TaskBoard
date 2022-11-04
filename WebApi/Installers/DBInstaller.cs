@@ -5,17 +5,12 @@ namespace WebApi.Installers
 {
     public class DBInstaller : IInstaller
     {
-         
-            public void InstallServices(IServiceCollection services, IConfiguration configuration)
-            {
 
-            // is this class needed ? 
+        public void InstallServices(IServiceCollection services, IConfiguration configuration)
+        {
 
-                //services.AddDbContext<NotesContext>(options =>
-                //options.UseSqlServer(configuration.GetConnectionString("NotesPractice")));  // klasa kontekstu 
 
-           
         }
-        }
-    
+    }
+
 }

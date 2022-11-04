@@ -1,4 +1,5 @@
-﻿using Application.Dto;
+﻿using Application.Commands;
+using Application.Dto;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -20,7 +21,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [SwaggerOperation(Summary = "Create new project")]  
-        public async Task<ActionResult> AddProject(CreateProjectDto project)
+        public async Task<ActionResult> AddProject(CreateProject project)
         {
             var toShow = await _projects.CreateAsync(project); 
             return Created($"/api/projects/{toShow.Id}",toShow);
