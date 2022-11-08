@@ -13,7 +13,8 @@ namespace Domain.Entities
         public Project()
         {
         } 
-        public Project(Guid id, string projNumber, string title, string description, bool completed ) //DateTime created, DateTime lastmodified
+        public Project(Guid id, ProjectNumber projNumber, Title title, Description description,
+            Completed completed ) //DateTime created, DateTime lastmodified
         {
             Id = id;
             _projectNumber = projNumber;

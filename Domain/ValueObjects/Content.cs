@@ -1,5 +1,5 @@
 ﻿namespace Domain.ValueObjects
-{ 
+{
     public record Content
     {
         public string Value { get; private set; }
@@ -17,13 +17,5 @@
 
         public static implicit operator Content(string content)
             => new(content); 
-    }
-    public class EmptyDContentException : Exception
-    {
-        public EmptyDContentException()
-            : base("Content cannot be empty")
-        {
-
-        }
     }
 }

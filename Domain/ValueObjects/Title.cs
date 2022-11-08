@@ -1,5 +1,5 @@
 ﻿namespace Domain.ValueObjects
-{ 
+{
     public record Title
     {
         public string Value { get; private set; }
@@ -18,13 +18,5 @@
 
         public static implicit operator Title(string name)
             => new(name); 
-    }
-    public class EmptyTitleException : Exception
-    {
-        public EmptyTitleException()
-            : base("Title cannot be empty")
-        {
-
-        }
     }
 }

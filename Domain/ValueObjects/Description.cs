@@ -21,12 +21,4 @@
         public static implicit operator Description(string name)
             => new(name); 
     }
-    public class EmptyDescriptionException : Exception
-    {
-        public EmptyDescriptionException()
-            : base("Description cannot be empty")
-        {
-
-        }
-    }
 }

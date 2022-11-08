@@ -21,12 +21,4 @@
         public static implicit operator ProjectNumber(string name)
             => new(name); 
     }
-    public class EmptyProjectNumberException : Exception
-    {
-        public EmptyProjectNumberException()
-            : base("Project Number cannot be empty")
-        {
-
-        }
-    }
 }
