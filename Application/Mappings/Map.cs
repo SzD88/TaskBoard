@@ -1,4 +1,5 @@
-﻿using Application.Dto;
+﻿using Application.Commands;
+using Application.Dto;
 using Domain.Entities;
 
 namespace Application.Mappings
@@ -29,7 +30,7 @@ namespace Application.Mappings
             enter.Completed);
             return projectType;
         }
-        public static Project CreateProjectDtoToProject(CreateProjectDto enter)
+        public static Project CreateProjectDtoToProject(CreateProject enter)
         {
             var projectType = new Project(
                 Guid.NewGuid(),

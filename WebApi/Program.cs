@@ -2,6 +2,7 @@
 using Infrastructure;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,13 +13,12 @@ builder.Services.AddInfrastructure();
 builder.Services.AddDbContext<ProjectManagerContext>(options =>
   options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjectManager"));
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations(); // *
-            }
+}
 );
 
 var app = builder.Build();

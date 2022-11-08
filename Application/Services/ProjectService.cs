@@ -1,4 +1,5 @@
-﻿using Application.Dto;
+﻿using Application.Commands;
+using Application.Dto;
 using Application.Interfaces;
 using Application.Mappings;
 using Domain.Interfaces;
@@ -14,7 +15,7 @@ internal class ProjectService : IProjectService
         _projects = projectRepository;
         _subTasks = subTaskRepository;
     }
-    public async Task<ProjectDto> CreateAsync(CreateProjectDto project)
+    public async Task<ProjectDto> CreateAsync(CreateProject project)
     {
         var asProjectType = Map.CreateProjectDtoToProject(project);
         var created = await _projects.CreateAsync(asProjectType);
