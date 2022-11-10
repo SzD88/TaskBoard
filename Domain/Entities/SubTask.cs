@@ -35,7 +35,7 @@ namespace Domain.Entities
 
             if (alreadyExists)
             {
-                throw new Exception($"Object with id: {mainTaskId} alredy exists");
+                throw new SubTaskAlredyExistsException($"Object with id: {mainTaskId} alredy exists");
             }
             _includedSubTasks.Append(mainTaskId);
         }

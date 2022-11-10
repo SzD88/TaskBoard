@@ -9,7 +9,6 @@ namespace Domain.Entities
         private Title _title;
         private Description _description;
         private Completed _completed;
-        private readonly List<Guid> _mainTasksAsSubTasks; // = new();
         public Project()
         {
         } 

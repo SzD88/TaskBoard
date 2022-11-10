@@ -2,7 +2,7 @@
 {
     public class CreateSubTaskDto
     {
-        public string? Content { get; set; }
+        public string Content { get; set; }
         public Guid LevelAboveId { get; set; }
     }
    

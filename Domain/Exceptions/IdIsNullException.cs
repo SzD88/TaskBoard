@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects
 {
-    public class IdIsNullException : Exception
+    public class IdIsNullException : CustomException
     {
         public IdIsNullException()
             : base("Id cannot be null")

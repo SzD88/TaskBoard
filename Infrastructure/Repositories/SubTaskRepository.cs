@@ -43,9 +43,9 @@ namespace Infrastructure.Repositories
         }
         public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId)
         {
-            var cos = (Id)parentId;
+            var tmpId = (Id)parentId;
             var listOfChilds = await _context.SubTasks
-                .Where(x => x._levelAboveId == cos)
+                .Where(x => x._levelAboveId == tmpId)
                 .ToListAsync();
 
             foreach (var subtask in listOfChilds)

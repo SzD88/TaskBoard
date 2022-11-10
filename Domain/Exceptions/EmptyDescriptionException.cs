@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects
 {
-    public class EmptyDescriptionException : Exception
+    public class EmptyDescriptionException : CustomException
     {
         public EmptyDescriptionException()
             : base("Description cannot be empty")

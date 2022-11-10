@@ -3,7 +3,7 @@
     public class SubTaskDto
     {
         public Guid Id { get; set; }  
-        public string? Content { get; set; }
+        public string Content { get; set; }
         public bool Completed { get; set; }
         public Guid LevelAboveId { get; set; }
         public List<SubTaskDto> IncludedTasks { get; set; } = new List<SubTaskDto>();
