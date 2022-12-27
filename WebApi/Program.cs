@@ -4,8 +4,22 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                         // policy.AllowAnyOrigin();  //!!! #avoid #bug #mistake
+                                    //   .AllowAnyMethod()
+                                    //   .AllowAnyHeader()
+                                    //   .AllowCredentials();
+                      });
+});  
+                                
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
@@ -31,8 +45,9 @@ if (app.Environment.IsDevelopment())
 }
 app.UseDefaultFiles(); // needed to use JS/HTML/
 app.UseStaticFiles();  // needed to use JS/HTML/
-
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
