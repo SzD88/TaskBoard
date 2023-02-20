@@ -1,7 +1,7 @@
 ﻿namespace Application.Commands
 {
-    public record CreateProject( 
-         string ProjectNumber,
+    public record CreateDay( 
+         DateTime DayDate,
          string Title,
          string Description  
          );

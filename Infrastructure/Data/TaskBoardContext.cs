@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class ProjectManagerContext : DbContext
+    public class TaskBoardContext : DbContext
     {
         public DbSet<SubTask> SubTasks { get; set; }
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Day> Days { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new SubTaskEntityTypeConfiguration().Configure(modelBuilder.Entity<SubTask>());
 
-            new ProjectEntityTypeConfiguration().Configure(modelBuilder.Entity<Project>());
+            new DayEntityTypeConfiguration().Configure(modelBuilder.Entity<Day>());
            
         }
-        public ProjectManagerContext(DbContextOptions options) : base(options)
+        public TaskBoardContext(DbContextOptions options) : base(options)
         {
 
         }

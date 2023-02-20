@@ -8,8 +8,8 @@ namespace Infrastructure.Repositories
 {
     internal class SubTaskRepository : ISubTaskRepository
     {
-        private readonly ProjectManagerContext _context;
-        public SubTaskRepository(ProjectManagerContext context)
+        private readonly TaskBoardContext _context;
+        public SubTaskRepository(TaskBoardContext context)
         {
             _context = context;
         }

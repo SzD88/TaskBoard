@@ -9,7 +9,7 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         { 
             services.AddScoped<ISubTaskRepository, SubTaskRepository>();
-            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IDayRepository, DayRepository>();
 
             return services;
         }

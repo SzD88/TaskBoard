@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Data
 {
-    public class ProjectEntityTypeConfiguration : IEntityTypeConfiguration<Project>
+    public class DayEntityTypeConfiguration : IEntityTypeConfiguration<Day>
     {
-        public void Configure(EntityTypeBuilder<Project> builder)
+        public void Configure(EntityTypeBuilder<Day> builder)
         {
-            var projectNumberConverter = new ValueConverter<ProjectNumber, string>(pnr => pnr.Value,
-                dbvalue => new ProjectNumber(dbvalue));
+            var dayDateConverter = new ValueConverter<DayDate, DateTime>(pnr => pnr.Value,
+                dbvalue => new DayDate(dbvalue));
             var titleConverter = new ValueConverter<Title, string>(title => title.Value,
                 dbvalue => new Title(dbvalue));
             var descriptionConverter = new ValueConverter<Description, string>(desc => desc.Value,
@@ -21,7 +21,7 @@ namespace Infrastructure.Data
             var idConverter = new ValueConverter<Id, Guid>(id => id.Value,
              dbvalue => new Id(dbvalue));
             builder
-                .ToTable("Projects");
+                .ToTable("Days");
             builder
                 .HasKey(b => b.Id);
 
@@ -29,9 +29,9 @@ namespace Infrastructure.Data
              .Property(pl => pl.Id)
              .HasConversion(id => id.Value, id => new Id(id));
 
-            builder.Property(typeof(ProjectNumber), "_projectNumber")
-                .HasConversion(projectNumberConverter)
-                .HasColumnName("ProjectNumber");
+            builder.Property(typeof(DayDate), "_dayDate")
+                .HasConversion(dayDateConverter)
+                .HasColumnName("DayDate");
 
             builder.Property(typeof(Title), "_title")
                 .HasConversion(titleConverter)

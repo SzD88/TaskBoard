@@ -6,46 +6,46 @@ namespace Application.Mappings
 {
     public static class Map
     {
-        public static ProjectDto ProjectToProjectDto(Project projectType)
+        public static DayDto ProjectToProjectDto(Day projectType)
         {
-            return new ProjectDto
+            return new DayDto
             {
                 Id = projectType.Id,
-                ProjectNumber = projectType.GetProjectNumber(),
+                DayDate = projectType.GetProjectNumber(),
                 Title = projectType.GetTitle(),
                 Description = projectType.GetDescription(),
                 Completed = projectType.GetCompleted(),
-                CreationDate = projectType.Created,
-                LastModifiedDate = projectType.LastModified,
+              //  CreationDate = projectType.Created,
+               // LastModifiedDate = projectType.LastModified,
                 MainTasks = new List<SubTaskDto>()
             };
         }
-        public static Project ProjectDtoToProject(ProjectDto enter)
+        public static Day ProjectDtoToProject(DayDto enter)
         {
-            var projectType = new Project(
+            var projectType = new Day(
             enter.Id,
-            enter.ProjectNumber,
+            enter.DayDate,
             enter.Title,
             enter.Description,
             enter.Completed);
             return projectType;
         }
-        public static Project CreateProjectDtoToProject(CreateProject enter)
+        public static Day CreateProjectDtoToProject(CreateDay enter)
         {
-            var projectType = new Project(
+            var projectType = new Day(
                 Guid.NewGuid(),
-                enter.ProjectNumber,
+                enter.DayDate,
                 enter.Title,
                 enter.Description,
                 false);
 
             return projectType;
         }
-        public static Project UpdateProjectDtoToProject(UpdateProjectDto enter)
+        public static Day UpdateProjectDtoToProject(UpdateDayDto enter)
         {
-            var projectType = new Project(
+            var projectType = new Day(
             enter.Id,
-            enter.ProjectNumber,
+            enter.DayDate,
             enter.Title,
             enter.Description,
             enter.Completed);
@@ -92,9 +92,9 @@ namespace Application.Mappings
                 );
             return subTaskType;
         }
-        public static List<ProjectDto> ListConvert(IReadOnlyList<Project> enter)
+        public static List<DayDto> ListConvert(IReadOnlyList<Day> enter)
         {
-            var toReturn = new List<ProjectDto>();
+            var toReturn = new List<DayDto>();
             foreach (var item in enter)
             {
                 toReturn.Add(Map.ProjectToProjectDto(item));

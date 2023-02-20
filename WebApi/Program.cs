@@ -24,8 +24,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 
-builder.Services.AddDbContext<ProjectManagerContext>(options =>
-  options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjectManager"));
+builder.Services.AddDbContext<TaskBoardContext>(options =>
+  options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TaskBoard"));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseDefaultFiles(); // needed to use JS/HTML/
+// app.UseDefaultFiles(); // needed to use JS/HTML/
 app.UseStaticFiles();  // needed to use JS/HTML/
 app.UseHttpsRedirection();
 

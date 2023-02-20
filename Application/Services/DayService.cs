@@ -6,16 +6,16 @@ using Domain.Interfaces;
 
 namespace Application.Services;
 
-internal class ProjectService : IProjectService
+internal class DayService : IDayService
 {
-    private readonly IProjectRepository _projects;
+    private readonly IDayRepository _projects;
     private readonly ISubTaskRepository _subTasks;
-    public ProjectService(IProjectRepository projectRepository, ISubTaskRepository subTaskRepository)
+    public DayService(IDayRepository projectRepository, ISubTaskRepository subTaskRepository)
     {
         _projects = projectRepository;
         _subTasks = subTaskRepository;
     }
-    public async Task<ProjectDto> CreateAsync(CreateProject project)
+    public async Task<DayDto> CreateAsync(CreateDay project)
     {
         var asProjectType = Map.CreateProjectDtoToProject(project);
         var created = await _projects.CreateAsync(asProjectType);
@@ -27,7 +27,7 @@ internal class ProjectService : IProjectService
         await _projects.DeleteAsync(id);
     }
 
-    public async Task<IReadOnlyList<ProjectDto>> GetAllAsync()
+    public async Task<IReadOnlyList<DayDto>> GetAllAsync()
     {
         var allProjects = await _projects.GetAllAsync();
         var mappedProjects = Map.ListConvert(allProjects);
@@ -42,7 +42,7 @@ internal class ProjectService : IProjectService
 
         return mappedProjects;
     }
-    public async Task<ProjectDto> GetByIDAsync(Guid id)
+    public async Task<DayDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);
         if (project == null) return null;
@@ -59,7 +59,7 @@ internal class ProjectService : IProjectService
         }
         return projectDtoType;
     }
-    public async Task UpdateAsync(UpdateProjectDto entityToUpdate)
+    public async Task UpdateAsync(UpdateDayDto entityToUpdate)
     {
         var project = Map.UpdateProjectDtoToProject(entityToUpdate);
 

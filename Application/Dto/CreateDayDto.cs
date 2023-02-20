@@ -1,8 +1,8 @@
 ﻿namespace Application.Dto
 {
-    public class CreateProjectDto
+    public class CreateDayDto
     { 
-        public string ProjectNumber { get; set; } 
+        public DateTime DayDate { get; set; } 
         public string Title { get; set; }
         public string Description { get; set; }
     }

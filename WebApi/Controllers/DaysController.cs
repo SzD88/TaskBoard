@@ -8,11 +8,11 @@ namespace WebApi.Controllers
 { 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectsController : BaseController
+    public class DaysController : BaseController
     {
-        private readonly IProjectService _projects;
+        private readonly IDayService _projects;
 
-        public ProjectsController(IProjectService service)
+        public DaysController(IDayService service)
         {
             _projects = service;
         }
@@ -20,18 +20,18 @@ namespace WebApi.Controllers
         [HttpPost] 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [SwaggerOperation(Summary = "Create new project")]  
-        public async Task<ActionResult> AddProject(CreateProject project)
+        [SwaggerOperation(Summary = "Create new day")]  
+        public async Task<ActionResult> AddProject(CreateDay project)
         {
             var toShow = await _projects.CreateAsync(project); 
-            return Created($"/api/projects/{toShow.Id}",toShow);
+            return Created($"/api/days/{toShow.Id}",toShow);
         }
          
         [HttpGet("{id}")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Retrieves project by id")] 
-        public async Task<ActionResult<ProjectDto>> GetProjectById(Guid id)
+        [SwaggerOperation(Summary = "Retrieves day by id")] 
+        public async Task<ActionResult<DayDto>> GetProjectById(Guid id)
         {
             var toShow = await _projects.GetByIDAsync(id);
             return OkOrNotFound(toShow);
@@ -40,8 +40,8 @@ namespace WebApi.Controllers
         [HttpGet] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Retrieves all projects")] 
-        public async Task<ActionResult<IReadOnlyList<ProjectDto>>> GetAll() //([FromQuery] SearchPackingLists query)
+        [SwaggerOperation(Summary = "Retrieves all days")] 
+        public async Task<ActionResult<IReadOnlyList<DayDto>>> GetAll() //([FromQuery] SearchPackingLists query)
         {
             var toShow = await _projects.GetAllAsync();
             return OkOrNotFound(toShow);
@@ -50,8 +50,8 @@ namespace WebApi.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)] 
-        [SwaggerOperation(Summary = "Update project")] 
-        public async Task<ActionResult> UpdateProject(UpdateProjectDto projectToUpdate)
+        [SwaggerOperation(Summary = "Update day")] 
+        public async Task<ActionResult> UpdateProject(UpdateDayDto projectToUpdate)
         {
             await _projects.UpdateAsync(projectToUpdate);
             return NoContent(); 
@@ -60,7 +60,7 @@ namespace WebApi.Controllers
         [HttpDelete] 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [SwaggerOperation(Summary = "Delete project by id")]
+        [SwaggerOperation(Summary = "Delete day by id")]
         public async Task<ActionResult> DeleteProject(Guid id)
         {
             await _projects.DeleteAsync(id);

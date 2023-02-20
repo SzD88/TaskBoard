@@ -9,7 +9,7 @@ namespace Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<ISubTaskService, SubTaskService>();
-            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IDayService, DayService>();
 
             return services;
         }

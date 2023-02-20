@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(ProjectManagerContext))]
-    [Migration("20220914175749_14-09")]
-    partial class _1409
+    [DbContext(typeof(TaskBoardContext))]
+    [Migration("20230220171811_20-02")]
+    partial class _2002
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Domain.Entities.Project", b =>
+            modelBuilder.Entity("Domain.Entities.Day", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -39,15 +39,15 @@ namespace Infrastructure.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("Completed");
 
+                    b.Property<DateTime?>("_dayDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DayDate");
+
                     b.Property<string>("_description")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("Description");
-
-                    b.Property<string>("_projectNumber")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ProjectNumber");
 
                     b.Property<string>("_title")
                         .IsRequired()
@@ -57,7 +57,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Days", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.SubTask", b =>

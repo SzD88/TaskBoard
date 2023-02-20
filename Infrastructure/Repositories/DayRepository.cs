@@ -6,16 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    internal class ProjectRepository : IProjectRepository
+    internal class DayRepository : IDayRepository
     {
-        private readonly ProjectManagerContext _context;
-        public ProjectRepository(ProjectManagerContext context)
+        private readonly TaskBoardContext _context;
+        public DayRepository(TaskBoardContext context)
         {
             _context = context;
         }
-        public async Task<Project> CreateAsync(Project entity)
+        public async Task<Day> CreateAsync(Day entity)
         { 
-            await _context.Projects.AddAsync(entity);
+            await _context.Days.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
@@ -25,20 +25,20 @@ namespace Infrastructure.Repositories
             _context.Remove(projectToDelete); 
             await _context.SaveChangesAsync();
         }
-        public async Task<IReadOnlyList<Project>> GetAllAsync()
+        public async Task<IReadOnlyList<Day>> GetAllAsync()
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Days.ToListAsync();
         } 
-        public async Task<Project> GetByIDAsync(Guid id)
+        public async Task<Day> GetByIDAsync(Guid id)
         {
             var guid =  (Id)id;
-            var toReturn = await _context.Projects.FirstOrDefaultAsync(x => x.Id == guid);
+            var toReturn = await _context.Days.FirstOrDefaultAsync(x => x.Id == guid);
             return toReturn;
         } 
-        public async Task UpdateAsync(Project entityToUpdate)
+        public async Task UpdateAsync(Day entityToUpdate)
         {
             entityToUpdate.LastModified = DateTime.Now;
-            _context.Projects.Update(entityToUpdate);
+            _context.Days.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
 

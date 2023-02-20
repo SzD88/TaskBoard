@@ -2,7 +2,7 @@
 
 namespace Domain.Interfaces
 {
-    public interface IProjectRepository : IRepository<Project>
+    public interface IDayRepository : IRepository<Day>
     {
      
     }

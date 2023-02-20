@@ -4,10 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54D74C2A-22E3-4785-A889-4FDCAE0A485D}"
-	ProjectSection(SolutionItems) = preProject
-		archiveCode.txt = archiveCode.txt
-		notes.txt = notes.txt
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C4CB115E-08F6-41E6-8A46-9B16329ADEFF}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -26,12 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 		{C4CB115E-08F6-41E6-8A46-9B16329ADEFF} = {C4CB115E-08F6-41E6-8A46-9B16329ADEFF}
 		{3F05BA97-1CCB-4989-85EC-F7904F63F704} = {3F05BA97-1CCB-4989-85EC-F7904F63F704}
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6F6DF599-1CF0-4BC7-AD7D-7F051A121606}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{61E7BE13-B34B-44A8-ADA0-6DF3003C2A59}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.Tests.Unit", "ProjectManager.Tests.Unit\ProjectManager.Tests.Unit.csproj", "{D618651C-FA3E-43AA-A453-6BCB910A062F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +45,6 @@ Global
 		{32E7DF3F-2081-4483-BFE9-3ADBBB2A2876}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32E7DF3F-2081-4483-BFE9-3ADBBB2A2876}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32E7DF3F-2081-4483-BFE9-3ADBBB2A2876}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D618651C-FA3E-43AA-A453-6BCB910A062F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D618651C-FA3E-43AA-A453-6BCB910A062F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D618651C-FA3E-43AA-A453-6BCB910A062F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D618651C-FA3E-43AA-A453-6BCB910A062F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,8 +54,6 @@ Global
 		{10517D53-6AAB-44E0-904A-FE0A3F5F1B11} = {54D74C2A-22E3-4785-A889-4FDCAE0A485D}
 		{3F05BA97-1CCB-4989-85EC-F7904F63F704} = {54D74C2A-22E3-4785-A889-4FDCAE0A485D}
 		{32E7DF3F-2081-4483-BFE9-3ADBBB2A2876} = {54D74C2A-22E3-4785-A889-4FDCAE0A485D}
-		{61E7BE13-B34B-44A8-ADA0-6DF3003C2A59} = {6F6DF599-1CF0-4BC7-AD7D-7F051A121606}
-		{D618651C-FA3E-43AA-A453-6BCB910A062F} = {6F6DF599-1CF0-4BC7-AD7D-7F051A121606}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C53CA53-30A8-4B1B-97FF-E80DA44BC168}

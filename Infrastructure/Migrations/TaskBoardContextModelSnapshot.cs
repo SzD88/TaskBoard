@@ -4,18 +4,16 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(ProjectManagerContext))]
-    [Migration("20220915165613_15-09-v3")]
-    partial class _1509v3
+    [DbContext(typeof(TaskBoardContext))]
+    partial class TaskBoardContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Domain.Entities.Project", b =>
+            modelBuilder.Entity("Domain.Entities.Day", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -39,15 +37,15 @@ namespace Infrastructure.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("Completed");
 
+                    b.Property<DateTime?>("_dayDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DayDate");
+
                     b.Property<string>("_description")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("Description");
-
-                    b.Property<string>("_projectNumber")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ProjectNumber");
 
                     b.Property<string>("_title")
                         .IsRequired()
@@ -57,7 +55,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Days", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.SubTask", b =>

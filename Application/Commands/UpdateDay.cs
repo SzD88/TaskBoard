@@ -1,8 +1,8 @@
 ﻿namespace Application.Commands
 {
-    public record UpdateProject(
+    public record UpdateDay(
       Guid Id,
-      string ProjectNumber,
+      DateTime DayDate,
       string Title,
       string Description,
       bool Completed
