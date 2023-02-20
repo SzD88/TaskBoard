@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Application.Mappings;
 using Domain.Entities;
 using Domain.Interfaces;
+using Domain.ValueObjects;
 
 namespace Application.Services;
 
@@ -44,6 +45,10 @@ internal class SubTaskService : ISubTaskService
     public async Task<SubTaskDto> GetByIDAsync(Guid id)
     {
         var subTask = await _subTasks.GetByIDAsync(id);
+        if (subTask is null)
+        {
+            throw new SubTaskDoesNotExists(id);
+        }
         var list = await CreateListOfTasksAsync(subTask.Id);
         var subTaskDtoType = Map.SubTaskToSubTaskDto(subTask);
         foreach (var item in list)
