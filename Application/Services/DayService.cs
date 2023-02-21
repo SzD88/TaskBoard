@@ -40,7 +40,9 @@ internal class DayService : IDayService
             projectObject.MainTasks = mappedListOfIncludedSubTasks;
         }
 
-        return mappedProjects;
+         
+
+        return mappedProjects.OrderBy(o => o.DayDate).ToList();
     }
     public async Task<DayDto> GetByIDAsync(Guid id)
     {
