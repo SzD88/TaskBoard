@@ -48,7 +48,12 @@ internal partial class DayService : IDayService
     {
         var allProjects = await _projects.GetAllAsync();
         var mappedProjects = Map.ListConvert(allProjects);
+        var daysAhead = weeksAhead * 7;
 
+        if (weeksAhead > 3)
+        {
+            return null;
+        }
         foreach (var projectObject in mappedProjects)
         {
             var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
@@ -61,16 +66,21 @@ internal partial class DayService : IDayService
 
         var mondayOfCurrentWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
 
-        var mondayOfDBDays = orderedDays.FirstOrDefault(x => x.DayDate == mondayOfCurrentWeek);
+       var mondayOfSelectedWeek = mondayOfCurrentWeek.AddDays(daysAhead);
 
-        int indexOdSerchedMonday = orderedDays.FindIndex(x => x.DayDate == mondayOfCurrentWeek);
+        var mondayOfDBDays = orderedDays.FirstOrDefault(x => x.DayDate == mondayOfSelectedWeek);
+
+        var indexOfSerchedMonday = orderedDays.IndexOf(mondayOfDBDays);
 
         var selectedWeek = new List<DayDto>();
-
+        if (indexOfSerchedMonday < 0)
+        {
+            return null;
+        }
         for (int i = 0; i < 7; i++)
         {
-            selectedWeek.Add(orderedDays[indexOdSerchedMonday]);
-            indexOdSerchedMonday++;
+            selectedWeek.Add(orderedDays[indexOfSerchedMonday]);
+            indexOfSerchedMonday++;
         }
 
         return selectedWeek;

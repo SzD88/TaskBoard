@@ -46,13 +46,13 @@ namespace WebApi.Controllers
             var toShow = await _projects.GetAllAsync();
             return OkOrNotFound(toShow);
         }
-        [HttpGet]
+        [HttpGet("weeksAhead/{weeksAhead}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Retrieves 7 days of week determined by number of weeks ahead")]
         public async Task<ActionResult<IReadOnlyList<DayDto>>> GetWeek(int weeksAhead) //([FromQuery] SearchPackingLists query)
         {
-            var toShow = await _projects.GetAllAsync();
+            var toShow = await _projects.GetWeek(weeksAhead);
             return OkOrNotFound(toShow);
         }
 

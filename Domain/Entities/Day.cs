@@ -25,7 +25,7 @@ namespace Domain.Entities
            //  _mainTasksAsSubTasks = new List<Guid>();
         } 
        
-        public DateTime GetProjectNumber() =>
+        public DateTime GetDate() =>
          _dayDate.Value;
         public string GetTitle() =>
          _title.Value;

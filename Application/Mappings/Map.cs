@@ -11,7 +11,7 @@ namespace Application.Mappings
             return new DayDto
             {
                 Id = projectType.Id,
-                DayDate = projectType.GetProjectNumber(),
+                DayDate = projectType.GetDate(),
                 Title = projectType.GetTitle(),
                 Description = projectType.GetDescription(),
                 Completed = projectType.GetCompleted(),

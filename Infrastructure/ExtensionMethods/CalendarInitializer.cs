@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data;
+﻿using Domain.Entities;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,25 +28,27 @@ namespace ProductionScheduler.Infrastructure.DAL
                  
                 var today = DateTime.Today;
 
-                for (int i = 0; i < 31; i++)
+                var mondayOfCurrentWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+
+                for (int i = 0; i < 38; i++)
                 {
-                  var dayToCheck = today.AddDays(i);
+                  var dayToCheck = mondayOfCurrentWeek.AddDays(i);
 
                     // leć po dacie od dzisiaj i probuj dodać
-                 //    allDays.FirstOrDefault(x=> x.)
-                    //dodaj dzien
+                 bool exist = allDays.Any(x => x.GetDate() == mondayOfCurrentWeek.AddDays(i));
 
-                    //ale jezeli go jeszcze nie ma
-
-
-                    // wez dzisiejszy dzien - sprawdz cyz jest
-
-                    // jak nie ma to dodaj
-
-                    //wez dzien +1 jak nie ma to dodaj i tak 30 razy proste
+                    if (!exist)
+                    {
+                        var dayToCreate = new Day(Guid.NewGuid(), mondayOfCurrentWeek.AddDays(i), "t", "d",
+                          false); 
+                        dbContext.Add(dayToCreate);
+                    }
+ 
                 }
+
+                dbContext.SaveChanges();
             }
-           // return Task.CompletedTask;
+            // return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
