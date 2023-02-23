@@ -6,7 +6,7 @@ using Domain.Interfaces;
 
 namespace Application.Services;
 
-internal class DayService : IDayService
+internal partial class DayService : IDayService
 {
     private readonly IDayRepository _projects;
     private readonly ISubTaskRepository _subTasks;
@@ -40,10 +40,43 @@ internal class DayService : IDayService
             projectObject.MainTasks = mappedListOfIncludedSubTasks;
         }
 
-         
+
 
         return mappedProjects.OrderBy(o => o.DayDate).ToList();
     }
+    public async Task<IReadOnlyList<DayDto>> GetWeek(int weeksAhead)
+    {
+        var allProjects = await _projects.GetAllAsync();
+        var mappedProjects = Map.ListConvert(allProjects);
+
+        foreach (var projectObject in mappedProjects)
+        {
+            var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
+            var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
+
+            projectObject.MainTasks = mappedListOfIncludedSubTasks;
+        }
+
+        var orderedDays = mappedProjects.OrderBy(o => o.DayDate).ToList();
+
+        var mondayOfCurrentWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+
+        var mondayOfDBDays = orderedDays.FirstOrDefault(x => x.DayDate == mondayOfCurrentWeek);
+
+        int indexOdSerchedMonday = orderedDays.FindIndex(x => x.DayDate == mondayOfCurrentWeek);
+
+        var selectedWeek = new List<DayDto>();
+
+        for (int i = 0; i < 7; i++)
+        {
+            selectedWeek.Add(orderedDays[indexOdSerchedMonday]);
+            indexOdSerchedMonday++;
+        }
+
+        return selectedWeek;
+    }
+
+
     public async Task<DayDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);
@@ -77,5 +110,4 @@ internal class DayService : IDayService
             await _projects.DeleteAsync(id);
         }
     }
-
 }
