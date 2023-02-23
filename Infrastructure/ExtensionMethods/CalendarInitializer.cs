@@ -14,16 +14,12 @@ namespace ProductionScheduler.Infrastructure.DAL
         {
             _serviceProvider = serviceProvider;
         }
-        public async Task StartAsync(CancellationToken cancellationToken) // on app start
+        public async Task StartAsync(CancellationToken cancellationToken) 
         {
             using (var scope = _serviceProvider.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<TaskBoardContext>();
-                //  dbContext.Database.Migrate();
-
-                //  dbContext.AddRange(machinesToReserve);
-                //  dbContext.SaveChanges();
-                // pobierz 30 next recordow
+                 
                  var allDays  =   await  dbContext.Days.ToListAsync();
                  
                 var today = DateTime.Today;
@@ -33,8 +29,7 @@ namespace ProductionScheduler.Infrastructure.DAL
                 for (int i = 0; i < 38; i++)
                 {
                   var dayToCheck = mondayOfCurrentWeek.AddDays(i);
-
-                    // leć po dacie od dzisiaj i probuj dodać
+                     
                  bool exist = allDays.Any(x => x.GetDate() == mondayOfCurrentWeek.AddDays(i));
 
                     if (!exist)
@@ -48,7 +43,7 @@ namespace ProductionScheduler.Infrastructure.DAL
 
                 dbContext.SaveChanges();
             }
-            // return Task.CompletedTask;
+          
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
