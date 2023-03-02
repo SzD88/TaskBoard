@@ -8,14 +8,7 @@
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="Properties\PublishProfiles\javaScriptNotesSD - FTP.pubxml.user" />
-    <None Include="Properties\PublishProfiles\javaScriptNotesSD - Web Deploy.pubxml.user" />
-    <None Include="Properties\PublishProfiles\javaScriptNotesSD - Zip Deploy.pubxml.user" />
-    <None Include="Properties\PublishProfiles\PresentationSD - FTP.pubxml.user" />
-    <None Include="Properties\PublishProfiles\PresentationSD - Web Deploy.pubxml.user" />
-    <None Include="Properties\PublishProfiles\PresentationSD - Zip Deploy.pubxml.user" />
-  </ItemGroup>
+ 
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
@@ -36,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\ServiceDependencies\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
