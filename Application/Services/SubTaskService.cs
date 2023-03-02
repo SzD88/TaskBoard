@@ -61,13 +61,18 @@ internal class SubTaskService : ISubTaskService
     public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
     {
         var subTaskType = Map.UpdateSubTaskDtoToSubTask(entityToUpdate);
+        subTaskType.LastModified = DateTime.UtcNow;
         await _subTasks.UpdateAsync(subTaskType);
     }
     internal async Task<IReadOnlyList<SubTaskDto>> CreateListOfTasksAsync(Guid parentId)
     {
         var list = await _subTasks.CreateListOfTasks(parentId);
         var mappedList = Map.ListConvert(list);
-        return mappedList;
+
+        mappedList.Sort();
+
+       var ordered =  mappedList.OrderBy(o => o.Created).ToList();
+        return ordered;
     }
 
     public async Task DeleteAllSubTasksAsync()

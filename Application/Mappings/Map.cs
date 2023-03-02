@@ -59,7 +59,8 @@ namespace Application.Mappings
                 Id = subTaskType.GetSubTaskId(),
                 Completed = subTaskType.GetCompleted(),
                 Content = subTaskType.GetContent(),
-                LevelAboveId = subTaskType.GetLevelAboveId()
+                LevelAboveId = subTaskType.GetLevelAboveId(),
+                Created = subTaskType.Created
             };
         }
         public static SubTask SubTaskDtoToSubTask(SubTaskDto enter)
@@ -68,6 +69,7 @@ namespace Application.Mappings
                 Guid.NewGuid(),
                 enter.Content,
                 enter.Completed,
+                enter.DayDate,
                 enter.LevelAboveId
                 );
             return subTaskType;
@@ -78,6 +80,7 @@ namespace Application.Mappings
                 Guid.NewGuid(),
                 enter.Content,
                 false,  // completed
+                enter.DayDate, 
                 enter.LevelAboveId
                 );
             return subTaskType;
@@ -88,6 +91,8 @@ namespace Application.Mappings
                 enter.Id,
                 enter.Content,
                 enter.Completed,
+                enter.DayDate,
+
                 enter.LevelAboveId
                 );
             return subTaskType;

@@ -4,6 +4,8 @@
     {
         public string Content { get; set; }
         public Guid LevelAboveId { get; set; }
+        public DateTime DayDate { get; set; }
+
     }
-   
+
 }

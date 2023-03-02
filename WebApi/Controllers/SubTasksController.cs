@@ -65,5 +65,14 @@ namespace WebApi.Controllers
             await _subTasks.DeleteAsync(id);
             return NoContent(); 
         }
+        [HttpDelete("/deleteAll")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Summary = "Delete all subtasks")]
+        public async Task<ActionResult> DeleteAllTasks()
+        {
+            await _subTasks.DeleteAllSubTasksAsync();
+            return NoContent();
+        }
     }
 }

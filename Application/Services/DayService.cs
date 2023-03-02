@@ -66,7 +66,7 @@ internal partial class DayService : IDayService
 
         var mondayOfCurrentWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
 
-       var mondayOfSelectedWeek = mondayOfCurrentWeek.AddDays(daysAhead);
+        var mondayOfSelectedWeek = mondayOfCurrentWeek.AddDays(daysAhead);
 
         var mondayOfDBDays = orderedDays.FirstOrDefault(x => x.DayDate == mondayOfSelectedWeek);
 
