@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(TaskBoardContext))]
-    [Migration("20230220171811_20-02")]
-    partial class _2002
+    [Migration("20230307120352_03-07")]
+    partial class _0307
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,10 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("Content");
+
+                    b.Property<DateTime?>("_dayDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DayDate");
 
                     b.Property<Guid>("_levelAboveId")
                         .HasColumnType("uniqueidentifier")

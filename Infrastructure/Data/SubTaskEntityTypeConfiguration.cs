@@ -16,6 +16,8 @@ namespace Infrastructure.Data
                 dbvalue => new Completed(dbvalue));
             var idConverter = new ValueConverter<Id, Guid>(id => id.Value,
                 dbvalue => new Id(dbvalue));
+            var dayDateConverter = new ValueConverter<DayDate, DateTime>(pnr => pnr.Value,
+                dbvalue => new DayDate(dbvalue));
 
             builder
               .ToTable("SubTasks");
@@ -36,11 +38,14 @@ namespace Infrastructure.Data
                 .HasConversion(completedConverter)
                 .HasColumnName("Completed")
                 .IsRequired();
-
+            builder.Property(typeof(DayDate), "_dayDate")
+               .HasConversion(dayDateConverter)
+               .HasColumnName("DayDate");
             builder.Property(typeof(Id), "_levelAboveId")
                .HasConversion(idConverter)
                .HasColumnName("LevelAboveId")
                .IsRequired(); 
+
 
         }
     }

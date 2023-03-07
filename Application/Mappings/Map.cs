@@ -60,6 +60,7 @@ namespace Application.Mappings
                 Completed = subTaskType.GetCompleted(),
                 Content = subTaskType.GetContent(),
                 LevelAboveId = subTaskType.GetLevelAboveId(),
+                DayDate = subTaskType.GetDayDate(),
                 Created = subTaskType.Created
             };
         }
@@ -80,7 +81,7 @@ namespace Application.Mappings
                 Guid.NewGuid(),
                 enter.Content,
                 false,  // completed
-                enter.DayDate, 
+                enter.DayDate.Date, 
                 enter.LevelAboveId
                 );
             return subTaskType;

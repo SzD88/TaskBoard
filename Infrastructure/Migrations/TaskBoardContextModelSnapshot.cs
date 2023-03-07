@@ -79,6 +79,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("Content");
 
+                    b.Property<DateTime?>("_dayDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DayDate");
+
                     b.Property<Guid>("_levelAboveId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LevelAboveId");

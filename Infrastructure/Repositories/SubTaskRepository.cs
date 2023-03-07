@@ -41,12 +41,32 @@ namespace Infrastructure.Repositories
             _context.SubTasks.Update(entityToUpdate);
             await _context.SaveChangesAsync();
         }
-        public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId)
+        public async Task<IReadOnlyList<SubTask>> CreateListOfTasks(Guid parentId) 
         {
             var tmpId = (Id)parentId;
             var listOfChilds = await _context.SubTasks
                 .Where(x => x._levelAboveId == tmpId)
                 .ToListAsync();
+
+            foreach (var subtask in listOfChilds)
+            {
+                var listBelow = await CreateListOfTasks(subtask.Id);
+
+                foreach (var itemBelow in listBelow)
+                {
+                    subtask.AddSubTask(itemBelow.GetSubTaskId());
+                }
+            }
+            return listOfChilds;
+        }
+        public async Task<IReadOnlyList<SubTask>> CreateListOfTasksByDate(DateTime dateOfDay)
+        {
+            var tmpId = (DayDate)dateOfDay;
+            var listOfChilds = await _context.SubTasks
+                .Where(x => x._dayDate == tmpId)
+                .ToListAsync();
+
+            bool cos = listOfChilds.Any();
 
             foreach (var subtask in listOfChilds)
             {

@@ -24,7 +24,7 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 
 builder.Services.AddDbContext<TaskBoardContext>(options =>
-  options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TaskBoard"));
+  options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TaskBoard2"));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -7,7 +7,7 @@ namespace Domain.Entities
         public Id Id { get; private set; }
         private Content _content;
         private Completed _completed;
-        private DayDate _dayDate;
+        public DayDate _dayDate;
         public Id _levelAboveId { get; private set; }
         private readonly List<Guid> _includedSubTasks = new();
         public SubTask()
@@ -29,7 +29,7 @@ namespace Domain.Entities
             _content.Value;
         public bool GetCompleted() => 
             _completed.Value;
-        public DateTime GetDayDate() =>
+        public DayDate GetDayDate() =>
            _dayDate.Value;
         public Guid GetLevelAboveId() =>
              _levelAboveId.Value;
