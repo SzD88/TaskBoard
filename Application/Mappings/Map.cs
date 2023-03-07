@@ -84,6 +84,7 @@ namespace Application.Mappings
                 enter.DayDate.Date, 
                 enter.LevelAboveId
                 );
+             subTaskType.LastModified = DateTime.UtcNow;
             return subTaskType;
         }
         public static SubTask UpdateSubTaskDtoToSubTask(UpdateSubTaskDto enter)
