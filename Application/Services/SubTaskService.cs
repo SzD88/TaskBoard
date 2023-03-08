@@ -61,6 +61,8 @@ internal class SubTaskService : ISubTaskService
     public async Task UpdateAsync(UpdateSubTaskDto entityToUpdate)
     {
         var subTaskType = Map.UpdateSubTaskDtoToSubTask(entityToUpdate);
+
+
         subTaskType.LastModified = DateTime.UtcNow;
         await _subTasks.UpdateAsync(subTaskType);
     }
@@ -72,7 +74,7 @@ internal class SubTaskService : ISubTaskService
         mappedList.Sort();
 
        var ordered =  mappedList.OrderBy(o => o.Created).ToList();
-        return ordered;
+       return ordered;
     }
 
     public async Task DeleteAllSubTasksAsync()
