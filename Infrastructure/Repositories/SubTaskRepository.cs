@@ -77,7 +77,15 @@ namespace Infrastructure.Repositories
                     subtask.AddSubTask(itemBelow.GetSubTaskId());
                 }
             }
-            return listOfChilds.OrderBy(x => x.LastModified).ToList();
+
+
+            return listOfChilds
+                .OrderBy(x => x.LastModified)
+                
+                .ToList();
+            //tutaj 
+
+
         }
 
     }

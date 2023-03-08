@@ -58,10 +58,13 @@ internal partial class DayService : IDayService
         {
            // var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
             var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasksByDate(projectObject.DayDate);
-
+             
             var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
+             
+            //#selekcja
+            var selectedOnlyNotCompletedTasks = mappedListOfIncludedSubTasks.Where(o => o.Completed == false).ToList();
 
-            projectObject.MainTasks = mappedListOfIncludedSubTasks;
+            projectObject.MainTasks = selectedOnlyNotCompletedTasks;
         }
 
         var orderedDays = mappedProjects.OrderBy(o => o.DayDate).ToList();
