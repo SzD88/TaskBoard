@@ -81,8 +81,9 @@ namespace Application.Mappings
                 Guid.NewGuid(),
                 enter.Content,
                 false,  // completed
-                enter.DayDate.Date, 
-                enter.LevelAboveId
+                enter.DayDate.Date,
+                Guid.NewGuid() //#tutaj
+               // enter.LevelAboveId
                 );
              subTaskType.LastModified = DateTime.UtcNow;
             return subTaskType;

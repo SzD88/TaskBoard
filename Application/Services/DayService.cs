@@ -56,15 +56,17 @@ internal partial class DayService : IDayService
         }
         foreach (var projectObject in mappedProjects)
         {
-           // var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
+            // var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
             var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasksByDate(projectObject.DayDate);
-             
+
             var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
-             
+
             //#selekcja
             var selectedOnlyNotCompletedTasks = mappedListOfIncludedSubTasks.Where(o => o.Completed == false).ToList();
 
-            projectObject.MainTasks = selectedOnlyNotCompletedTasks;
+            var listSortedByWords = SortByWords(selectedOnlyNotCompletedTasks);
+
+            projectObject.MainTasks = listSortedByWords;
         }
 
         var orderedDays = mappedProjects.OrderBy(o => o.DayDate).ToList();
@@ -91,6 +93,22 @@ internal partial class DayService : IDayService
         return selectedWeek;
     }
 
+    private List<SubTaskDto> SortByWords(IList<SubTaskDto> list)
+    {
+        string word1 = " OUT";
+        string word2 = " HO";
+
+        var firstSelected =
+        list.Where(x => x.Content.Contains(word1) || x.Content.Contains(word2)).ToList();
+        var secondSelected =
+        list.Where(x => !x.Content.Contains(word1) && !x.Content.Contains(word2));
+        foreach (var item in secondSelected)
+        {
+            firstSelected.Add(item);
+        }
+        return firstSelected;
+    }
+
 
     public async Task<DayDto> GetByIDAsync(Guid id)
     {
@@ -108,6 +126,17 @@ internal partial class DayService : IDayService
             projectDtoType.MainTasks.Add(item);
         }
         return projectDtoType;
+    }
+    public async Task<DayDto> GetByDateAsync(DateTime date)
+    {
+        var projects = await GetAllAsync() ;
+         
+        if (projects == null) return null;
+
+        var selected = projects.FirstOrDefault
+            (x => x.DayDate == date);
+         
+        return selected;
     }
     public async Task UpdateAsync(UpdateDayDto entityToUpdate)
     {

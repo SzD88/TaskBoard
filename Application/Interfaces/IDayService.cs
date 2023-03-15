@@ -10,6 +10,7 @@ public interface IDayService
     Task<IReadOnlyList<DayDto>> GetAllAsync();
     Task<IReadOnlyList<DayDto>> GetWeek(int weeksAhead);
     Task<DayDto> GetByIDAsync(Guid id);
+    Task<DayDto> GetByDateAsync(DateTime date);
     Task UpdateAsync(UpdateDayDto entityToUpdate);
     Task DeleteAllProjectsAsync();
 }

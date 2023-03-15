@@ -36,6 +36,15 @@ namespace WebApi.Controllers
             var toShow = await _projects.GetByIDAsync(id);
             return OkOrNotFound(toShow);
         }
+        [HttpGet("date/{date}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Retrieves day by date")]
+        public async Task<ActionResult<DayDto>> GetProjectByDate(DateTime date)
+        {
+            var toShow = await _projects.GetByDateAsync(date);
+            return OkOrNotFound(toShow);
+        }
 
         [HttpGet] 
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -25,6 +25,9 @@ namespace Infrastructure.Repositories
             _context.Remove(projectToDelete); 
             await _context.SaveChangesAsync();
         }
+
+       
+
         public async Task<IReadOnlyList<Day>> GetAllAsync()
         {
             return await _context.Days.ToListAsync();
@@ -42,6 +45,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+      
     }
 }
 
