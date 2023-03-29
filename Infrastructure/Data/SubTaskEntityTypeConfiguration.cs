@@ -33,7 +33,6 @@ namespace Infrastructure.Data
                 .HasColumnName("Content")
                 .HasMaxLength(200)
                 .IsRequired();
-
             builder.Property(typeof(Completed), "_completed")
                 .HasConversion(completedConverter)
                 .HasColumnName("Completed")

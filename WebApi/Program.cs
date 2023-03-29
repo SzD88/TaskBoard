@@ -1,54 +1,36 @@
-﻿using Application;
-using Infrastructure;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using WebAPI.Installers;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+ 
 var builder = WebApplication.CreateBuilder(args);
+ 
+var frontendAdress = builder.Configuration.GetConnectionString("FrontEndCS") ;
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.AllowAnyOrigin()   //!!! #avoid #bug #mistake
-                                          .AllowAnyMethod()
-                                         .AllowAnyHeader();
-                                     // .AllowCredentials();
+                         policy
+                        .WithOrigins(frontendAdress)
+                        .SetIsOriginAllowed((host) => true);
+                         policy
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
                       });
-});  
-                                
-
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure();
-
-builder.Services.AddDbContext<TaskBoardContext>(options =>
-  options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TaskBoard2"));
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.EnableAnnotations(); // *
-}
-);
+});
+ 
+builder.Services.InstallServicesInAssembly(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-// app.UseDefaultFiles(); // needed to use JS/HTML/
-app.UseStaticFiles();  // needed to use JS/HTML/
-app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
-
-// app.UseAuthorization();
 
 app.MapControllers();
 

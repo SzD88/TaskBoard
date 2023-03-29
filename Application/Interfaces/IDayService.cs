@@ -5,7 +5,7 @@ namespace Application.Interfaces;
 
 public interface IDayService
 {
-    Task<DayDto> CreateAsync(CreateDay entity);
+    Task<DayDto> CreateAsync(CreateDayDto entity);
     Task DeleteAsync(Guid id);
     Task<IReadOnlyList<DayDto>> GetAllAsync();
     Task<IReadOnlyList<DayDto>> GetWeek(int weeksAhead);

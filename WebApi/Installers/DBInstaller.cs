@@ -5,12 +5,10 @@ namespace WebApi.Installers
 {
     public class DBInstaller : IInstaller
     {
-
-        public void InstallServices(IServiceCollection services, IConfiguration configuration)
+        public void InstallServices(IServiceCollection services, IConfiguration Configuration)
         {
-
-
+            services.AddDbContext<TaskBoardContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("TaskBoardCS")));
         }
     }
-
 }

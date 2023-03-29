@@ -15,7 +15,7 @@ internal partial class DayService : IDayService
         _projects = projectRepository;
         _subTasks = subTaskRepository;
     }
-    public async Task<DayDto> CreateAsync(CreateDay project)
+    public async Task<DayDto> CreateAsync(CreateDayDto project)
     {
         var asProjectType = Map.CreateProjectDtoToProject(project);
         var created = await _projects.CreateAsync(asProjectType);
@@ -56,12 +56,10 @@ internal partial class DayService : IDayService
         }
         foreach (var projectObject in mappedProjects)
         {
-            // var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
             var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasksByDate(projectObject.DayDate);
 
             var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
 
-            //#selekcja
             var selectedOnlyNotCompletedTasks = mappedListOfIncludedSubTasks.Where(o => o.Completed == false).ToList();
 
             var listSortedByWords = SortByWords(selectedOnlyNotCompletedTasks);
@@ -108,8 +106,6 @@ internal partial class DayService : IDayService
         }
         return firstSelected;
     }
-
-
     public async Task<DayDto> GetByIDAsync(Guid id)
     {
         var project = await _projects.GetByIDAsync(id);

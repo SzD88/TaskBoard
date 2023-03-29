@@ -80,12 +80,8 @@ namespace Infrastructure.Repositories
 
 
             return listOfChilds
-                .OrderBy(x => x.LastModified)
-                
-                .ToList();
-            //tutaj 
-
-
+                .OrderBy(x => x.LastModified) 
+                .ToList();  
         }
 
     }

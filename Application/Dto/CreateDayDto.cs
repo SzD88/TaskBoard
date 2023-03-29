@@ -1,9 +1,9 @@
-﻿namespace Application.Dto
+﻿namespace Application.Commands
 {
-    public class CreateDayDto
-    { 
-        public DateTime DayDate { get; set; } 
-        public string Title { get; set; }
-        public string Description { get; set; }
-    }
+    public record CreateDayDto( 
+         DateTime DayDate,
+         string Title,
+         string Description  
+         );
 }
+ 

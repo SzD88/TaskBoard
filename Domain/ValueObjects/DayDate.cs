@@ -7,11 +7,6 @@
 
         public DayDate(DateTime value)
         {
-            //if (value is not null) //# refactor
-            //{
-            //    throw new EmptyProjectNumberException();
-            //}
-
             Value = value;
         }
 

@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [SwaggerOperation(Summary = "Create new day")]  
-        public async Task<ActionResult> AddProject(CreateDay project)
+        public async Task<ActionResult> AddProject(CreateDayDto project)
         {
             var toShow = await _projects.CreateAsync(project); 
             return Created($"/api/days/{toShow.Id}",toShow);

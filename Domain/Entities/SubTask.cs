@@ -44,6 +44,5 @@ namespace Domain.Entities
             }
             _includedSubTasks.Append(mainTaskId);
         }
-    
     }
 }

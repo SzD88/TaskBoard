@@ -13,16 +13,13 @@ namespace Domain.Entities
         {
         } 
         public Day(Guid id, DayDate dayDate, Title title, Description description,
-            Completed completed ) //DateTime created, DateTime lastmodified
+            Completed completed )
         {
             Id = id;
             _dayDate = dayDate;
             _title = title;
             _description = description;
             _completed = completed;
-            //Created = created;
-            //LastModified = lastmodified;
-           //  _mainTasksAsSubTasks = new List<Guid>();
         } 
        
         public DateTime GetDate() =>

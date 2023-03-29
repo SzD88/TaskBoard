@@ -15,8 +15,6 @@ namespace Application.Mappings
                 Title = projectType.GetTitle(),
                 Description = projectType.GetDescription(),
                 Completed = projectType.GetCompleted(),
-              //  CreationDate = projectType.Created,
-               // LastModifiedDate = projectType.LastModified,
                 MainTasks = new List<SubTaskDto>()
             };
         }
@@ -30,7 +28,7 @@ namespace Application.Mappings
             enter.Completed);
             return projectType;
         }
-        public static Day CreateProjectDtoToProject(CreateDay enter)
+        public static Day CreateProjectDtoToProject(CreateDayDto enter)
         {
             var projectType = new Day(
                 Guid.NewGuid(),
@@ -80,10 +78,9 @@ namespace Application.Mappings
             var subTaskType = new SubTask(
                 Guid.NewGuid(),
                 enter.Content,
-                false,  // completed
+                false, 
                 enter.DayDate.Date,
-                Guid.NewGuid() //#tutaj
-               // enter.LevelAboveId
+                Guid.NewGuid() 
                 );
              subTaskType.LastModified = DateTime.UtcNow;
             return subTaskType;
