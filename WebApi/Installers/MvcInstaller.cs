@@ -8,14 +8,10 @@ namespace WebAPI.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-
-
             services.AddApplication();
             services.AddInfrastructure();
             services.AddControllers(); 
             services.AddEndpointsApiExplorer();
-
-
         }
     }
 }
