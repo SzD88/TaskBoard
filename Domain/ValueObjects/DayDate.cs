@@ -1,6 +1,5 @@
 ﻿namespace Domain.ValueObjects
 {
-
     public record DayDate
     {
         public DateTime Value { get; private set; }

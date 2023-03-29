@@ -49,7 +49,6 @@ namespace Infrastructure.Data
                 .HasConversion(completedConverter)
                 .HasColumnName("Completed")
                 .IsRequired();
-
         }
     }
 }

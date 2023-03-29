@@ -38,19 +38,14 @@ namespace ProductionScheduler.Infrastructure.DAL
                           false); 
                         dbContext.Add(dayToCreate);
                     }
- 
                 }
 
                 dbContext.SaveChanges();
             }
-          
         }
-
         public Task StopAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
-
         }
-        
     }
 }

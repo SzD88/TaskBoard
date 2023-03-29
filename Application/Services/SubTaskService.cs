@@ -1,7 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
 using Application.Mappings;
-using Domain.Entities;
 using Domain.Interfaces;
 using Domain.ValueObjects;
 
@@ -85,6 +84,4 @@ internal class SubTaskService : ISubTaskService
             await _subTasks.DeleteAsync(subTask.Id);
         }
     }
-
-
 }

@@ -39,9 +39,6 @@ internal partial class DayService : IDayService
 
             projectObject.MainTasks = mappedListOfIncludedSubTasks;
         }
-
-
-
         return mappedProjects.OrderBy(o => o.DayDate).ToList();
     }
     public async Task<IReadOnlyList<DayDto>> GetWeek(int weeksAhead)
@@ -90,7 +87,6 @@ internal partial class DayService : IDayService
 
         return selectedWeek;
     }
-
     private List<SubTaskDto> SortByWords(IList<SubTaskDto> list)
     {
         string word1 = " OUT";

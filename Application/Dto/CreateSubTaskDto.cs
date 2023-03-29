@@ -7,5 +7,4 @@
         public DateTime DayDate { get; set; }
 
     }
-
 }
