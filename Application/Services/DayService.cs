@@ -2,7 +2,10 @@
 using Application.Dto;
 using Application.Interfaces;
 using Application.Mappings;
+using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.Extensions.Caching.Memory;
+
 
 namespace Application.Services;
 
@@ -10,20 +13,24 @@ internal partial class DayService : IDayService
 {
     private readonly IDayRepository _projects;
     private readonly ISubTaskRepository _subTasks;
-    public DayService(IDayRepository projectRepository, ISubTaskRepository subTaskRepository)
+    private readonly IMemoryCache _memoryCache;
+
+    public DayService(IDayRepository projectRepository, ISubTaskRepository subTaskRepository, IMemoryCache memoryCache)
     {
         _projects = projectRepository;
         _subTasks = subTaskRepository;
+        _memoryCache = memoryCache;
     }
     public async Task<DayDto> CreateAsync(CreateDayDto project)
     {
-        var asProjectType = Map.CreateProjectDtoToProject(project);
+        var asProjectType = Map.CreateDayDtoToDay(project);
         var created = await _projects.CreateAsync(asProjectType);
-
-        return Map.ProjectToProjectDto(created);
+        ClearCache(); 
+        return Map.DayToDayDto(created);
     }
     public async Task DeleteAsync(Guid id)
     {
+        ClearCache(); 
         await _projects.DeleteAsync(id);
     }
 
@@ -43,17 +50,25 @@ internal partial class DayService : IDayService
     }
     public async Task<IReadOnlyList<DayDto>> GetWeek(int weeksAhead)
     {
-        var allProjects = await _projects.GetAllAsync();
-        var mappedProjects = Map.ListConvert(allProjects);
+        var days = _memoryCache.Get<IReadOnlyList<Day>>("days");
+
+        if (days == null)
+        {
+            days = await _projects.GetAllAsync();
+            _memoryCache.Set("days", days, TimeSpan.FromMinutes(5));
+
+        }
+
+        var mapedDays = Map.ListConvert(days);
         var daysAhead = weeksAhead * 7;
 
         if (weeksAhead > 3)
         {
             return null;
         }
-        foreach (var projectObject in mappedProjects)
+        foreach (var dayObject in mapedDays)
         {
-            var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasksByDate(projectObject.DayDate);
+            var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasksByDate(dayObject.DayDate);
 
             var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
 
@@ -61,10 +76,10 @@ internal partial class DayService : IDayService
 
             var listSortedByWords = SortByWords(selectedOnlyNotCompletedTasks);
 
-            projectObject.MainTasks = listSortedByWords;
+            dayObject.MainTasks = listSortedByWords;
         }
 
-        var orderedDays = mappedProjects.OrderBy(o => o.DayDate).ToList();
+        var orderedDays = mapedDays.OrderBy(o => o.DayDate).ToList();
 
         var mondayOfCurrentWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
 
@@ -107,7 +122,7 @@ internal partial class DayService : IDayService
         var project = await _projects.GetByIDAsync(id);
         if (project == null) return null;
 
-        var projectDtoType = Map.ProjectToProjectDto(project);
+        var projectDtoType = Map.DayToDayDto(project);
 
         var list = await _subTasks.CreateListOfTasks(project.Id);
 
@@ -121,19 +136,19 @@ internal partial class DayService : IDayService
     }
     public async Task<DayDto> GetByDateAsync(DateTime date)
     {
-        var projects = await GetAllAsync() ;
-         
+        var projects = await GetAllAsync();
+
         if (projects == null) return null;
 
         var selected = projects.FirstOrDefault
             (x => x.DayDate == date);
-         
+
         return selected;
     }
     public async Task UpdateAsync(UpdateDayDto entityToUpdate)
     {
-        var project = Map.UpdateProjectDtoToProject(entityToUpdate);
-
+        var project = Map.UpdateDayDtoToDay(entityToUpdate);
+        ClearCache();
         await _projects.UpdateAsync(project);
     }
     public async Task DeleteAllProjectsAsync()
@@ -143,7 +158,12 @@ internal partial class DayService : IDayService
         foreach (var project in allProjects)
         {
             var id = (Guid)project.Id;
+            ClearCache();
             await _projects.DeleteAsync(id);
         }
+    }
+    internal void ClearCache()
+    {
+        _memoryCache.Remove("days"); 
     }
 }

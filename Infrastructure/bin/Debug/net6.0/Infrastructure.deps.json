@@ -576,6 +576,7 @@
         "dependencies": {
           "AutoMapper": "11.0.1",
           "Domain": "1.0.0",
+          "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
         },
         "runtime": {

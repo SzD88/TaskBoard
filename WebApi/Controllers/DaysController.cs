@@ -50,7 +50,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Retrieves all days")] 
-        public async Task<ActionResult<IReadOnlyList<DayDto>>> GetAll() //([FromQuery] SearchPackingLists query)
+        public async Task<ActionResult<IReadOnlyList<DayDto>>> GetAll() 
         {
             var toShow = await _projects.GetAllAsync();
             return OkOrNotFound(toShow);
@@ -59,7 +59,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Retrieves 7 days of week determined by number of weeks ahead")]
-        public async Task<ActionResult<IReadOnlyList<DayDto>>> GetWeek(int weeksAhead) //([FromQuery] SearchPackingLists query)
+        public async Task<ActionResult<IReadOnlyList<DayDto>>> GetWeek(int weeksAhead)  
         {
             var toShow = await _projects.GetWeek(weeksAhead);
             return OkOrNotFound(toShow);
