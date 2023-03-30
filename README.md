@@ -8,6 +8,8 @@ Installation:
 2. Update database
 3. Run Web.Api
 
-It is life living application with issues need to be fixed:
-1. Uneccessary endpoints.
-2. Public
+This is an application currently functioning with issues that need to be fixed:
+1. Remove unnecessary endpoints.
+2. Fixing public objects in the domain layer.
+3. CQRS implementation.
+4. ...
