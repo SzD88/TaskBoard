@@ -8,6 +8,10 @@ Installation:
 2. Update database
 3. Run Web.Api
 
+App: http://localhost:5227
+
+Swagger: http://localhost:5227/swagger/index.html
+
 This is an application currently functioning with issues that need to be fixed:
 1. Remove unnecessary endpoints.
 2. Fixing public objects in the domain layer.
