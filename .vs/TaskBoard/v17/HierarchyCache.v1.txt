@@ -1,0 +1,273 @@
+﻿++Solution 'TaskBoard' ‎(4 of 4 projects)
+i:{00000000-0000-0000-0000-000000000000}:TaskBoard.sln
+++src
+i:{00000000-0000-0000-0000-000000000000}:src
+++Domain
+i:{54d74c2a-22e3-4785-a889-4fdcae0a485d}:Domain
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\domain\bin\debug\net6.0\domain.dll
+++Dependencies
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:>558
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:>556
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>706
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>557
+++Common
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\common\
+++Entities
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\entities\
+++Day.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\entities\day.cs
+++SubTask.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\entities\subtask.cs
+++Exceptions
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\
+++Interfaces
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\interfaces\
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\interfaces\
+++ValueObjects
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\
+++Analyzers
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:analyzers
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:analyzers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:analyzers
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:analyzers
+++Frameworks
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:frameworks
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:frameworks
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:frameworks
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:frameworks
+++AuditibleEntity.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\common\auditibleentity.cs
+++CustomException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\customexception.cs
+++EmptyDContentException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\emptydcontentexception.cs
+++EmptyDescriptionException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\emptydescriptionexception.cs
+++EmptyProjectNumberException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\emptyprojectnumberexception.cs
+++EmptyTitleException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\emptytitleexception.cs
+++IdIsNullException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\idisnullexception.cs
+++SubTaskAlredyExistsException.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\subtaskalredyexistsexception.cs
+++SubTaskDoesNotExists.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\exceptions\subtaskdoesnotexists.cs
+++IDayRepository.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\interfaces\idayrepository.cs
+++IRepository.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\interfaces\irepository.cs
+++ISubTaskRepository.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\interfaces\isubtaskrepository.cs
+++Completed.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\completed.cs
+++Content.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\content.cs
+++DayDate.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\daydate.cs
+++Description.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\description.cs
+++Id.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\id.cs
+++Title.cs
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\valueobjects\title.cs
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++System.Text.Json.SourceGeneration
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.1\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.1\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.1\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.1\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.NETCore.App
+i:{10517d53-6aab-44e0-904a-fe0a3f5f1b11}:c:\users\dell\source\repos\taskboard\domain\microsoft.netcore.app
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\microsoft.netcore.app
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\microsoft.netcore.app
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\microsoft.netcore.app
+++Application
+i:{54d74c2a-22e3-4785-a889-4fdcae0a485d}:Application
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\application\application.csproj
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\application\bin\debug\net6.0\application.dll
+++Commands
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\commands\
+++CreateDay.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\commands\createday.cs
+++CreateSubTask.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\commands\createsubtask.cs
+++UpdateDay.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\commands\updateday.cs
+++UpdateSubTask.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\commands\updatesubtask.cs
+++Dto
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\
+++CreateDayDto.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\createdaydto.cs
+++CreateSubTaskDto.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\createsubtaskdto.cs
+++DayDto.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\daydto.cs
+++SubTaskDto.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\subtaskdto.cs
+++UpdateDayDto.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\updatedaydto.cs
+++UpdateSubTaskDto.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dto\updatesubtaskdto.cs
+++IDayService.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\interfaces\idayservice.cs
+++ISubTaskService.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\interfaces\isubtaskservice.cs
+++Mappings
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\mappings\
+++Map.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\mappings\map.cs
+++Services
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\services\
+++DayService.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\services\dayservice.cs
+++SubTaskService.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\services\subtaskservice.cs
+++DependencyInjection.cs
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:c:\users\dell\source\repos\taskboard\application\dependencyinjection.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\dependencyinjection.cs
+++Packages
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:packages
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:packages
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:packages
+++Projects
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:projects
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:projects
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:projects
+++AutoMapper (11.0.1)
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:>752
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>724
+++Microsoft.Extensions.DependencyInjection (6.0.0)
+i:{3f05ba97-1ccb-4989-85ec-f7904f63f704}:>750
+++WebApi
+i:{54d74c2a-22e3-4785-a889-4fdcae0a485d}:WebApi
+++Connected Services 
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>707
+++Properties
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\properties\
+++ServiceDependencies
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\properties\servicedependencies\
+++launchSettings.json
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\properties\launchsettings.json
+++wwwroot
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\wwwroot\
+++Controllers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\controllers\
+++BaseController.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\controllers\basecontroller.cs
+++DaysController.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\controllers\dayscontroller.cs
+++SubTasksController.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\controllers\subtaskscontroller.cs
+++Filters
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\filters\
+++Helpers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\helpers\
+++Installers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\installers\
+++appsettings.Development.json
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\appsettings.development.json
+++appsettings.json
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\appsettings.json
+++Program.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\program.cs
+++No service dependencies discovered
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>708
+++SortingFilter.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\filters\sortingfilter.cs
+++SortingHelper.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\helpers\sortinghelper.cs
+++DBInstaller.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\installers\dbinstaller.cs
+++FluentEmailInstaller.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\installers\fluentemailinstaller.cs
+++IInstaller.cs
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\installers\iinstaller.cs
+++Microsoft.AspNetCore.Analyzers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.App.Analyzers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.0\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.0\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.Internal.SourceGenerator.Transport
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.internal.sourcegenerator.transport.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.3\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.3\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.0\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.0\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++Microsoft.AspNetCore.App
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\webapi\microsoft.aspnetcore.app
+++AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0)
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>719
+++FluentEmail.Smtp (3.0.2)
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>723
+++Microsoft.EntityFrameworkCore.Design (6.0.3)
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>720
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>755
+++Swashbuckle.AspNetCore (6.2.3)
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>721
+++Swashbuckle.AspNetCore.Annotations (6.3.1)
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:>722
+++Infrastructure
+i:{32e7df3f-2081-4483-bfe9-3adbbb2a2876}:c:\users\dell\source\repos\taskboard\infrastructure\infrastructure.csproj
+i:{54d74c2a-22e3-4785-a889-4fdcae0a485d}:Infrastructure
+++Data
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\data\
+++ExtensionMethods
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\extensionmethods\
+++Migrations
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\migrations\
+++Repositories
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\repositories\
+++DayEntityTypeConfiguration.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\data\dayentitytypeconfiguration.cs
+++SubTaskEntityTypeConfiguration.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\data\subtaskentitytypeconfiguration.cs
+++TaskBoardContext.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\data\taskboardcontext.cs
+++CalendarInitializer.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\extensionmethods\calendarinitializer.cs
+++ExtensionMethods.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\extensionmethods\extensionmethods.cs
+++20230220171811_20-02.cs
+++TaskBoardContextModelSnapshot.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\migrations\taskboardcontextmodelsnapshot.cs
+++DayRepository.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\repositories\dayrepository.cs
+++SubTaskRepository.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\repositories\subtaskrepository.cs
+++Microsoft.AspNetCore.Hosting.Abstractions (2.2.0)
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>758
+++Microsoft.EntityFrameworkCore (6.0.3)
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>751
+++Microsoft.EntityFrameworkCore.SqlServer (6.0.3)
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>753
+++Microsoft.EntityFrameworkCore.Tools (6.0.3)
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>759
+++Microsoft.Extensions.DependencyInjection.Abstractions (6.0.0)
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:>757
+++20230220171811_20-02.Designer.cs
+++20230307115609_03-07.cs
+++20230307115609_03-07.Designer.cs
+++20230307120352_03-07.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\migrations\20230307120352_03-07.cs
+++20230307120352_03-07.Designer.cs
+i:{c4cb115e-08f6-41e6-8a46-9b16329adeff}:c:\users\dell\source\repos\taskboard\infrastructure\migrations\20230307120352_03-07.designer.cs

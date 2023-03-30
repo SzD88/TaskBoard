@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Application",
+    "\\Application\\Commands",
+    "\\Domain",
+    "\\Domain\\Interfaces",
+    "\\Infrastructure",
+    "\\Infrastructure\\Data",
+    "\\Infrastructure\\ExtensionMethods",
+    "\\Infrastructure\\Migrations",
+    "\\Infrastructure\\Repositories"
+  ],
+  "SelectedNode": "\\Application\\Mappings\\Map.cs",
+  "PreviewInSolutionExplorer": false
+}

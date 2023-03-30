@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "XMDCBZYfK/om/HIku7NtitcYn7eH+ZkO4jwr2DUuAbw=",
+  "Source": "WebApi",
+  "BasePath": "_content/WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApi\\wwwroot",
+      "Source": "WebApi",
+      "ContentRoot": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\WebApi\\wwwroot\\",
+      "BasePath": "_content/WebApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
