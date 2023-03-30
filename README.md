@@ -1,10 +1,8 @@
-# ProjectManager
+# TaskBoard 
 
-Wydaje mi się, że żeby odpalić ten projekt za pomocą Visual Studio należy:
+WebApi / rest api / restful api?, based on .NET 6. REST architecture. Entityframework, "code first" database. 
 
-0. Sklonować repozytorium.
-1. Wpisać: "Update-Database" w Package Menager Console - ustawione na warstwę Infrastructure.
-2. Odpalić projekt startowy WebApi.
- 
-
- 
+Installation:
+1. Clone repository
+2. Update database
+3. Run Web.Api
