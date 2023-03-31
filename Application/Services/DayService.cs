@@ -6,7 +6,6 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 
-
 namespace Application.Services;
 
 internal partial class DayService : IDayService
