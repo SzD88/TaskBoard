@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a0mRHLCF+WG5GXdQtecYkPHBfUVRgg2iCqyfW7e9J5CJj0AwbBUc1bcu27RH1uu6niPbYcqWE8lG/IAxv6jQlg==",
+  "dgSpecHash": "hKwmPkgfRfEhRbBFk7BzT2POiDn/M7tpbT6UFpGDTg6OtQkuwQXqcF4rpOLslvG+PIYbovtAw7wd0Ijo4yzPcA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

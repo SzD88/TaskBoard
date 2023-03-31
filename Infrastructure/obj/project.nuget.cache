@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HBixVQEMikJiWfgP0Rflu4FXzS4AY3mJdDAsVg7BIKJ9Zz3npML35CGhghtK7ZAYwiSpJF8iIqsy/47UVzBFxg==",
+  "dgSpecHash": "plTTL5lA7nMsrCZd9bk9fBIERs+snbXFBw0LEwZ4fEbwQX8sR8y4Ll64mvv1d26QGu94ZTQimukEWBUZdH4lag==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

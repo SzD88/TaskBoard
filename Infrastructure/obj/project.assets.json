@@ -2119,11 +2119,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -2143,8 +2143,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\Application\\Application.csproj"
+            "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\Application\\Application.csproj"
             }
           }
         }

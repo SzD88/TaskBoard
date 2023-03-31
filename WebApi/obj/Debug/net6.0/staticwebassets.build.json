@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XMDCBZYfK/om/HIku7NtitcYn7eH+ZkO4jwr2DUuAbw=",
+  "Hash": "2ZMrGyRVrv3jr8jZNRhnfcybVqhsXvQFDr0uGXz+fas=",
   "Source": "WebApi",
   "BasePath": "_content/WebApi",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "WebApi\\wwwroot",
       "Source": "WebApi",
-      "ContentRoot": "C:\\Users\\DELL\\Source\\Repos\\TaskBoard\\WebApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\DELL\\source\\repos\\TaskBoard\\WebApi\\wwwroot\\",
       "BasePath": "_content/WebApi",
       "Pattern": "**"
     }

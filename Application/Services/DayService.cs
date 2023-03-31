@@ -41,7 +41,7 @@ internal partial class DayService : IDayService
 
         foreach (var projectObject in mappedProjects)
         {
-            var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasks(projectObject.Id);
+            var listofSubTasksToMapAsDtos = await _subTasks.CreateListOfTasksByDate(projectObject.DayDate);
             var mappedListOfIncludedSubTasks = Map.ListConvert(listofSubTasksToMapAsDtos);
 
             projectObject.MainTasks = mappedListOfIncludedSubTasks;
